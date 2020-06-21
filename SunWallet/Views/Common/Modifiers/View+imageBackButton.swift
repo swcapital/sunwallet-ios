@@ -2,7 +2,7 @@ import SwiftUI
 
 extension View {
     
-    private func backButton(presentationMode: Binding<PresentationMode>) -> some View {
+    func backButton(presentationMode: Binding<PresentationMode>) -> some View {
         Button(action: { presentationMode.wrappedValue.dismiss() }) {
             Image(systemName: "arrow.left").foregroundColor(Color.darkGray)
         }

@@ -23,7 +23,7 @@ struct PortfolioView: View {
         Text("Balance")
     }
     private var scrollView: some View {
-        SWScrollView(subtitle: subtitle) {
+        SWScrollView(title: title, subtitle: subtitle) {
             VStack(alignment: .leading, spacing: 8) {
                 ChartViewSection(
                     valueHistory: self.dataSource.user.balanceHistory,

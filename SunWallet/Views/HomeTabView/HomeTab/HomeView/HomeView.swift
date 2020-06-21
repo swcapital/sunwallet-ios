@@ -14,7 +14,7 @@ struct HomeView: View {
         Text("Portfolio Balance")
     }
     private var scrollView: some View {
-        SWScrollView(subtitle: subtitle) {
+        SWScrollView(title: title, subtitle: subtitle) {
             VStack(alignment: .leading, spacing: 8) {
                 WatchListSection(assets: self.dataSource.user.favorites)
                 TopMoversSection(assets: self.dataSource.topMovers)
@@ -26,7 +26,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView() {
-            scrollView.navigationBarTitle(title)
+            scrollView
         }
         .accentColor(.primary)
     }

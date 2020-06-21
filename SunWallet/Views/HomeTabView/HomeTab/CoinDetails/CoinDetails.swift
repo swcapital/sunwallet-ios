@@ -34,8 +34,9 @@ struct CoinDetails: View {
     private var subtitle: Text {
         Text("\(asset.title) price")
     }
-    private var scrollView: some View {
-        SWScrollView(subtitle: subtitle) {
+    
+    var body: some View {
+        SWScrollView(title: title, subtitle: subtitle, presentationMode: presentationMode) {
             VStack(alignment: .leading, spacing: 8) {
                 ChartViewSection(
                     valueHistory: self.asset.valueHistory,
@@ -54,12 +55,6 @@ struct CoinDetails: View {
                 MarketStatsSection(asset: self.asset)
             }
         }
-    }
-    
-    var body: some View {
-        scrollView
-            .navigationBarTitle(self.title)
-            .navigationBarBackButton(presentationMode: self.presentationMode)
     }
 }
 
