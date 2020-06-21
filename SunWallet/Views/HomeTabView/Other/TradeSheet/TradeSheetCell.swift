@@ -10,11 +10,15 @@ struct TradeSheetCell: View {
         VStack(spacing: 0) {
             HStack {
                 Image(imageName)
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.headline)
                     Text(subtitle)
                 }
+                
                 Spacer()
             }
             .padding()

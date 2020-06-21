@@ -40,6 +40,7 @@ struct LaunchChartView: View {
             SegmentedControl(
                 titles: ["1H", "1D", "1W", "1M", "1Y", "All"],
                 accentColor: .white,
+                labelsColor: .white,
                 selectedIndex: self.$selectedChartPeriod
             )
             .padding(.horizontal, 32)

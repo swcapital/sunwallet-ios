@@ -64,6 +64,9 @@
 		DB85FA8D247D45D400A43B3D /* CircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB85FA8C247D45D400A43B3D /* CircleIcon.swift */; };
 		DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */; };
 		DB9199CE247C24EB00D2B6A5 /* ExchangeDirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */; };
+		DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */; };
+		DBC272DD249F4D8900617590 /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DC249F4D8900617590 /* LinearGradient.swift */; };
+		DBC272DF249F4DBB00617590 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DE249F4DBB00617590 /* LogoView.swift */; };
 		DBC2E3822484F17A00C871E4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC2E3812484F17A00C871E4 /* StrokeStyle.swift */; };
 		DBC2E38424850C6800C871E4 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC2E38324850C6800C871E4 /* SegmentedControl.swift */; };
 		DBC2E3862485212700C871E4 /* CurrencyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC2E3852485212700C871E4 /* CurrencyChartView.swift */; };
@@ -163,6 +166,9 @@
 		DB85FA8C247D45D400A43B3D /* CircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIcon.swift; sourceTree = "<group>"; };
 		DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionButton.swift; sourceTree = "<group>"; };
+		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
+		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
+		DBC272DE249F4DBB00617590 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		DBC2E3812484F17A00C871E4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		DBC2E38324850C6800C871E4 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		DBC2E3852485212700C871E4 /* CurrencyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyChartView.swift; sourceTree = "<group>"; };
@@ -234,6 +240,7 @@
 		DB0376CB247CFD17005ACB03 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DBC272DC249F4D8900617590 /* LinearGradient.swift */,
 				DBC2E3812484F17A00C871E4 /* StrokeStyle.swift */,
 				DB0376C9247CFD13005ACB03 /* Color.swift */,
 				DB77E171247E3C2100BF1A88 /* Double.swift */,
@@ -515,6 +522,7 @@
 				DBFDB7562492A80A00A1DFAD /* BottomSheetView.swift */,
 				DBC2E38324850C6800C871E4 /* SegmentedControl.swift */,
 				DB05B30F249A46690058124A /* SearchBar.swift */,
+				DBC272DE249F4DBB00617590 /* LogoView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -553,6 +561,7 @@
 		DBE2300A247D34F800F2751A /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */,
 				DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */,
 				DB65ACE324961A9400252A93 /* SecondaryButtonStyle.swift */,
 			);
@@ -767,6 +776,7 @@
 				DB24C4E8247CF8C40091FF44 /* AssetField.swift in Sources */,
 				DB68BC36247BF48C00377A72 /* KeyboardNumber.swift in Sources */,
 				DBC2E3862485212700C871E4 /* CurrencyChartView.swift in Sources */,
+				DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */,
 				DBF5D551248386A4006AF99B /* ValueHistory.swift in Sources */,
 				DB65ACE424961A9400252A93 /* SecondaryButtonStyle.swift in Sources */,
 				DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */,
@@ -784,6 +794,7 @@
 				DB0376CA247CFD13005ACB03 /* Color.swift in Sources */,
 				DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */,
 				DBF576DE249791C000FB01E3 /* FocusingTextField.swift in Sources */,
+				DBC272DD249F4D8900617590 /* LinearGradient.swift in Sources */,
 				DBF5D5452482B42B006AF99B /* PromoteSection.swift in Sources */,
 				DB77E176247E881100BF1A88 /* TrackableScrollView.swift in Sources */,
 				DB65ACDF2496116C00252A93 /* NotificationsView.swift in Sources */,
@@ -854,6 +865,7 @@
 				DBFA1D97248E132D002B109F /* ChartOverlayView.swift in Sources */,
 				DBC6A630247E2B5C00550115 /* HomeView.swift in Sources */,
 				DB3A5C1D248639EB007F19F2 /* ExpandableCell.swift in Sources */,
+				DBC272DF249F4DBB00617590 /* LogoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

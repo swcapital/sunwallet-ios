@@ -26,7 +26,7 @@ struct ReceiveAsset: View {
     }
     private var roundedBorder: some View {
         RoundedRectangle(cornerRadius: 8)
-            .stroke(Color.lightGray)
+            .stroke(Color.lightGray, lineWidth: 2)
     }
     private var spacer: some View {
         Rectangle()

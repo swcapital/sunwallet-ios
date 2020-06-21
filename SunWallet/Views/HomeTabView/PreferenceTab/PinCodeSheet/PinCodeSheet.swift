@@ -32,8 +32,7 @@ struct PinCodeSheet: View {
         VStack {
             Spacer()
             
-            Text("sunwallet")
-                .font(.largeTitle)
+            LogoView()
             
             Text("Enter a new PIN")
                 .font(.headline)
@@ -47,7 +46,8 @@ struct PinCodeSheet: View {
                 .padding()
         }
         .foregroundColor(.white)
-        .background(Color.primaryBlue.edgesIgnoringSafeArea(.all))
+        .background(LinearGradient.background)
+        .edgesIgnoringSafeArea(.all)
     }
     
     // MARK:- Methods

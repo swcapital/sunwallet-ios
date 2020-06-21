@@ -6,7 +6,7 @@ struct TopMoverCell: View {
     // MARK:- Subviews
     private var overlay: some View {
         RoundedRectangle(cornerRadius: 8)
-            .stroke(Color.lightGray, lineWidth: 0.5)
+            .stroke(Color.lightGray, lineWidth: 2)
     }
     
     var body: some View {

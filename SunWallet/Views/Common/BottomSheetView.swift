@@ -20,9 +20,18 @@ struct BottomSheetView<Content: View>: View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color.secondary)
             .frame(width: 60, height: 6)
-            .onTapGesture { self.isOpen.toggle() }
+            .onTapGesture { self.isOpen = false }
     }
-
+    private var dragGesture: some Gesture {
+        DragGesture()
+            .updating($translation) { value, state, _ in
+                state = value.translation.height
+            }
+            .onEnded { value in
+                self.isOpen = value.translation.height < 0
+            }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             self.dragIndicator.padding()
@@ -30,20 +39,17 @@ struct BottomSheetView<Content: View>: View {
         }
         .background(Color.white)
         .cornerRadius(16)
+        .animation(.linear(duration: 0.3))
+        .transition(.move(edge: .bottom))
         .frame(maxHeight: .infinity, alignment: .bottom)
         .offset(y: max(translation, 0))
-        .animation(.interactiveSpring())
-        .gesture(
-            DragGesture()
-                .updating($translation) { value, state, _ in
-                    state = value.translation.height
-                }
-                .onEnded { value in
-                    self.isOpen = value.translation.height < 0
-                }
-        )
+        .gesture(dragGesture)
+        
         .background(Color.black.opacity(0.4))
         .edgesIgnoringSafeArea(.all)
+        .onTapGesture { self.isOpen = false }
+        .animation(.linear(duration: 0))
+        .zIndex(100) // Neeeded for animation
     }
 }
 

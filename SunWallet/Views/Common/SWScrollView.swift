@@ -3,11 +3,11 @@ import SwiftUI
 struct SWScrollView<Content: View>: View {
     // MARK:- Properties
     let subtitle: Text
-    let content: () -> Content
+    let content: Content
     
     init(subtitle: Text, @ViewBuilder content: @escaping () -> Content) {
         self.subtitle = subtitle
-        self.content = content
+        self.content = content()
     }
     
     // MARK:- States
@@ -22,12 +22,14 @@ struct SWScrollView<Content: View>: View {
             .vertical,
             showIndicators: false,
             contentOffset: self.$offset,
-            content: content
-        )
-        .overlay(
-            subtitle.foregroundColor(.blueGray)
-                .offset(x: 18, y: -65)
-                .opacity(subtitleOpacity), alignment: .topLeading
+            content: VStack(alignment: .leading) {
+                subtitle
+                    .padding(.leading, 18)
+                    .foregroundColor(.blueGray)
+                    .opacity(subtitleOpacity)
+                    .offset(y: offset > 0 ? offset : 0)
+                content
+            }
         )
     }
 }

@@ -25,13 +25,6 @@ struct LaunchView: View {
     }
     
     // MARK:- Subviews
-    private var backgroundGradient: LinearGradient {
-        LinearGradient(
-            gradient: Gradient(colors: [.startColor, .endColor]),
-            startPoint: .top,
-            endPoint: .bottom
-        )
-    }
     private var chartView: some View {
         LaunchChartView(
             valueHistory: currentAsset.valueHistory,
@@ -40,11 +33,6 @@ struct LaunchView: View {
             selectedValue: $selectedValue,
             selectedValueChange: $selectedValueChange
         )
-    }    
-    private var logoText: some View {
-        Text("sunwallet")
-            .font(.largeTitle)
-            .foregroundColor(.white)
     }
     private var assetPicker: some View {
         HStack {
@@ -103,7 +91,7 @@ struct LaunchView: View {
         Button(action: {}) {
             Text("Get Started")
         }
-        .foregroundColor(.primaryBlue)
+        .foregroundColor(.gradientEndColor)
         .padding()
         .frame(maxWidth: .infinity)
         .background(Color.white)
@@ -128,7 +116,7 @@ struct LaunchView: View {
     var body: some View {
         VStack {
             Spacer()
-            logoText
+            LogoView()
             assetPicker
             assetValues
             chartView
@@ -137,14 +125,14 @@ struct LaunchView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(backgroundGradient)
+        .background(LinearGradient.background)
         .edgesIgnoringSafeArea(.all)
     }
     
     // MARK:- Methods
     private func makeAssetButton(title: String, index: Int) -> some View {
         Button(title, action: { self.selectedAssetIndex = index })
-            .foregroundColor(self.selectedAssetIndex == index ? .white : .blueGray)
+            .foregroundColor(self.selectedAssetIndex == index ? .white : .white)
     }
 }
 
@@ -153,9 +141,4 @@ struct LaunchView_Previews: PreviewProvider {
         LaunchView()
             .environmentObject(DataSource())
     }
-}
-
-private extension Color {
-    static let startColor = Color(red: 1, green: 202 / 255, blue: 63 / 255)
-    static let endColor = Color(red: 1, green: 169 / 255, blue: 39 / 255)
 }

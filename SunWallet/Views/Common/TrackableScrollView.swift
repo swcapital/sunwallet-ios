@@ -9,11 +9,11 @@ struct TrackableScrollView<Content: View>: View {
     // MARK:- Bindings
     @Binding var contentOffset: CGFloat
 
-    init(_ axes: Axis.Set = .vertical, showIndicators: Bool = true, contentOffset: Binding<CGFloat>, @ViewBuilder content: () -> Content) {
+    init(_ axes: Axis.Set = .vertical, showIndicators: Bool = true, contentOffset: Binding<CGFloat>, content: Content) {
         self.axes = axes
         self.showIndicators = showIndicators
         self._contentOffset = contentOffset
-        self.content = content()
+        self.content = content
     }
 
     var body: some View {

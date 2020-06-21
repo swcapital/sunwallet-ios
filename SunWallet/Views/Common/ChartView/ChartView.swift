@@ -108,10 +108,12 @@ struct ChartView: View {
         return .init(x: xOffset, y: CGFloat(y))
     }
     
-    private func makeMinMaxLabel(title: String) -> Text {
-        Text(title)
+    private func makeMinMaxLabel(title: String) -> some View {
+        // Trailing space is needed for preventing string truncating duaring animation
+        Text(title + " ")
             .font(.callout)
             .foregroundColor(self.labelsColor)
+            .animation(.default)
     }
 }
 

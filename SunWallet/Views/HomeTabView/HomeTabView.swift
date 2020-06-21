@@ -5,14 +5,16 @@ struct HomeTabView: View {
     @State private var showTradeSheet = false
     
     // MARK:- Subviews
-    private var tradeButtonImage: some View {
-        Image(systemName: "arrow.right.arrow.left")
-            .foregroundColor(.white)
-            .font(.headline)
-            .frame(width: 40, height: 40)
-            .background(Circle().fill(Color.primaryBlue))
-            .padding(5)
-            .onTapGesture { withAnimation { self.showTradeSheet.toggle() } }
+    private var tradeButton: some View {
+        Button(action: { self.showTradeSheet.toggle() }) {
+            Image(systemName: "arrow.right.arrow.left")
+                .foregroundColor(.white)
+                .font(.headline)
+                .frame(width: 60, height: 40)
+                .background(Circle().fill(Color.primaryBlue))
+                .padding(5)
+        }
+        .buttonStyle(ScalableButtonStyle())
     }
     
     var body: some View {
@@ -27,7 +29,8 @@ struct HomeTabView: View {
                     .tag(2)
                 
                 Spacer()
-                    .tabItem({ Text(" ") })
+                    .tabItem({ Text("") })
+                    .disabled(true)
                     .tag(3)
                 
                 HomeView()
@@ -38,7 +41,7 @@ struct HomeTabView: View {
                     .tabItem({ makeTabLabel(imageName: "settings", title: "Settings") })
                     .tag(5)
             }
-            .overlay(tradeButtonImage, alignment: .bottom)
+            .overlay(tradeButton, alignment: .bottom)
             
             if showTradeSheet {
                 BottomSheetView(isOpen: $showTradeSheet) {
