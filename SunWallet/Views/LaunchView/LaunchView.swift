@@ -132,7 +132,7 @@ struct LaunchView: View {
     // MARK:- Methods
     private func makeAssetButton(title: String, index: Int) -> some View {
         Button(title, action: { self.selectedAssetIndex = index })
-            .foregroundColor(self.selectedAssetIndex == index ? .white : .white)
+            .foregroundColor(self.selectedAssetIndex == index ? .white : Color.white.opacity(0.7))
     }
 }
 

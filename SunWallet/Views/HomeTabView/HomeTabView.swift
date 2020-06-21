@@ -14,7 +14,6 @@ struct HomeTabView: View {
                 .background(Circle().fill(Color.primaryBlue))
                 .padding(5)
         }
-        .buttonStyle(ScalableButtonStyle())
     }
     
     var body: some View {
