@@ -4,10 +4,10 @@ struct RootView: View {
     @EnvironmentObject var appState: AppState
     
     @ViewBuilder var body: some View {
-         if appState.guestMode {
-            GuestView()
-        } else {
+         if appState.loggedIn {
             Text("Hello")
+        } else {
+            GuestView()
         }
     }
 }

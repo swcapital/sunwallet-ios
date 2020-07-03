@@ -1,12 +1,16 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    // MARK:- Properties
     let assets: [TradePairHistory]
+    
+    // MARK:- Environment
+    @EnvironmentObject var appState: AppState
     
     // MARK:- Subviews
     private var registerButton: some View {
-        Button(action: {}) {
-            Text("Get Started")
+        Button("Get Started") {
+            self.appState.loggedIn = true
         }
         .foregroundColor(.gradientEndColor)
         .padding()

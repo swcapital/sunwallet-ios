@@ -2,5 +2,8 @@ import Foundation
 import Combine
 
 class AppState: ObservableObject {
-    @Published var guestMode = true
+    let objectWillChange = PassthroughSubject<Void, Never>()
+    
+    @UserDefault("loggedIn", defaultValue: false)
+    var loggedIn: Bool { willSet { objectWillChange.send() } }
 }
