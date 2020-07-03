@@ -5,7 +5,7 @@ struct UserAssetsSection: View {
     @EnvironmentObject var dataSource: DataSource
     
     // MARK:- Calculated Variables
-    private var assets: [Asset] {
+    private var assets: [Asset2] {
         Array(dataSource.user.balance.keys)
     }
     

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ReceiveAssetSheet: View {
     // MARK:- Bindings
-    @Binding var asset: Asset
+    @Binding var asset: Asset2
     @Binding var isOpen: Bool
     
     // MARK:- Environment

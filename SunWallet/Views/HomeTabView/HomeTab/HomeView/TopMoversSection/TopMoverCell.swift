@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TopMoverCell: View {
-    let asset: Asset
+    let asset: Asset2
     
     // MARK:- Subviews
     private var overlay: some View {

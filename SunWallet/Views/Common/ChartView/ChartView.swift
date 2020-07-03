@@ -54,7 +54,7 @@ struct ChartView: View {
                 self.showOverlay = true
                 self.overlayOffset = value.location.x
                 let x = value.location.x / geometery.size.width
-                self.selectedValueIndex = Int(x * CGFloat(self.values.count))
+                self.selectedValueIndex = Int(x * CGFloat(self.values.count - 1))
             }
             .onEnded { value in
                 self.showOverlay = false

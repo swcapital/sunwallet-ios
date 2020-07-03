@@ -5,7 +5,7 @@ struct ReceiveAsset: View {
     @EnvironmentObject var dataSource: DataSource
     
     // MARK:- States
-    @State private var asset: Asset = TestData.randomAsset
+    @State private var asset: Asset2 = TestData.randomAsset
     @State private var showWalletView = false
     
     // MARK:- Calculated Variables

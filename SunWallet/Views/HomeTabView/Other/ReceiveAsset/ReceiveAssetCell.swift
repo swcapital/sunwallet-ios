@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ReceiveAssetCell: View {
     // MARK:- Properties
-    let asset: Asset
+    let asset: Asset2
     
     var body: some View {
         HStack(spacing: 16) {

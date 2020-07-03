@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PortfolioAssetCell: View {
     // MARK:- Properties
-    let asset: Asset
+    let asset: Asset2
     
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource

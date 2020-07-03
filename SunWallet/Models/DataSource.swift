@@ -1,7 +1,7 @@
 import UIKit
 
 class DataSource: ObservableObject {
-    let assets: [Asset] = [
+    let assets: [Asset2] = [
         .init(title: "Bitcoin", code: "BTC", imageName: "btc"),
         .init(title: "Cosmos", code: "ATOM", imageName: "atom"),
         .init(title: "Basic Attention Token", code: "BAT", imageName: "bat"),
@@ -56,7 +56,7 @@ class DataSource: ObservableObject {
         ),
     ]
     
-    lazy var topMovers: [Asset] = Array(assets.random(5))
+    lazy var topMovers: [Asset2] = Array(assets.random(5))
         
     lazy var user = User(
         favorites: Array(assets.random(6)),
@@ -64,7 +64,7 @@ class DataSource: ObservableObject {
     )
     
     private let launchAssetTitles = ["BTC", "BCH", "ETH", "BNT", "KCS"]
-    var launchAssets: [Asset] { assets.filter { launchAssetTitles.contains($0.code) } }
+    var launchAssets: [Asset2] { assets.filter { launchAssetTitles.contains($0.code) } }
 }
 
 

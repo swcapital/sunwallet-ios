@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AboutSection: View {
     // MARK:- Properties
-    let asset: Asset
+    let asset: Asset2
     
     // MARK:- Subviews
     private var cellContent: some View {

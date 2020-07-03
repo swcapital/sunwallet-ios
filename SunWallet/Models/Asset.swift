@@ -2,42 +2,34 @@ import Foundation
 
 struct Asset: Identifiable {
     let id = UUID()
-
-    let title: String
+    
     let code: String
-    let imageName: String
+    let title: String?
+    let imageName: String?
     
-    var about: String {
-        """
-        \(title) is a cryptocurrency. It is a decentralized digital currency without a central bank or single administrator that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries. Transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain.
-        """
-    }
-    var website: URL { URL(string: "https://bitcoin.org/")! }
-    var whitePaper: URL { URL(string: "https://bitcoin.org/bitcoin.pdf")! }
-
-    let valueHistory = ValueHistory()
-    var dollarPrice: Double { valueHistory.hourly.last! }
-    var dollarPriceChange: Double { valueHistory.hourly.last! - valueHistory.hourly.dropLast().last! }
-    
-    let marketCap: Double = Double.random(in: 1_000_000 ..< 1_000_000_000_000_000)
-    let volume: Double = Double.random(in: 1_000 ..< 1_000_000_000_000_000)
-    let circulatingSupply: Double = Double.random(in: 1_000 ..< 1_000_000_000_000_000)
-    let allTimeHigh: Double = Double.random(in: 1_000 ..< 10_000)
-    let tradingActivity: Double = Double.random(in: 0 ..< 1)
-    let medianDaysHeld: Int = Int.random(in: 1 ..< 100)
-    let popularity: Int = Int.random(in: 1 ..< 200)
-}
-
-extension Asset: Hashable {
-    
-    func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
+    init(code: String, title: String? = nil, imageName: String? = nil) {
+        self.code = code
+        self.title = title
+        self.imageName = imageName
     }
 }
 
-extension Asset: Equatable {
-    
-    static func == (lhs: Asset, rhs: Asset) -> Bool {
-        lhs.id == rhs.id
-    }
+extension Asset {
+    static let usd = Asset(code: "USD", title: "US Dollar")
+    static let bitcoin = Asset(code: "BTC", title: "Bitcoin", imageName: "btc")
+    static let cosmos = Asset(code: "ATOM", title: "Cosmos", imageName: "atom")
+    static let bat = Asset(code: "BAT", title: "Basic Attention Token", imageName: "bat")
+    static let bitcoinCash = Asset(code: "BCH", title: "Bitcoin Cash", imageName: "btc")
+    static let etherium = Asset(code: "ETH", title: "Etherium", imageName: "eth")
+    static let binanceCoin = Asset(code: "BNB", title: "Binance Coin", imageName: "bnb")
+    static let bancor = Asset(code: "BNT", title: "Bancor", imageName: "bnt")
+    static let cny = Asset(code: "CNY", title: "eToro Chinese Yuan", imageName: "cny")
+    static let euro = Asset(code: "EUR", title: "Euro", imageName: "eur")
+    static let pound = Asset(code: "GBP", title: "Pound Sterling", imageName: "gbp")
+    static let yen = Asset(code: "JPY", title: "Japanese Yen", imageName: "jpy")
+    static let kcs = Asset(code: "KCS", title: "KuCoin Shares", imageName: "kcs")
+    static let knc = Asset(code: "KNC", title: "Kyber Network", imageName: "knc")
+    static let matic = Asset(code: "MATIC", title: "Matic Network", imageName: "matic")
+    static let nexo = Asset(code: "NEXO", title: "Nexo", imageName: "nexo")
+    static let omg = Asset(code: "OMG", title: "OmiseGO", imageName: "omg")
 }

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MarketStatsSection: View {
     // MARK:- Properties
-    let asset: Asset
+    let asset: Asset2
     
     // MARK:- Calculated Variables
     private var marketStats: [MarketStat] {

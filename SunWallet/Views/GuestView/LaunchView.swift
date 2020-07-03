@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LaunchView: View {    
+struct GuestView: View {    
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource
     
@@ -9,7 +9,7 @@ struct LaunchView: View {
     @State private var selectedAssetIndex = 0
     @State private var selectedValue: Double = 0
     @State private var selectedValueChange: Double = 0
-    
+        
     // MARK:- Calculated Variables
     private var assets: [Asset] {
         dataSource.launchAssets
@@ -26,7 +26,7 @@ struct LaunchView: View {
     
     // MARK:- Subviews
     private var chartView: some View {
-        LaunchChartView(
+        GuestChartView(
             valueHistory: currentAsset.valueHistory,
             color: .white,
             selectedChartPeriod: $selectedChartPeriod,
@@ -138,7 +138,7 @@ struct LaunchView: View {
 
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchView()
+        GuestView()
             .environmentObject(DataSource())
     }
 }

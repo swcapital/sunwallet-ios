@@ -2,7 +2,7 @@ import SwiftUI
 
 struct WatchListSection: View {
     // MARK:- Properties
-    let assets: [Asset]
+    let assets: [Asset2]
     
     // MARK:- Subviews
     private var header: some View {
