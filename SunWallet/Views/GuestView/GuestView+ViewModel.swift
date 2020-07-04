@@ -20,7 +20,7 @@ extension GuestView {
         func load() {
             state = .loading
             let base = Asset(code: CurrencyStore.currentCode)
-            cancellable = SunWalletHistoryRepository()
+            cancellable = CacheProxyHistoryRepository()
                 .bootstrapHistory(base: base)
                 .receive(on: DispatchQueue.main)
                 .sink(

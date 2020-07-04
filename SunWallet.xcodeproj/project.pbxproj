@@ -30,6 +30,8 @@
 		DB19DC3C249A3B87008F7F79 /* PinCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19DC37249A3B87008F7F79 /* PinCodeSheet.swift */; };
 		DB24C4E5247CF6BE0091FF44 /* ExchangeDirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24C4E4247CF6BE0091FF44 /* ExchangeDirectionView.swift */; };
 		DB24C4E8247CF8C40091FF44 /* AssetField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24C4E7247CF8C40091FF44 /* AssetField.swift */; };
+		DB2A131324AF8F820007197F /* AnimatingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A131224AF8F820007197F /* AnimatingImage.swift */; };
+		DB2A131624AFAC350007197F /* bootstrap.json in Resources */ = {isa = PBXBuildFile; fileRef = DB2A131524AFAC350007197F /* bootstrap.json */; };
 		DB343FAE24936BAD003DDA0B /* ReceiveAssetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB343FAD24936BAD003DDA0B /* ReceiveAssetSheet.swift */; };
 		DB3A34852482672500C4D61F /* TopMoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A34842482672500C4D61F /* TopMoverCell.swift */; };
 		DB3A5C1124862705007F19F2 /* ChartViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3A5C1024862705007F19F2 /* ChartViewSection.swift */; };
@@ -58,6 +60,7 @@
 		DB5F36CB24AF23BD00DDCA7A /* CacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CA24AF23BD00DDCA7A /* CacheRepository.swift */; };
 		DB5F36CD24AF273D00DDCA7A /* RealCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CC24AF273D00DDCA7A /* RealCacheRepository.swift */; };
 		DB5F36CF24AF2A2800DDCA7A /* GuestView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CE24AF2A2800DDCA7A /* GuestView+ViewModel.swift */; };
+		DB5F36D124AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36D024AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift */; };
 		DB65ACDA2495EE7000252A93 /* WalletDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACD92495EE7000252A93 /* WalletDetailView.swift */; };
 		DB65ACDC24960B5C00252A93 /* WalletDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACDB24960B5C00252A93 /* WalletDetailCell.swift */; };
 		DB65ACDF2496116C00252A93 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACDE2496116C00252A93 /* NotificationsView.swift */; };
@@ -154,6 +157,8 @@
 		DB19DC37249A3B87008F7F79 /* PinCodeSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeSheet.swift; sourceTree = "<group>"; };
 		DB24C4E4247CF6BE0091FF44 /* ExchangeDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionView.swift; sourceTree = "<group>"; };
 		DB24C4E7247CF8C40091FF44 /* AssetField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetField.swift; sourceTree = "<group>"; };
+		DB2A131224AF8F820007197F /* AnimatingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingImage.swift; sourceTree = "<group>"; };
+		DB2A131524AFAC350007197F /* bootstrap.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bootstrap.json; sourceTree = "<group>"; };
 		DB343FAD24936BAD003DDA0B /* ReceiveAssetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAssetSheet.swift; sourceTree = "<group>"; };
 		DB3A34842482672500C4D61F /* TopMoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMoverCell.swift; sourceTree = "<group>"; };
 		DB3A5C1024862705007F19F2 /* ChartViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewSection.swift; sourceTree = "<group>"; };
@@ -183,6 +188,7 @@
 		DB5F36CA24AF23BD00DDCA7A /* CacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheRepository.swift; sourceTree = "<group>"; };
 		DB5F36CC24AF273D00DDCA7A /* RealCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCacheRepository.swift; sourceTree = "<group>"; };
 		DB5F36CE24AF2A2800DDCA7A /* GuestView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuestView+ViewModel.swift"; sourceTree = "<group>"; };
+		DB5F36D024AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheProxyHistoryRepository.swift; sourceTree = "<group>"; };
 		DB65ACD92495EE7000252A93 /* WalletDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailView.swift; sourceTree = "<group>"; };
 		DB65ACDB24960B5C00252A93 /* WalletDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailCell.swift; sourceTree = "<group>"; };
 		DB65ACDE2496116C00252A93 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
@@ -392,6 +398,14 @@
 			path = ExchangeDirectionView;
 			sourceTree = "<group>";
 		};
+		DB2A131424AFAC010007197F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DB2A131524AFAC350007197F /* bootstrap.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		DB3A5C1224862794007F19F2 /* ChartViewSection */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +453,7 @@
 				DB5F36C324AF0C5F00DDCA7A /* CacheHistoryRepository */,
 				DB5F36BE24AF0C2900DDCA7A /* HistoryRepository */,
 				DB5F36C224AF0C4C00DDCA7A /* SunWalletHistoryRepository */,
+				DB5F36D224AF5B5100DDCA7A /* CacheProxyHistoryRepository */,
 			);
 			path = HistoryRepository;
 			sourceTree = "<group>";
@@ -527,6 +542,14 @@
 			path = CacheRepository;
 			sourceTree = "<group>";
 		};
+		DB5F36D224AF5B5100DDCA7A /* CacheProxyHistoryRepository */ = {
+			isa = PBXGroup;
+			children = (
+				DB5F36D024AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift */,
+			);
+			path = CacheProxyHistoryRepository;
+			sourceTree = "<group>";
+		};
 		DB65ACD82495EE4D00252A93 /* WalletDetailView */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +603,7 @@
 				DB68BC3E247C161100377A72 /* Views */,
 				DBA53B8424A9C623008E2BAF /* Repositories */,
 				DBFA1D9B248E5CBA002B109F /* Support */,
+				DB2A131424AFAC010007197F /* Resources */,
 				DB68BC25247BC5E500377A72 /* Assets.xcassets */,
 				DB68BC2A247BC5E500377A72 /* LaunchScreen.storyboard */,
 				DB68BC2D247BC5E500377A72 /* Info.plist */,
@@ -666,6 +690,7 @@
 				DB05B30F249A46690058124A /* SearchBar.swift */,
 				DBC272DE249F4DBB00617590 /* LogoView.swift */,
 				DBC5538E24A787640037763F /* ActivityIndicator.swift */,
+				DB2A131224AF8F820007197F /* AnimatingImage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -933,6 +958,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2A131624AFAC350007197F /* bootstrap.json in Resources */,
 				DB68BC2C247BC5E500377A72 /* LaunchScreen.storyboard in Resources */,
 				DB68BC29247BC5E500377A72 /* Preview Assets.xcassets in Resources */,
 				DB68BC26247BC5E500377A72 /* Assets.xcassets in Resources */,
@@ -1042,6 +1068,7 @@
 				DB68BC34247BEA1900377A72 /* Keyboard.swift in Sources */,
 				DB5F36CD24AF273D00DDCA7A /* RealCacheRepository.swift in Sources */,
 				DB19DC3C249A3B87008F7F79 /* PinCodeSheet.swift in Sources */,
+				DB2A131324AF8F820007197F /* AnimatingImage.swift in Sources */,
 				DBFDB75F24935B0E00A1DFAD /* Image+qrCode.swift in Sources */,
 				DBC5539124A78D6F0037763F /* AppState.swift in Sources */,
 				DB00A6372482AF6A006FD5A0 /* WatchListSection.swift in Sources */,
@@ -1054,6 +1081,7 @@
 				DB5F36C824AF0CBE00DDCA7A /* TradeData.swift in Sources */,
 				DBC2E3822484F17A00C871E4 /* StrokeStyle.swift in Sources */,
 				DBF5D55824839C59006AF99B /* ChartView.swift in Sources */,
+				DB5F36D124AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift in Sources */,
 				DB5F36B524AE051B00DDCA7A /* WelcomeView+AssetsView.swift in Sources */,
 				DB0376CD247CFEF4005ACB03 /* ExchangeFieldType.swift in Sources */,
 				DBFDB74A24925EE800A1DFAD /* View+imageBackButton.swift in Sources */,
