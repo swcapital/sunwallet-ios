@@ -22,7 +22,7 @@ struct CoinDetails: View {
     
     // MARK:- Subviews
     private var title: Text {
-        let price = Text(currentValue.dollarString + " ")
+        let price = Text(currentValue.currencyString + " ")
             .font(.largeTitle)
             .bold()
         let priceChange = Text(currentValueChange.priceChangeString)

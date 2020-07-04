@@ -15,7 +15,7 @@ struct PortfolioView: View {
     
     // MARK:- Subviews
     private var title: Text {
-        Text(currentValue.dollarString)
+        Text(currentValue.currencyString)
             .font(.largeTitle)
             .bold()
     }

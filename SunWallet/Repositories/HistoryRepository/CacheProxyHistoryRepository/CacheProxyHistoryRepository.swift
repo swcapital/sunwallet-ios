@@ -6,19 +6,18 @@ struct CacheProxyHistoryRepository: HistoryRepository {
     let historyRepository: HistoryRepository = SunWalletHistoryRepository()
     
     func bootstrapHistory(base: Asset) -> AnyPublisher<[TradePairHistory], Error> {
-        if let history = cacheRepository.bootstrapHistory() {
-            let subject = CurrentValueSubject<[TradePairHistory], Error>(history)
-            return subject.eraseToAnyPublisher()
-        } else {
-            return historyRepository.bootstrapHistory(base: base)
-                .map { history -> [TradePairHistory] in
-                    self.cacheRepository.saveBootstrapHistory(history)
-                    return history
-                }
-                .replaceError(with: bundleData())
-                .setFailureType(to: Swift.Error.self)
-                .eraseToAnyPublisher()
-        }
+        return historyRepository.bootstrapHistory(base: base)
+            .map { history -> [TradePairHistory] in
+                self.cacheRepository.saveBootstrapHistory(history)
+                return history
+            }
+            .replaceError(with: cachedData())
+            .setFailureType(to: Swift.Error.self)
+            .eraseToAnyPublisher()
+    }
+    
+    private func cachedData() -> [TradePairHistory] {
+        cacheRepository.bootstrapHistory() ?? bundleData()
     }
     
     private func bundleData() -> [TradePairHistory] {

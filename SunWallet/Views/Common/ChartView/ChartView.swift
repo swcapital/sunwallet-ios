@@ -66,7 +66,7 @@ struct ChartView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
-                self.makeMinMaxLabel(title: self.maxValue.dollarString)
+                self.makeMinMaxLabel(title: self.maxValue.currencyString)
                     .alignmentGuide(.leading) {
                         self.xPosition(at: self.maxPoint.x, in: geometry, d: $0)
                     }
@@ -83,7 +83,7 @@ struct ChartView: View {
                         .opacity(self.showOverlay ? 1 : 0)
                     )
                 
-                self.makeMinMaxLabel(title: self.minValue.dollarString)
+                self.makeMinMaxLabel(title: self.minValue.currencyString)
                     .alignmentGuide(.leading) {
                         self.xPosition(at: self.minPoint.x, in: geometry, d: $0)
                     }

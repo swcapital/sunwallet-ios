@@ -16,7 +16,7 @@ struct OrderPreviewView: View {
             Divider()
             OrderPreviewCell(
                 title: Text("\(assetExchange.destination.code) Price"),
-                subtitle: Text(assetExchange.destination.dollarPrice.dollarString)
+                subtitle: Text(assetExchange.destination.dollarPrice.currencyString)
             )
         }
     }
@@ -56,7 +56,7 @@ struct OrderPreviewView: View {
             Divider()
             OrderPreviewCell(
                 title: Text("Purchase"),
-                subtitle: Text(amount.dollarString)
+                subtitle: Text(amount.currencyString)
             )
         }
     }
@@ -73,7 +73,7 @@ struct OrderPreviewView: View {
                     .frame(width: 20, height: 20)
                     .background(Circle().fill(Color.gray))
                 },
-                subtitle: Text((amount * 0.05).dollarString)
+                subtitle: Text((amount * 0.05).currencyString)
             )
         }
     }
@@ -85,7 +85,7 @@ struct OrderPreviewView: View {
         .padding(.horizontal)
     }
     private var amountView: some View {
-        Text("\(amount.currencyString) \(assetExchange.source.code)")
+        Text("\(amount.decimalString) \(assetExchange.source.code)")
             .font(.largeTitle)
             .foregroundColor(Color.primaryBlue)
             .frame(maxWidth: .infinity)

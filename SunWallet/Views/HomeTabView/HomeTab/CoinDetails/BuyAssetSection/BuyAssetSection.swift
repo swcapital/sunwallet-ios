@@ -22,7 +22,7 @@ struct BuyAssetSection: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 3) {
-                Text(dataSource.user.dollarBalance(asset).dollarString)
+                Text(dataSource.user.dollarBalance(asset).currencyString)
                 Text("\(dataSource.user.assetBalance(asset)) \(asset.code)")
                     .foregroundColor(.blueGray)
             }

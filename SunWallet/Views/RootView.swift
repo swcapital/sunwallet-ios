@@ -5,7 +5,7 @@ struct RootView: View {
     
     @ViewBuilder var body: some View {
          if appState.loggedIn {
-            Text("Hello")
+            HomeTabView()
         } else {
             GuestView()
         }

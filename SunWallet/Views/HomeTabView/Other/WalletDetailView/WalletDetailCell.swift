@@ -27,10 +27,10 @@ struct WalletDetailCell: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text(balance.currencyString)
+                Text(balance.decimalString)
                     .foregroundColor(balance.isPositive ? .green : .black)
                 
-                Text(dollarBalance.dollarString)
+                Text(dollarBalance.currencyString)
                     .foregroundColor(.gray)
                     .font(.caption)
             }

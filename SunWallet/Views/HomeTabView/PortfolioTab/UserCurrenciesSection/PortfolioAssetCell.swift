@@ -16,7 +16,7 @@ struct PortfolioAssetCell: View {
                 
                 Spacer()
                 
-                Text(dataSource.user.assetBalance(asset).dollarString)
+                Text(dataSource.user.assetBalance(asset).currencyString)
             }
             .padding(.horizontal, 16)
             

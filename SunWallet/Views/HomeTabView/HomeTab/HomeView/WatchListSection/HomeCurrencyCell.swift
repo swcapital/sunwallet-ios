@@ -18,7 +18,7 @@ struct HomeCurrencyCell: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    Text(asset.dollarPrice.dollarString)
+                    Text(asset.dollarPrice.currencyString)
                     Text(asset.dollarPriceChange.priceChangeString)
                         .font(.caption)
                         .foregroundColor(asset.dollarPriceChange.isPositive ? .green : .red)

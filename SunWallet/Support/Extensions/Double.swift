@@ -3,17 +3,20 @@ import Foundation
 extension Double {
     var isPositive: Bool { self >= 0 }
 
-    var currencyString: String {
+    var decimalString: String {
         let formatter = NumberFormatter.currency
         formatter.maximumFractionDigits = 2
         return formatter.string(from: self as NSNumber)!
     }
-    var dollarString: String {
-        currencyString + " US$"
+    var currencyString: String {
+        let formatter = NumberFormatter.currency
+        formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: self as NSNumber)!
     }
     var priceChangeString: String {
         let prefix = (self > 0) ? "+" : ""
-        return prefix + currencyString + " %"
+        return prefix + decimalString + " %"
     }
     var percentString: String {
         .init(format: "%.0f%%", self * 100)

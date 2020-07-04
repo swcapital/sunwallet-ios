@@ -61,9 +61,9 @@ struct WalletDetailView: View {
         VStack {
             Spacer(minLength: 32)
             
-            Text(dataSource.user.assetBalance(asset).currencyString + " " + asset.title)
+            Text(dataSource.user.assetBalance(asset).decimalString + " " + asset.title)
                 .font(.title)
-            Text(dataSource.user.dollarBalance(asset).dollarString)
+            Text(dataSource.user.dollarBalance(asset).currencyString)
                 .foregroundColor(.blueGray)
             
             Spacer(minLength: 48)

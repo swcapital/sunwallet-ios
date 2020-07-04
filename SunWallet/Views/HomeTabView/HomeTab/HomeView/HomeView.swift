@@ -6,7 +6,7 @@ struct HomeView: View {
     
     // MARK:- Subviews
     private var title: Text {
-        Text(dataSource.user.totalDollarBalance.dollarString)
+        Text(dataSource.user.totalDollarBalance.currencyString)
             .font(.largeTitle)
             .bold()
     }

@@ -28,7 +28,7 @@ struct MarketStatsSection: View {
             .init(
                 imageName: "all-time-high",
                 title: "All-time high",
-                value: asset.allTimeHigh.dollarString,
+                value: asset.allTimeHigh.currencyString,
                 description: TestData.longText
             ),
             .init(

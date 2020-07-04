@@ -68,7 +68,7 @@ extension WelcomeView {
             HStack {
                 Spacer()
                 VStack {
-                    Text(currentPrice.dollarString)
+                    Text(currentPrice.currencyString)
                         .font(.headline)
                         .foregroundColor(Color.white)
                     Text("\(assetTitles[selectedAssetIndex]) price")
@@ -83,7 +83,7 @@ extension WelcomeView {
                 Spacer()
                 VStack(spacing: 0.0) {
                     HStack(spacing: 4.0) {
-                        Text(currentPriceDiff.dollarString)
+                        Text(currentPriceDiff.currencyString)
                             .font(.headline)
                             .foregroundColor(Color.white)
                         
