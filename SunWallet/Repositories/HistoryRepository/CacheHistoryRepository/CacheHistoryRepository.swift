@@ -4,7 +4,7 @@ import Combine
 private let bootstrapHistoryKey = "bootstrap"
 
 struct CacheHistoryRepository {
-    private let cacheRepository: CacheRepository = RealCacheRepository()
+    private let cacheRepository: CacheRepository = CacheRepository()
     
     func bootstrapHistory() -> [TradePairHistory]? {
         cacheRepository.load(atKey: bootstrapHistoryKey)

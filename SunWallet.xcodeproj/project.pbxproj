@@ -44,6 +44,8 @@
 		DB4ED06D249C8B3100D6A558 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ED06C249C8B3100D6A558 /* TestData.swift */; };
 		DB4ED06F249C955B00D6A558 /* MarketStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ED06E249C955B00D6A558 /* MarketStat.swift */; };
 		DB4ED071249C95A800D6A558 /* MarketStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4ED070249C95A800D6A558 /* MarketStatsCell.swift */; };
+		DB50249724B0B70A002E1547 /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50249624B0B70A002E1547 /* KeychainRepository.swift */; };
+		DB50249924B0BA69002E1547 /* KeyValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50249824B0BA69002E1547 /* KeyValueStorage.swift */; };
 		DB51DDB424A8AA5100369584 /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51DDB324A8AA5100369584 /* HistoryRepository.swift */; };
 		DB5725032491F9D400F283BF /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5725022491F9D400F283BF /* HomeTabView.swift */; };
 		DB5725072492070F00F283BF /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5725062492070F00F283BF /* PortfolioView.swift */; };
@@ -57,8 +59,7 @@
 		DB5F36C624AF0CB900DDCA7A /* TradePairHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36C124AF0C2900DDCA7A /* TradePairHistory.swift */; };
 		DB5F36C724AF0CBB00DDCA7A /* TradeHistorySet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BF24AF0C2900DDCA7A /* TradeHistorySet.swift */; };
 		DB5F36C824AF0CBE00DDCA7A /* TradeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36C024AF0C2900DDCA7A /* TradeData.swift */; };
-		DB5F36CB24AF23BD00DDCA7A /* CacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CA24AF23BD00DDCA7A /* CacheRepository.swift */; };
-		DB5F36CD24AF273D00DDCA7A /* RealCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CC24AF273D00DDCA7A /* RealCacheRepository.swift */; };
+		DB5F36CD24AF273D00DDCA7A /* CacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CC24AF273D00DDCA7A /* CacheRepository.swift */; };
 		DB5F36CF24AF2A2800DDCA7A /* GuestView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CE24AF2A2800DDCA7A /* GuestView+ViewModel.swift */; };
 		DB5F36D124AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36D024AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift */; };
 		DB65ACDA2495EE7000252A93 /* WalletDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACD92495EE7000252A93 /* WalletDetailView.swift */; };
@@ -171,6 +172,8 @@
 		DB4ED06C249C8B3100D6A558 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		DB4ED06E249C955B00D6A558 /* MarketStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketStat.swift; sourceTree = "<group>"; };
 		DB4ED070249C95A800D6A558 /* MarketStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketStatsCell.swift; sourceTree = "<group>"; };
+		DB50249624B0B70A002E1547 /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
+		DB50249824B0BA69002E1547 /* KeyValueStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueStorage.swift; sourceTree = "<group>"; };
 		DB51DDB324A8AA5100369584 /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
 		DB5725022491F9D400F283BF /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		DB5725062492070F00F283BF /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
@@ -185,8 +188,7 @@
 		DB5F36C024AF0C2900DDCA7A /* TradeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeData.swift; sourceTree = "<group>"; };
 		DB5F36C124AF0C2900DDCA7A /* TradePairHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradePairHistory.swift; sourceTree = "<group>"; };
 		DB5F36C424AF0C7500DDCA7A /* CacheHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHistoryRepository.swift; sourceTree = "<group>"; };
-		DB5F36CA24AF23BD00DDCA7A /* CacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheRepository.swift; sourceTree = "<group>"; };
-		DB5F36CC24AF273D00DDCA7A /* RealCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealCacheRepository.swift; sourceTree = "<group>"; };
+		DB5F36CC24AF273D00DDCA7A /* CacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheRepository.swift; sourceTree = "<group>"; };
 		DB5F36CE24AF2A2800DDCA7A /* GuestView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuestView+ViewModel.swift"; sourceTree = "<group>"; };
 		DB5F36D024AF5B4600DDCA7A /* CacheProxyHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheProxyHistoryRepository.swift; sourceTree = "<group>"; };
 		DB65ACD92495EE7000252A93 /* WalletDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailView.swift; sourceTree = "<group>"; };
@@ -447,6 +449,14 @@
 			path = SelectAssetView;
 			sourceTree = "<group>";
 		};
+		DB50249524B0B66E002E1547 /* KeychainRepository */ = {
+			isa = PBXGroup;
+			children = (
+				DB50249624B0B70A002E1547 /* KeychainRepository.swift */,
+			);
+			path = KeychainRepository;
+			sourceTree = "<group>";
+		};
 		DB51DDB224A8AA3300369584 /* HistoryRepository */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,8 +546,7 @@
 		DB5F36C924AF211400DDCA7A /* CacheRepository */ = {
 			isa = PBXGroup;
 			children = (
-				DB5F36CA24AF23BD00DDCA7A /* CacheRepository.swift */,
-				DB5F36CC24AF273D00DDCA7A /* RealCacheRepository.swift */,
+				DB5F36CC24AF273D00DDCA7A /* CacheRepository.swift */,
 			);
 			path = CacheRepository;
 			sourceTree = "<group>";
@@ -706,6 +715,8 @@
 		DBA53B8424A9C623008E2BAF /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				DB50249824B0BA69002E1547 /* KeyValueStorage.swift */,
+				DB50249524B0B66E002E1547 /* KeychainRepository */,
 				DB5F36C924AF211400DDCA7A /* CacheRepository */,
 				DB51DDB224A8AA3300369584 /* HistoryRepository */,
 			);
@@ -1040,6 +1051,7 @@
 				DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */,
 				DBF576DE249791C000FB01E3 /* FocusingTextField.swift in Sources */,
 				DBF5D5452482B42B006AF99B /* PromoteSection.swift in Sources */,
+				DB50249724B0B70A002E1547 /* KeychainRepository.swift in Sources */,
 				DB77E176247E881100BF1A88 /* TrackableScrollView.swift in Sources */,
 				DB65ACDF2496116C00252A93 /* NotificationsView.swift in Sources */,
 				DB68BC20247BC5E200377A72 /* AppDelegate.swift in Sources */,
@@ -1064,9 +1076,10 @@
 				DB05B310249A46690058124A /* SearchBar.swift in Sources */,
 				DB5F369E24A9D70B00DDCA7A /* AssetHistory.swift in Sources */,
 				DBF576DC2497851600FB01E3 /* Language.swift in Sources */,
+				DB50249924B0BA69002E1547 /* KeyValueStorage.swift in Sources */,
 				DB5F36B424ADF89100DDCA7A /* GuestView.swift in Sources */,
 				DB68BC34247BEA1900377A72 /* Keyboard.swift in Sources */,
-				DB5F36CD24AF273D00DDCA7A /* RealCacheRepository.swift in Sources */,
+				DB5F36CD24AF273D00DDCA7A /* CacheRepository.swift in Sources */,
 				DB19DC3C249A3B87008F7F79 /* PinCodeSheet.swift in Sources */,
 				DB2A131324AF8F820007197F /* AnimatingImage.swift in Sources */,
 				DBFDB75F24935B0E00A1DFAD /* Image+qrCode.swift in Sources */,
@@ -1115,7 +1128,6 @@
 				DB4ED071249C95A800D6A558 /* MarketStatsCell.swift in Sources */,
 				DB68BC3C247C0A0A00377A72 /* AssetExchange.swift in Sources */,
 				DBF5D54C2482C1AA006AF99B /* NewsSection.swift in Sources */,
-				DB5F36CB24AF23BD00DDCA7A /* CacheRepository.swift in Sources */,
 				DB19DC2C249A3ACD008F7F79 /* PreferenceCell.swift in Sources */,
 				DB65ACDC24960B5C00252A93 /* WalletDetailCell.swift in Sources */,
 				DBF5D555248395F5006AF99B /* AnimatableVector.swift in Sources */,
