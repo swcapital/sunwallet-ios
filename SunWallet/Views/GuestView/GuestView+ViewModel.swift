@@ -13,8 +13,7 @@ extension GuestView {
         @Published var state: State = .loading
         
         init() {
-            print("Init")
-            load()
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 5, execute: load)
         }
         
         func load() {

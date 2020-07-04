@@ -6,6 +6,9 @@ struct LoadingView: View {
     var body: some View {
         AnimatingImage(images: images)
             .padding(32)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(LinearGradient.background)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
