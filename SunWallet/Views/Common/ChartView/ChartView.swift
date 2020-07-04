@@ -53,8 +53,9 @@ struct ChartView: View {
             .onChanged { value in
                 self.showOverlay = true
                 self.overlayOffset = value.location.x
-                let x = value.location.x / geometery.size.width
-                self.selectedValueIndex = Int(x * CGFloat(self.values.count - 1))
+                let xOffset = value.location.x / geometery.size.width
+                let index = Int(CGFloat(self.points.count) * xOffset)
+                self.selectedValueIndex = min(self.points.count - 1, max(0, index))
             }
             .onEnded { value in
                 self.showOverlay = false
@@ -65,7 +66,7 @@ struct ChartView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
-                self.makeMinMaxLabel(title: self.minValue.dollarString)
+                self.makeMinMaxLabel(title: self.maxValue.dollarString)
                     .alignmentGuide(.leading) {
                         self.xPosition(at: self.maxPoint.x, in: geometry, d: $0)
                     }
@@ -82,7 +83,7 @@ struct ChartView: View {
                         .opacity(self.showOverlay ? 1 : 0)
                     )
                 
-                self.makeMinMaxLabel(title: self.maxValue.dollarString)
+                self.makeMinMaxLabel(title: self.minValue.dollarString)
                     .alignmentGuide(.leading) {
                         self.xPosition(at: self.minPoint.x, in: geometry, d: $0)
                     }
