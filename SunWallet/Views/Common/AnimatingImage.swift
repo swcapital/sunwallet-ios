@@ -3,7 +3,12 @@ import SwiftUI
 struct AnimatingImage: View {
     let images: [Image]
     
-    @ObservedObject private var counter = Counter(interval: 0.02)
+    init(images: [Image], interval: Double) {
+        self.images = images
+        self.counter = Counter(interval: interval)
+    }
+    
+    @ObservedObject private var counter: Counter
             
     var body: some View {
         images[counter.value % images.count]
