@@ -1,20 +1,32 @@
 import SwiftUI
 
 struct PrimaryButtonStyle: ButtonStyle {
-    // MARK:- Properties
-    let disabled: Bool
-    
-    init(disabled: Bool = false) {
-        self.disabled = disabled
+    private struct Content: View {
+        @Environment(\.isEnabled) var isEnabled
+        let configuration: Configuration
+        
+        var body: some View {
+            configuration.label
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(backgroundColor)
+                .cornerRadius(8)
+        }
+        
+        var backgroundColor: Color {
+            if !isEnabled {
+                return Color.lightBlue
+            } else if configuration.isPressed {
+                return Color.lightBlue
+            } else {
+                return Color.primaryBlue
+            }
+        }
     }
     
     func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .foregroundColor(.white)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(disabled || configuration.isPressed ? Color.lightBlue : .primaryBlue)
-            .cornerRadius(8)
+        Content(configuration: configuration)
     }
 }
 
@@ -24,12 +36,13 @@ struct BlueButtonStyle_Previews: PreviewProvider {
             Button(action: {}) {
                 Text("Hello")
             }
-            .buttonStyle(PrimaryButtonStyle(disabled: false))
-
+            .buttonStyle(PrimaryButtonStyle())
+            
             Button(action: {}) {
                 Text("Hello")
             }
-            .buttonStyle(PrimaryButtonStyle(disabled: true))
+            .buttonStyle(PrimaryButtonStyle())
+            .disabled(true)
         }
     }
 }

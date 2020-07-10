@@ -1,42 +1,56 @@
 import Foundation
 import Security
 
-struct KeychainRepository: KeyValueStorage {
+private let keyType = kSecClassGenericPassword
+
+struct KeychainRepository {
     
-    @discardableResult
-    func save<Value: Encodable>(_ value: Value, atKey key: String) -> Bool {
+    func saveValue<Value: Encodable>(_ value: Value, atKey key: String) -> Bool {
         guard let data = try? JSONEncoder().encode(value) else { return false }
-        return save(data, atKey: key)
+        return saveData(data, atKey: key)
     }
     
-    func load<Value: Decodable>(atKey key: String) -> Value? {
-        guard let data = load(key: key) else { return nil }
+    func loadValue<Value: Decodable>(atKey key: String, accessHint: String) -> Value? {
+        guard let data = loadData(atKey: key, accessHint: accessHint) else { return nil }
         return try? JSONDecoder().decode(Value.self, from: data)
     }
 
-    private func save(data: Data, atKey key: String) -> Bool {
+    func saveData(_ data: Data, atKey key: String) -> Bool {
+        let accessControl = SecAccessControlCreateWithFlags(
+            nil,
+            kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+            .userPresence,
+            nil
+        )
+        
         let query: [CFString : Any] = [
-            kSecClass: kSecClassGenericPassword as String,
+            kSecClass: keyType,
             kSecAttrAccount: key,
-            kSecValueData: data
+            kSecValueData: data,
+            kSecAttrAccessControl: accessControl!,
         ]
+        
         SecItemDelete(query as CFDictionary)
         
-        return SecItemAdd(query as CFDictionary, nil) == noErr
+        let result = SecItemAdd(query as CFDictionary, nil)
+        SecCopyErrorMessageString(result, nil).map { print($0) }
+
+        return result == noErr
     }
 
-    private func load(key: String) -> Data? {
+    func loadData(atKey key: String, accessHint: String) -> Data? {
         let query: [CFString : Any] = [
-            kSecClass: kSecClassGenericPassword,
+            kSecClass: keyType,
             kSecAttrAccount: key,
-            kSecReturnData: kCFBooleanTrue!,
-            kSecMatchLimit: kSecMatchLimitOne
+            kSecReturnData: true,
+            kSecMatchLimit: kSecMatchLimitOne,
+            kSecUseOperationPrompt: accessHint
         ]
 
-        var dataTypeRef: AnyObject? = nil
-        guard SecItemCopyMatching(query as CFDictionary, &dataTypeRef) == noErr else {
-            return nil
-        }
-        return dataTypeRef as! Data?
+        var data: AnyObject?
+        let result = SecItemCopyMatching(query as CFDictionary, &data)
+        guard result == noErr else { return nil }
+        
+        return data as! Data?
     }
 }

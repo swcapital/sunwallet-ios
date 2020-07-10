@@ -2,13 +2,16 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    private let appState: AppState = .init()
+    private let stateStore: UserStateStore = .init()
     
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {        
+        
         //UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        let contentView = RootView().environmentObject(appState)
+        
+        let contentView = RootView()
+            .environmentObject(stateStore)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

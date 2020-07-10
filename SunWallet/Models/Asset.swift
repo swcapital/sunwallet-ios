@@ -1,15 +1,15 @@
 import Foundation
 
-struct Asset: Identifiable {
+struct Asset: Codable, Identifiable {
     let id = UUID()
     
     let code: String
-    let title: String?
+    let title: String
     let imageName: String?
     
     init(code: String, title: String? = nil, imageName: String? = nil) {
         self.code = code
-        self.title = title
+        self.title = title ?? code
         self.imageName = imageName
     }
 }
@@ -32,4 +32,11 @@ extension Asset {
     static let matic = Asset(code: "MATIC", title: "Matic Network", imageName: "matic")
     static let nexo = Asset(code: "NEXO", title: "Nexo", imageName: "nexo")
     static let omg = Asset(code: "OMG", title: "OmiseGO", imageName: "omg")
+}
+
+extension Asset: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(code)
+    }
 }

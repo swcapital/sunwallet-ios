@@ -1,18 +1,17 @@
 import Foundation
 import Combine
 
-struct CacheProxyHistoryRepository: HistoryRepository {
+struct CacheProxyHistoryRepository {
     let cacheRepository = CacheHistoryRepository()
     let historyRepository: HistoryRepository = SunWalletHistoryRepository()
     
-    func bootstrapHistory(base: Asset) -> AnyPublisher<[TradePairHistory], Error> {
+    func bootstrapHistory(base: Asset) -> AnyPublisher<[TradePairHistory], Never> {
         return historyRepository.bootstrapHistory(base: base)
             .map { history -> [TradePairHistory] in
                 self.cacheRepository.saveBootstrapHistory(history)
                 return history
             }
             .replaceError(with: cachedData())
-            .setFailureType(to: Swift.Error.self)
             .eraseToAnyPublisher()
     }
     

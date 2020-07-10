@@ -63,7 +63,8 @@ struct BuyAssetView: View {
         NavigationLink(destination: OrderPreviewView(assetExchange: assetExchange)) {
             Text("Preview Buy")
         }
-        .buttonStyle(PrimaryButtonStyle(disabled: isPreviewButtonDisabled))
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(isPreviewButtonDisabled)
         .padding(.vertical)
         .disabled(isPreviewButtonDisabled)
         .padding(.horizontal)

@@ -4,42 +4,31 @@ struct WelcomeView: View {
     // MARK:- Properties
     let assets: [TradePairHistory]
     
-    // MARK:- Environment
-    @EnvironmentObject var appState: AppState
-    
     // MARK:- Subviews
     private var registerButton: some View {
-        Button("Get Started") {
-            self.appState.loggedIn = true
-        }
-        .foregroundColor(.gradientEndColor)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(8)
-    }
-    private var loginButton: some View {
-        Button("Sign In") {
-        }
-        .foregroundColor(.white)
-    }
-    private var buttonsBlock: some View {
-        VStack(spacing: 8) {
-            registerButton
-                .padding(.horizontal)
-            loginButton
+        NavigationLink(destination: BootstrapWalletsView()) {
+            Text("Get Started")
                 .padding()
+                .frame(maxWidth: .infinity)
+                .contentShape(Rectangle())
+                .foregroundColor(.gradientEndColor)
+                .background(Color.white)
+                .cornerRadius(8)
         }
     }
     
     var body: some View {
         VStack {
             LogoView()
+            
             AssetsView(assets: assets)
+            
             Spacer()
-            buttonsBlock
+            
+            registerButton
+                .padding(.horizontal)
         }
-        .padding(.vertical, 32)
+        .padding(.vertical, 48)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(LinearGradient.background)
         .edgesIgnoringSafeArea(.all)

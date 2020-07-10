@@ -53,7 +53,8 @@ struct ConvertAssetsView: View {
     private var previewButton: some View {
         Button("Preview Convert") {
         }
-        .buttonStyle(PrimaryButtonStyle(disabled: isPreviewButtonDisabled))
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(isPreviewButtonDisabled)
         .padding(.vertical)
         .disabled(isPreviewButtonDisabled)
         .padding(.horizontal)

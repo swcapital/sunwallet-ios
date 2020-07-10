@@ -1,16 +1,22 @@
 import SwiftUI
 
 struct GuestView: View {
-    @ObservedObject private var viewModel = ViewModel()
+    @EnvironmentObject
+    var historyStore: BootstrapHistoryStore
     
     var body: some View {
-        switch viewModel.state {
+        switch historyStore.state {
         case .loading:
             return AnyView(LoadingView())
         case .loaded(let pairs):
-            return AnyView(WelcomeView(assets: pairs))
-        case .error(let error):
-            return AnyView(Text(error))
+            return AnyView(
+                NavigationView {
+                    WelcomeView(assets: pairs)
+                }
+            )
+        case .none:
+            historyStore.loadIfNeeded()
+            return AnyView(EmptyView())
         }
     }
 }

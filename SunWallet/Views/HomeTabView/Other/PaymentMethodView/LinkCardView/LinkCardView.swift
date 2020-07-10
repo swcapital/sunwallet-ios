@@ -95,7 +95,8 @@ struct LinkCardView: View {
             Text("Add Card")
                 .padding(.vertical, 8)
         }
-        .buttonStyle(PrimaryButtonStyle(disabled: cardNumber.isEmpty))
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(cardNumber.isEmpty)
     }
     private var inputRows: some View {
         VStack {

@@ -1,13 +1,21 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject var appState: AppState
+    private let historyStore = BootstrapHistoryStore()
+    private let walletStore = WalletStore()
     
-    @ViewBuilder var body: some View {
-         if appState.loggedIn {
+    @EnvironmentObject
+    var userStateStore: UserStateStore
+    
+    @ViewBuilder
+    var body: some View {
+         if userStateStore.loggedIn {
             HomeTabView()
+                .environmentObject(DataSource())
         } else {
             GuestView()
+                .environmentObject(historyStore)
+                .environmentObject(walletStore)
         }
     }
 }
