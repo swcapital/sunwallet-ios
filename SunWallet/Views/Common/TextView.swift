@@ -2,7 +2,6 @@ import SwiftUI
 
 struct TextView: UIViewRepresentable {
     @Binding var text: String
-    //let configuration = { (view: UITextView) in }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -22,7 +21,6 @@ struct TextView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
-        //configuration(uiView)
         uiView.text = text
     }
     
@@ -38,7 +36,6 @@ struct TextView: UIViewRepresentable {
         }
 
         func textViewDidChange(_ textView: UITextView) {
-            print("text now: \(String(describing: textView.text!))")
             self.parent.text = textView.text
         }
     }

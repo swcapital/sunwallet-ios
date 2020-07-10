@@ -79,5 +79,3 @@ private extension WalletCurrency {
         }
     }
 }
-
-// cruel bike aisle piece dinner enforce call achieve midnight merge stumble latin
