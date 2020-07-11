@@ -115,6 +115,9 @@
 		DBC6A630247E2B5C00550115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6A62F247E2B5C00550115 /* HomeView.swift */; };
 		DBC6A632247E311C00550115 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6A631247E311C00550115 /* User.swift */; };
 		DBE23008247D2EA400F2751A /* ExchangeFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE23007247D2EA400F2751A /* ExchangeFields.swift */; };
+		DBE7D95524B8AD3A00E1E97E /* BlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95424B8AD3A00E1E97E /* BlockchainRepository.swift */; };
+		DBE7D95924B8B72D00E1E97E /* DataTaskPublisher+extractData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95824B8B72D00E1E97E /* DataTaskPublisher+extractData.swift */; };
+		DBE7D95B24B8B8CF00E1E97E /* BlockchainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */; };
 		DBF576D12497557300FB01E3 /* PaymentMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF576D02497557300FB01E3 /* PaymentMethodView.swift */; };
 		DBF576D424975F1600FB01E3 /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF576D324975F1600FB01E3 /* PaymentMethodCell.swift */; };
 		DBF576D624975F5F00FB01E3 /* LinkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF576D524975F5F00FB01E3 /* LinkCardView.swift */; };
@@ -261,6 +264,9 @@
 		DBC6A62F247E2B5C00550115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DBC6A631247E311C00550115 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DBE23007247D2EA400F2751A /* ExchangeFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFields.swift; sourceTree = "<group>"; };
+		DBE7D95424B8AD3A00E1E97E /* BlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainRepository.swift; sourceTree = "<group>"; };
+		DBE7D95824B8B72D00E1E97E /* DataTaskPublisher+extractData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataTaskPublisher+extractData.swift"; sourceTree = "<group>"; };
+		DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainStore.swift; sourceTree = "<group>"; };
 		DBF576D02497557300FB01E3 /* PaymentMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodView.swift; sourceTree = "<group>"; };
 		DBF576D324975F1600FB01E3 /* PaymentMethodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
 		DBF576D524975F5F00FB01E3 /* LinkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCardView.swift; sourceTree = "<group>"; };
@@ -454,6 +460,7 @@
 				DBC5539024A78D6F0037763F /* UserStateStore.swift */,
 				DB35619024B6E73B006828ED /* BootstrapHistoryStore.swift */,
 				DB35619324B6F8E7006828ED /* WalletStore.swift */,
+				DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -677,6 +684,7 @@
 				DB35619224B6F8CC006828ED /* Stores */,
 				DB68BC3D247C160800377A72 /* Models */,
 				DB68BC3E247C161100377A72 /* Views */,
+				DBE7D95724B8B6F900E1E97E /* Publishers */,
 				DBA53B8424A9C623008E2BAF /* Repositories */,
 				DBFA1D9B248E5CBA002B109F /* Support */,
 				DB2A131424AFAC010007197F /* Resources */,
@@ -812,6 +820,7 @@
 				DB50249524B0B66E002E1547 /* KeychainRepository */,
 				DB5F36C924AF211400DDCA7A /* CacheRepository */,
 				DB51DDB224A8AA3300369584 /* HistoryRepository */,
+				DBE7D95624B8AD3F00E1E97E /* BlockchainRepository */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -863,6 +872,22 @@
 				DB65ACE324961A9400252A93 /* SecondaryButtonStyle.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		DBE7D95624B8AD3F00E1E97E /* BlockchainRepository */ = {
+			isa = PBXGroup;
+			children = (
+				DBE7D95424B8AD3A00E1E97E /* BlockchainRepository.swift */,
+			);
+			path = BlockchainRepository;
+			sourceTree = "<group>";
+		};
+		DBE7D95724B8B6F900E1E97E /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				DBE7D95824B8B72D00E1E97E /* DataTaskPublisher+extractData.swift */,
+			);
+			path = Publishers;
 			sourceTree = "<group>";
 		};
 		DBF576CF2497555300FB01E3 /* PaymentMethodView */ = {
@@ -1151,6 +1176,7 @@
 				DB865AD924B20014004303F3 /* CreateWalletView.swift in Sources */,
 				DB35619624B70209006828ED /* WalletCurrencyPicker.swift in Sources */,
 				DBF576DE249791C000FB01E3 /* FocusingTextField.swift in Sources */,
+				DBE7D95924B8B72D00E1E97E /* DataTaskPublisher+extractData.swift in Sources */,
 				DBF5D5452482B42B006AF99B /* PromoteSection.swift in Sources */,
 				DB50249724B0B70A002E1547 /* KeychainRepository.swift in Sources */,
 				DB77E176247E881100BF1A88 /* TrackableScrollView.swift in Sources */,
@@ -1166,6 +1192,7 @@
 				DB5F36C524AF0C7500DDCA7A /* CacheHistoryRepository.swift in Sources */,
 				DB00A6332482AE6F006FD5A0 /* HomeCurrencyCell.swift in Sources */,
 				DB68BC22247BC5E200377A72 /* SceneDelegate.swift in Sources */,
+				DBE7D95524B8AD3A00E1E97E /* BlockchainRepository.swift in Sources */,
 				DB50249E24B1A255002E1547 /* ImportWalletView.swift in Sources */,
 				DB35615024B45166006828ED /* WalletCurrency.swift in Sources */,
 				DBC6A632247E311C00550115 /* User.swift in Sources */,
@@ -1182,6 +1209,7 @@
 				DB05B310249A46690058124A /* SearchBar.swift in Sources */,
 				DBF576DC2497851600FB01E3 /* Language.swift in Sources */,
 				DB50249924B0BA69002E1547 /* KeyValueStorage.swift in Sources */,
+				DBE7D95B24B8B8CF00E1E97E /* BlockchainStore.swift in Sources */,
 				DB5F36B424ADF89100DDCA7A /* GuestView.swift in Sources */,
 				DB68BC34247BEA1900377A72 /* Keyboard.swift in Sources */,
 				DB5F36CD24AF273D00DDCA7A /* CacheRepository.swift in Sources */,

@@ -2,11 +2,13 @@ import SwiftUI
 
 struct HomeView: View {
     // MARK:- Environment
+    @EnvironmentObject var blockchainStore: BlockchainStore
     @EnvironmentObject var dataSource: DataSource
+    @EnvironmentObject var walletStore: WalletStore
     
     // MARK:- Subviews
     private var title: Text {
-        Text(dataSource.user.totalDollarBalance.currencyString)
+        Text(blockchainStore.totalBalance.dollarString)
             .font(.largeTitle)
             .bold()
     }

@@ -4,12 +4,6 @@ import Combine
 private let host = "http://35.224.27.160:8080"
 //private let host = "http://127.0.0.1:8080"
 
-enum HTTPError: LocalizedError {
-    case networkError
-    
-    var errorDescription: String? { "Network error" }
-}
-
 struct SunWalletHistoryRepository: HistoryRepository {
     
     private var decoder: JSONDecoder {
@@ -22,12 +16,7 @@ struct SunWalletHistoryRepository: HistoryRepository {
         let address = "\(host)/history/bootstrap/\(base.code)"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { output in
-                guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
-                    throw HTTPError.networkError
-                }
-                return output.data
-            }
+            .extractData()
             .decode(type: HistoryResponse.self, decoder: decoder)
             .map(\.pairs)
             .eraseToAnyPublisher()

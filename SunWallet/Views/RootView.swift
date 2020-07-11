@@ -1,9 +1,6 @@
 import SwiftUI
 
 struct RootView: View {
-    private let historyStore = BootstrapHistoryStore()
-    private let walletStore = WalletStore()
-    
     @EnvironmentObject
     var userStateStore: UserStateStore
     
@@ -11,11 +8,8 @@ struct RootView: View {
     var body: some View {
          if userStateStore.loggedIn {
             HomeTabView()
-                .environmentObject(DataSource())
         } else {
             GuestView()
-                .environmentObject(historyStore)
-                .environmentObject(walletStore)
         }
     }
 }

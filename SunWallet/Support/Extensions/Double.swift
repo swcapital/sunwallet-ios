@@ -8,19 +8,27 @@ extension Double {
         formatter.maximumFractionDigits = 2
         return formatter.string(from: self as NSNumber)!
     }
+    
     var currencyString: String {
         let formatter = NumberFormatter.currency
         formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 2
         return formatter.string(from: self as NSNumber)!
     }
+    
+    var dollarString: String {
+        "$\(decimalString)"
+    }
+    
     var priceChangeString: String {
         let prefix = (self > 0) ? "+" : ""
         return prefix + decimalString + " %"
     }
+    
     var percentString: String {
         .init(format: "%.0f%%", self * 100)
     }
+    
     var largeNumberString: String {
         let format = "%.1f %@"
         
