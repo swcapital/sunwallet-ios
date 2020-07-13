@@ -2,7 +2,7 @@ import Foundation
 
 struct Wallet: Codable  {
     let address: String
-    let currency: WalletCurrency
+    let asset: Asset
     let masterKeyID: UUID
 }
 

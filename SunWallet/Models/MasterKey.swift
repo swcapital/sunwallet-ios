@@ -1,15 +1,23 @@
 import Foundation
 
+private let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .short
+    return dateFormatter
+}()
+
 struct MasterKey: Codable {
     let id: UUID
     let mnemonic: String
     let title: String
-    let currencies: [WalletCurrency]
+    let assets: [Asset]
     
-    init(mnemonic: String, currencies: [WalletCurrency]) {
+    init(mnemonic: String, assets: [Asset]) {
         self.id = UUID()
         self.mnemonic = mnemonic
-        self.title = "Created at: \(Date())"
-        self.currencies = currencies
+        let date = dateFormatter.string(from: Date())
+        self.title = "Created at: \(date)"
+        self.assets = assets
     }
 }

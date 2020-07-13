@@ -4,7 +4,7 @@ import Combine
 private let host = "http://35.224.27.160:8080"
 //private let host = "http://127.0.0.1:8080"
 
-struct SunWalletHistoryRepository: HistoryRepository {
+struct SunWalletHistoryRepository {
     
     private var decoder: JSONDecoder {
         let decoder = JSONDecoder()
@@ -12,8 +12,9 @@ struct SunWalletHistoryRepository: HistoryRepository {
         return decoder
     }
     
-    func bootstrapHistory(base: Asset) -> AnyPublisher<[TradePairHistory], Error> {
-        let address = "\(host)/history/bootstrap/\(base.code)"
+    func history(base: Asset, targets: [Asset]) -> AnyPublisher<[ExchangeHistory], Error> {
+        let targetsString = targets.map { $0.code }.joined(separator: ",")
+        let address = "\(host)/history/q/\(base.code)/\(targetsString)"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
             .extractData()
@@ -36,6 +37,6 @@ extension Publisher where Self.Output == Data  {
 
 private extension SunWalletHistoryRepository {
     struct HistoryResponse: Codable {
-        let pairs: [TradePairHistory]
+        let pairs: [ExchangeHistory]
     }
 }

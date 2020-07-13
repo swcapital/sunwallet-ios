@@ -6,7 +6,7 @@ private let host = "https://api.blockcypher.com"
 struct BlockchainRepository {
     
     func balance(for wallet: Wallet) -> AnyPublisher<Double, Error> {
-        let address = "\(host)/v1/\(wallet.currency.code)/main/addrs/\(wallet.address)/balance"
+        let address = "\(host)/v1/\(wallet.asset.code)/main/addrs/\(wallet.address)/balance"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
             .extractData()

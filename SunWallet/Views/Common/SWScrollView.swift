@@ -44,7 +44,7 @@ struct SWScrollView<Content: View>: View {
             .vertical,
             showIndicators: false,
             contentOffset: $offset,
-            content: content.padding(.top, 110)
+            content: content.padding(.top, 130)
         )
     }
     

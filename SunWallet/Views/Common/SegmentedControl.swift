@@ -24,11 +24,12 @@ struct SegmentedControl: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<titles.count) { index in
-                Button(self.titles[index]) {
-                    self.selectedIndex = index
+                Button(action: { self.selectedIndex = index }) {
+                    Text(self.titles[index])
+                        .font(.footnote)
                 }
                 .frame(maxWidth: .infinity)
-                .foregroundColor(self.color(for: index))
+                .foregroundColor(self.color(for: index))                
             }
         }
     }

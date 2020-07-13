@@ -21,8 +21,9 @@ extension Double {
     }
     
     var priceChangeString: String {
-        let prefix = (self > 0) ? "+" : ""
-        return prefix + decimalString + " %"
+        let value = self * 100
+        let prefix = (value > 0) ? "+" : ""
+        return prefix + value.decimalString + " %"
     }
     
     var percentString: String {

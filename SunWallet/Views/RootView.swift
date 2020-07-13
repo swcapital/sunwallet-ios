@@ -2,14 +2,14 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject
-    var userStateStore: UserStateStore
+    var appStateStore: AppStateStore
     
     @ViewBuilder
     var body: some View {
-         if userStateStore.loggedIn {
-            HomeTabView()
+         if appStateStore.loggedIn {
+            LoggedInBranch()
         } else {
-            GuestView()
+            GuestBranch()
         }
     }
 }

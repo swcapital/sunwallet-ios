@@ -11,11 +11,11 @@ class WalletStore: ObservableObject {
     private(set) var masterKeys: [MasterKeyInfo]
     
     @UserDefault("wallets", defaultValue: [])
-    private(set) var wallets: [Wallet] { willSet { objectWillChange.send() } }
+    private(set) var wallets: [Wallet] { didSet { objectWillChange.send() } }
     
-    func createWallets(for currencies: [WalletCurrency]) -> Bool {
+    func createWallets(for assets: [Asset]) -> Bool {
         let mnemonic = Mnemonic.create()
-        return createWallets(for: currencies, mnemonic: mnemonic)
+        return createWallets(for: assets, mnemonic: mnemonic)
     }
     
     func restoreWallets() -> Bool {
@@ -26,18 +26,18 @@ class WalletStore: ObservableObject {
         return !masterKeys.isEmpty
     }
     
-    func importWallets(for currencies: [WalletCurrency], mnemonic: String) -> Bool {
-        createWallets(for: currencies, mnemonic: mnemonic)
+    func importWallets(for assets: [Asset], mnemonic: String) -> Bool {
+        createWallets(for: assets, mnemonic: mnemonic)
     }
     
-    func availableMasterKeys(for currency: WalletCurrency) -> [MasterKeyInfo] {
-        masterKeys.filter { !$0.currencies.contains(currency) }
+    func availableMasterKeys(for asset: Asset) -> [MasterKeyInfo] {
+        masterKeys.filter { !$0.assets.contains(asset) }
     }
     
-    private func createWallets(for currencies: [WalletCurrency], mnemonic: String) -> Bool {
-        guard currencies.count > 0 else { return false }
+    private func createWallets(for assets: [Asset], mnemonic: String) -> Bool {
+        guard assets.count > 0 else { return false }
         
-        let masterKey = MasterKey(mnemonic: mnemonic, currencies: currencies)
+        let masterKey = MasterKey(mnemonic: mnemonic, assets: assets)
         var masterKeys = loadMasterKeys(hint: "Save Master Key")
         masterKeys.append(masterKey)
         guard save(masterKeys: masterKeys) else { return false }
@@ -57,25 +57,26 @@ class WalletStore: ObservableObject {
     }
     
     private func updateWalletInfo(masterKeys: [MasterKey]) {
-        self.masterKeys = masterKeys.map { MasterKeyInfo(id: $0.id, title: $0.title, currencies: $0.currencies) }
+        self.masterKeys = masterKeys.map { MasterKeyInfo(id: $0.id, title: $0.title, assets: $0.assets) }
         self.wallets = masterKeys.map { makeWallets(for: $0) }.reduce([], +)
     }
     
     private func makeWallets(for masterKey: MasterKey) -> [Wallet] {
-        masterKey.currencies.map { currency -> Wallet in
+        masterKey.assets.map { asset -> Wallet in
             let seed = Mnemonic.createSeed(mnemonic: masterKey.mnemonic)
-            let wallet = HDWalletKit.Wallet(seed: seed, coin: currency.coin)
+            let wallet = HDWalletKit.Wallet(seed: seed, coin: asset.coin)
             let account = wallet.generateAccount()
-            return Wallet(address: account.address, currency: currency, masterKeyID: masterKey.id)
+            return Wallet(address: account.address, asset: asset, masterKeyID: masterKey.id)
         }
     }
 }
 
-private extension WalletCurrency {
+private extension Asset {
     var coin: Coin {
         switch self {
         case .btc: return .bitcoin
         case .eth: return .ethereum
+        default: fatalError()
         }
     }
 }

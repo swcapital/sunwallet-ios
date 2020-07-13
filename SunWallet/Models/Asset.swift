@@ -1,42 +1,82 @@
 import Foundation
 
-struct Asset: Codable, Identifiable {
-    let id = UUID()
-    
+struct Asset: Codable {
     let code: String
-    let title: String
-    let imageName: String?
     
-    init(code: String, title: String? = nil, imageName: String? = nil) {
-        self.code = code
-        self.title = title ?? code
-        self.imageName = imageName
+    var title: String {
+        switch code {
+        case "atom": return "Cosmos"
+        case "bat": return "Basic Attention Token"
+        case "bch": return "Bitcoin Cash"
+        case "bnb": return "Binance Coin"
+        case "bnt": return "Bancor"
+        case "btc": return "Bitcoin"
+        case "cny": return "eToro Chinese Yuan"
+            
+        case "eth": return "Etherium"
+        case "eur": return "Euro"
+        case "gbp": return "Pound Sterling"
+        case "jpy": return "Japanese Yen"
+        case "kcs": return "KuCoin Shares"
+            
+        case "knc": return "Kyber Network"
+        case "matic": return "Matic Network"
+        case "nexo": return "Nexo"
+        case "omg": return "OmiseGO"
+            
+        case "usd": return "US Dollar"
+            
+        default: return code.uppercased()
+        }
+    }
+    
+    var imageName: String { code }
+    
+    init(_ code: String) {
+        self.code = code.lowercased()
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.code = try container.decode(String.self).lowercased()
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(code)
     }
 }
 
 extension Asset {
-    static let usd = Asset(code: "USD", title: "US Dollar")
-    static let bitcoin = Asset(code: "BTC", title: "Bitcoin", imageName: "btc")
-    static let cosmos = Asset(code: "ATOM", title: "Cosmos", imageName: "atom")
-    static let bat = Asset(code: "BAT", title: "Basic Attention Token", imageName: "bat")
-    static let bitcoinCash = Asset(code: "BCH", title: "Bitcoin Cash", imageName: "btc")
-    static let etherium = Asset(code: "ETH", title: "Etherium", imageName: "eth")
-    static let binanceCoin = Asset(code: "BNB", title: "Binance Coin", imageName: "bnb")
-    static let bancor = Asset(code: "BNT", title: "Bancor", imageName: "bnt")
-    static let cny = Asset(code: "CNY", title: "eToro Chinese Yuan", imageName: "cny")
-    static let euro = Asset(code: "EUR", title: "Euro", imageName: "eur")
-    static let pound = Asset(code: "GBP", title: "Pound Sterling", imageName: "gbp")
-    static let yen = Asset(code: "JPY", title: "Japanese Yen", imageName: "jpy")
-    static let kcs = Asset(code: "KCS", title: "KuCoin Shares", imageName: "kcs")
-    static let knc = Asset(code: "KNC", title: "Kyber Network", imageName: "knc")
-    static let matic = Asset(code: "MATIC", title: "Matic Network", imageName: "matic")
-    static let nexo = Asset(code: "NEXO", title: "Nexo", imageName: "nexo")
-    static let omg = Asset(code: "OMG", title: "OmiseGO", imageName: "omg")
+    static let atom = Asset("atom")
+    static let bat = Asset("bat")
+    static let bch = Asset("bch")
+    static let bnb = Asset("bnb")
+    static let bnt = Asset("bnt")
+    static let btc = Asset("btc")
+    static let cny = Asset("cny")
+    static let eth = Asset("eth")
+    static let eur = Asset("eur")
+    static let gbp = Asset("gbp")
+    static let jpy = Asset("jpy")
+    static let kcs = Asset("kcs")
+    static let knc = Asset("knc")
+    static let matic = Asset("matic")
+    static let nexo = Asset("nexo")
+    static let omg = Asset("omg")
+    static let usd = Asset("usd")
 }
 
 extension Asset: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(code)
+    }
+}
+
+extension Asset: Equatable {
+    
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        lhs.code == rhs.code
     }
 }

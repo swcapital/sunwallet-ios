@@ -4,8 +4,8 @@ enum WalletCurrency: String, Codable, CaseIterable, Hashable {
     
     var asset: Asset {
         switch self {
-        case .btc: return .bitcoin
-        case .eth: return .etherium
+        case .btc: return .btc
+        case .eth: return .eth
         }
     }
 }

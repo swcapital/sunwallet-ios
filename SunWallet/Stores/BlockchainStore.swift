@@ -5,21 +5,27 @@ import SwiftUI
 class BlockchainStore: ObservableObject {
     private var cancalables: Set<AnyCancellable> = []
     
+    let objectWillChange = PassthroughSubject<Void, Never>()
+    
     let walletStore: WalletStore
     
     @Published
-    var balances: [Wallet: Double] = [:]
+    var balances: [Wallet: Double] { didSet { objectWillChange.send() } }
     
     var totalBalance: Double { balances.values.reduce(0, +) }
     
     init(walletStore: WalletStore) {
         self.walletStore = walletStore
+        self.balances = walletStore.wallets.reduce(into: [:], { $0[$1] = 0 })
         
+        subscribeOnWalletStore()
+        updateBalances()
+    }
+    
+    func subscribeOnWalletStore() {
         walletStore.objectWillChange
             .sink(receiveValue: { self.updateBalances() })
             .store(in: &cancalables)
-        
-        updateBalances()
     }
     
     func updateBalances() {

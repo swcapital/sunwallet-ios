@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class UserStateStore: ObservableObject {
+class AppStateStore: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
     
     @UserDefault("loggedIn", defaultValue: false)
