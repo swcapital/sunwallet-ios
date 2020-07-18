@@ -8,63 +8,73 @@ struct BootstrapWalletsScreen: View {
     @EnvironmentObject
     var walletStore: WalletStore
     
-    @State private var showNewWalletSheet = false
+    @State private var actionState: ActionState?
     @State private var error: String?
+    @State private var restoredMasterKeys: [MasterKey] = []
     
-    private var addWalletButton: some View {
-        Button(action: { self.showNewWalletSheet = true }) {
-            Image(systemName: "plus.circle")
-        }
-        .frame(width: 30, height: 30)
-    }
-    private var continueButton: some View {
-        Button("Continue") { self.appStateStore.logIn() }
+    private var importWalletsButton: some View {
+        return NavigationLink("Import Wallets", destination: ImportWalletScreen())
             .buttonStyle(PrimaryButtonStyle())
-            .disabled(walletStore.wallets.isEmpty)
     }
-    private var emptyView: some View {
-        VStack(spacing: 32) {
-            Text("You don't have any wallets yet. Please create one at first.")
-                .font(.largeTitle)
-            
-            ORView()
-            
+    private var createWalletButton: some View {
+        let destination = WalletCurrencyPicker(masterKeys: [MasterKey()], showAddresses: false)
+        return NavigationLink("Create Wallets", destination: destination)
+            .buttonStyle(PrimaryButtonStyle())
+    }
+    private var restoreWalletsButton: some View {
+        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showAddresses: true)
+        return VStack {
+            NavigationLink(destination: destination, tag: ActionState.restored, selection: $actionState) {
+                EmptyView()
+            }
             Button("Restore from Keychain") {
-                if !self.walletStore.restoreWallets() {
+                let masterKeys = self.walletStore.loadMasterKeys(hint: "Restore previous Master Keys")
+                if masterKeys.count > 0 {
+                    self.restoredMasterKeys = masterKeys
+                    self.actionState = .restored
+                } else {
                     self.error = "You don't have previously stored Master Keys"
                 }
             }
-            .frame(maxWidth: .infinity)
         }
-        .alert(item: $error) { error in
-            Alert(title: Text(error))
+        
+    }
+    private var buttonsBlock: some View {
+        VStack {
+            createWalletButton
+            
+            ORView()
+            
+            importWalletsButton
+            
+            ORView()
+            
+            restoreWalletsButton
         }
     }
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .center) {
-                if walletStore.wallets.isEmpty {
-                    emptyView
-                } else {
-                    WalletList()
-                }
+            VStack(alignment: .leading, spacing: 32.0) {
+                Text("You don't have any wallets yet")
+                    .font(.title)
                 
-                Spacer(minLength: 64)
-                
-                continueButton
+                buttonsBlock
             }
-            .navigationBarItems(trailing: addWalletButton)
             .padding(.horizontal)
             .padding(.bottom, 48)
         }
-        .sheet(isPresented: $showNewWalletSheet) {
-            AddWalletScreen(completion: { self.showNewWalletSheet = false })
-                .environmentObject(self.walletStore)
+        .navigationBarTitle("Create wallet")
+        .alert(item: $error) { error in
+            Alert(title: Text(error))
         }
     }
-    
-    
+}
+
+extension BootstrapWalletsScreen {
+    private enum ActionState: Int {
+        case restored
+    }
 }
 
 struct ImportedWalletsView_Previews: PreviewProvider {

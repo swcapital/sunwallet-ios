@@ -2,21 +2,22 @@ import SwiftUI
 
 extension WalletCurrencyPicker {
     struct Cell: View {
-        let asset: Asset
-        @Binding var selection: Set<Asset>
+        let wallet: Wallet
+        let showAddress: Bool
+        @Binding var selection: Set<Wallet>
         
-        private var isSelected: Bool { selection.contains(asset) }
+        private var isSelected: Bool { selection.contains(wallet) }
         
         private var selectionImage: some View {
-            Image(systemName: isSelected ? "checkmark.circle": "circle")
+            Image(systemName: isSelected ? "checkmark.circle.fill": "circle")
                 .font(.system(size: 25, weight: .light))
                 .foregroundColor(.primaryBlue)
         }
         
         var body: some View {
             HStack {
-                Image(asset.imageName)
-                Text(asset.title)
+                Image(wallet.asset.imageName)
+                Text(self.showAddress ? wallet.address : wallet.asset.title)
                 Spacer()
                 selectionImage
             }
@@ -27,9 +28,9 @@ extension WalletCurrencyPicker {
         
         func toggleSelection() {
             if isSelected {
-                selection.remove(asset)
+                selection.remove(wallet)
             } else {
-                selection.insert(asset)
+                selection.insert(wallet)
             }
         }
     }
