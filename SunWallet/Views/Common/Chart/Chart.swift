@@ -28,6 +28,9 @@ struct Chart: View {
         }
     }
     
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     // MARK:- States
     @State private var showOverlay = false
     @State private var overlayOffset: CGFloat = 0
@@ -66,7 +69,7 @@ struct Chart: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
-                self.makeMinMaxLabel(title: self.maxValue.currencyString)
+                self.makeMinMaxLabel(title: self.maxValue.currencyString(code: self.userSettingsStore.currency))
                     .alignmentGuide(.leading) {
                         self.xPosition(at: self.maxPoint.x, in: geometry, d: $0)
                     }
@@ -83,7 +86,7 @@ struct Chart: View {
                         .opacity(self.showOverlay ? 1 : 0)
                     )
                 
-                self.makeMinMaxLabel(title: self.minValue.currencyString)
+                self.makeMinMaxLabel(title: self.minValue.currencyString(code: self.userSettingsStore.currency))
                     .alignmentGuide(.leading) {
                         self.xPosition(at: self.minPoint.x, in: geometry, d: $0)
                     }

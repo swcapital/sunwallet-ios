@@ -4,6 +4,9 @@ struct OrderPreviewView: View {
     // MARK:- Properties
     let assetExchange: AssetExchange
     
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     // MARK:- Environment
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -16,7 +19,7 @@ struct OrderPreviewView: View {
             Divider()
             OrderPreviewCell(
                 title: Text("\(assetExchange.destination.code) Price"),
-                subtitle: Text(assetExchange.destination.dollarPrice.currencyString)
+                subtitle: Text(assetExchange.destination.dollarPrice.currencyString(code: userSettingsStore.currency))
             )
         }
     }
@@ -56,7 +59,7 @@ struct OrderPreviewView: View {
             Divider()
             OrderPreviewCell(
                 title: Text("Purchase"),
-                subtitle: Text(amount.currencyString)
+                subtitle: Text(amount.currencyString(code: userSettingsStore.currency))
             )
         }
     }
@@ -73,7 +76,7 @@ struct OrderPreviewView: View {
                     .frame(width: 20, height: 20)
                     .background(Circle().fill(Color.gray))
                 },
-                subtitle: Text((amount * 0.05).currencyString)
+                subtitle: Text((amount * 0.05).currencyString(code: userSettingsStore.currency))
             )
         }
     }

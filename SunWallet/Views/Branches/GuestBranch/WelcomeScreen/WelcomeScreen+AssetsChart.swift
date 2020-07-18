@@ -4,6 +4,9 @@ extension WelcomeScreen {
     struct AssetsChart: View {
         let exchangeHistory: [ExchangeHistory]
         
+        @EnvironmentObject
+        var userSettingsStore: UserSettingsStore
+        
         // MARK:- States
         @State private var selectedChartPeriod: Int = 0
         @State private var highlightedIndex: Int?
@@ -68,9 +71,10 @@ extension WelcomeScreen {
             HStack {
                 Spacer()
                 VStack {
-                    Text(currentPrice.currencyString)
+                    Text(currentPrice.currencyString(code: userSettingsStore.currency))
                         .font(.headline)
                         .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity)
                     Text("\(assetTitles[selectedAssetIndex]) price")
                         .font(.caption)
                         .foregroundColor(Color.white)
@@ -83,12 +87,13 @@ extension WelcomeScreen {
                 Spacer()
                 VStack(spacing: 0.0) {
                     HStack(spacing: 4.0) {
-                        Text(currentPriceDiff.currencyString)
+                        Text(currentPriceDiff.currencyString(code: userSettingsStore.currency) + .extraSpace)
                             .font(.headline)
                             .foregroundColor(Color.white)
                         
                         dynamicArrow
                     }
+                    .frame(maxWidth: .infinity)
                     
                     Text(periodTitle)
                         .font(.caption)

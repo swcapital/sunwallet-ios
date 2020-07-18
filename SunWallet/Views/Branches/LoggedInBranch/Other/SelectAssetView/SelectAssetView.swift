@@ -7,6 +7,9 @@ struct SelectAssetView: View {
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource
     
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     // MARK:- Subviews
     private var titleView: some View {
         Text("Select asset to sell")
@@ -22,7 +25,7 @@ struct SelectAssetView: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 3) {
-                Text(dataSource.user.dollarBalance(asset).currencyString)
+                Text(dataSource.user.dollarBalance(asset).currencyString(code: userSettingsStore.currency))
                 Text("\(dataSource.user.assetBalance(asset)) \(asset.code)")
                     .foregroundColor(.blueGray)
             }

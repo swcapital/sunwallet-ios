@@ -7,6 +7,9 @@ struct WalletDetailCell: View {
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource
     
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     // MARK:- Calculated Variables
     private var balance: Double { dataSource.user.assetBalance(asset) }
     private var dollarBalance: Double { dataSource.user.dollarBalance(asset) }
@@ -30,7 +33,7 @@ struct WalletDetailCell: View {
                 Text(balance.decimalString)
                     .foregroundColor(balance.isPositive ? .green : .black)
                 
-                Text(dollarBalance.currencyString)
+                Text(dollarBalance.currencyString(code: userSettingsStore.currency))
                     .foregroundColor(.gray)
                     .font(.caption)
             }

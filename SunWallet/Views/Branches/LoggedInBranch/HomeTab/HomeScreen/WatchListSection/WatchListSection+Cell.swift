@@ -5,6 +5,9 @@ extension WatchListSection {
         // MARK:- Properties
         let exchangeHistory: ExchangeHistory
         
+        @EnvironmentObject
+        var userSettingsStore: UserSettingsStore
+        
         private var asset: Asset { exchangeHistory.source }
         
         var body: some View {
@@ -21,7 +24,7 @@ extension WatchListSection {
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: 3) {
-                        Text(exchangeHistory.historySet.currentPrice.currencyString)
+                        Text(exchangeHistory.historySet.currentPrice.currencyString(code: userSettingsStore.currency))
                         Text(exchangeHistory.historySet.currentPriceChange.priceChangeString)
                             .font(.caption)
                             .foregroundColor(exchangeHistory.historySet.currentPriceChange.isPositive ? .green : .red)

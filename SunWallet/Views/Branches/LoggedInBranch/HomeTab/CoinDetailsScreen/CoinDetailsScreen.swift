@@ -6,6 +6,10 @@ struct CoinDetailsScreen: View {
     
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource
+    
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // MARK:- States
@@ -26,7 +30,7 @@ struct CoinDetailsScreen: View {
     
     // MARK:- Subviews
     private var title: Text {
-        let price = Text(currentValue.currencyString + " ")
+        let price = Text(currentValue.currencyString(code: userSettingsStore.currency) + .extraSpace)
             .font(.largeTitle)
             .bold()
         let priceChange = Text(currentValueChange.priceChangeString)

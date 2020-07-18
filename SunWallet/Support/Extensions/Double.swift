@@ -9,10 +9,11 @@ extension Double {
         return formatter.string(from: self as NSNumber)!
     }
     
-    var currencyString: String {
+    func currencyString(code: String) -> String {
         let formatter = NumberFormatter.currency
         formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 2
+        formatter.currencyCode = code
         return formatter.string(from: self as NSNumber)!
     }
     

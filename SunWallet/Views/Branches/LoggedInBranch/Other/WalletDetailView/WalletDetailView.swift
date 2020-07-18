@@ -6,6 +6,10 @@ struct WalletDetailView: View {
     
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource
+    
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // MARK:- States
@@ -63,7 +67,7 @@ struct WalletDetailView: View {
             
             Text(dataSource.user.assetBalance(asset).decimalString + " " + asset.title)
                 .font(.title)
-            Text(dataSource.user.dollarBalance(asset).currencyString)
+            Text(dataSource.user.dollarBalance(asset).dollarString)
                 .foregroundColor(.blueGray)
             
             Spacer(minLength: 48)
