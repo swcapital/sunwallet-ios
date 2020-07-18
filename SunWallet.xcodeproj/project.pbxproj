@@ -12,6 +12,7 @@
 		DB00A6352482AEF8006FD5A0 /* TopMoversSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB00A6342482AEF8006FD5A0 /* TopMoversSection.swift */; };
 		DB00A6372482AF6A006FD5A0 /* WatchListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB00A6362482AF6A006FD5A0 /* WatchListSection.swift */; };
 		DB01234424C316AB006E72FD /* NativeCurrencyView+Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234324C316AB006E72FD /* NativeCurrencyView+Currency.swift */; };
+		DB01234624C3396B006E72FD /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234524C3396B006E72FD /* LazyView.swift */; };
 		DB0376CA247CFD13005ACB03 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376C9247CFD13005ACB03 /* Color.swift */; };
 		DB0376CD247CFEF4005ACB03 /* ExchangeFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */; };
 		DB0376CF247D2B60005ACB03 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CE247D2B60005ACB03 /* Thumb.swift */; };
@@ -155,6 +156,7 @@
 		DB00A6342482AEF8006FD5A0 /* TopMoversSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMoversSection.swift; sourceTree = "<group>"; };
 		DB00A6362482AF6A006FD5A0 /* WatchListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListSection.swift; sourceTree = "<group>"; };
 		DB01234324C316AB006E72FD /* NativeCurrencyView+Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NativeCurrencyView+Currency.swift"; sourceTree = "<group>"; };
+		DB01234524C3396B006E72FD /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		DB0376C9247CFD13005ACB03 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFieldType.swift; sourceTree = "<group>"; };
 		DB0376CE247D2B60005ACB03 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -752,6 +754,7 @@
 				DB50249A24B1A159002E1547 /* TextView.swift */,
 				DB865AD524B1F4CC004303F3 /* HorizontalLine.swift */,
 				DB35615124B48A9F006828ED /* ORView.swift */,
+				DB01234524C3396B006E72FD /* LazyView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1135,6 +1138,7 @@
 				DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */,
 				DB35619624B70209006828ED /* WalletCurrencyPicker.swift in Sources */,
 				DBF576DE249791C000FB01E3 /* FocusingTextField.swift in Sources */,
+				DB01234624C3396B006E72FD /* LazyView.swift in Sources */,
 				DBE7D95924B8B72D00E1E97E /* DataTaskPublisher+extractData.swift in Sources */,
 				DBF5D5452482B42B006AF99B /* PromoteSection.swift in Sources */,
 				DB50249724B0B70A002E1547 /* KeychainRepository.swift in Sources */,
