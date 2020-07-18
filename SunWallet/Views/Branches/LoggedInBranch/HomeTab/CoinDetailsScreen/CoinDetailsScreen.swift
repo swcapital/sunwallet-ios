@@ -57,7 +57,7 @@ struct CoinDetailsScreen: View {
                 Divider()
                 HintSection()
                 Divider()
-                DetailsCell(text: Text("Get Started").foregroundColor(.primaryBlue).bold())
+                DetailsCell(text: Text("Get Started").foregroundColor(.primary).bold())
                 Divider()
                 AboutSection(asset: self.asset)
                 MarketStatsSection(asset: self.asset)

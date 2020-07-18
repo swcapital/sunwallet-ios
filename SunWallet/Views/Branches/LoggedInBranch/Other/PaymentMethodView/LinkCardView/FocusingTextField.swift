@@ -7,7 +7,7 @@ struct FocusingTextField: View {
     let hint: String?
     let label: String
     
-    init(text: Binding<String>, color: Color = .primaryBlue, hint: String? = nil, label: String = "") {
+    init(text: Binding<String>, color: Color = .primary, hint: String? = nil, label: String = "") {
         self.text = text
         self.color = color
         self.hint = hint

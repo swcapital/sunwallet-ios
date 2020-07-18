@@ -10,13 +10,13 @@ struct AboutSection: View {
             HStack(spacing: 16) {
                 Image("website")
                 Text("Official website")
-                    .foregroundColor(.primaryBlue)
+                    .foregroundColor(.primary)
                 Spacer()
             }
             HStack(spacing: 16) {
                 Image("whitepaper")
                 Text("Whitepaper")
-                    .foregroundColor(.primaryBlue)
+                    .foregroundColor(.primary)
                 Spacer()
             }
         }

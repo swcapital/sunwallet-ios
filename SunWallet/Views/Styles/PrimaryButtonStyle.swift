@@ -20,7 +20,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             } else if configuration.isPressed {
                 return Color.lightBlue
             } else {
-                return Color.primaryBlue
+                return Color.primary
             }
         }
     }

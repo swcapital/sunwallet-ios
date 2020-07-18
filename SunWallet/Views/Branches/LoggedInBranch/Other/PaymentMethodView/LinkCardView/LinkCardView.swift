@@ -130,7 +130,7 @@ struct LinkCardView: View {
                 Text("Proccessed by")
                     .font(.headline)
                 Text("SunWallet")
-                    .foregroundColor(.primaryBlue)
+                    .foregroundColor(.primary)
                     .font(.headline)
             }
             .padding(24)

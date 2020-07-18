@@ -30,7 +30,7 @@ struct ConvertAssetsView: View {
 
             Text("\(self.amountLabel) US$")
                 .font(.system(size: 56))
-                .foregroundColor(Color.primaryBlue)
+                .foregroundColor(Color.primary)
             
             convertAllButton
                 .padding(8)

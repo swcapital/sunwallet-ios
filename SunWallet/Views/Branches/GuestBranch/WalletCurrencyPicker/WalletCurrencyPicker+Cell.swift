@@ -11,7 +11,7 @@ extension WalletCurrencyPicker {
         private var selectionImage: some View {
             Image(systemName: isSelected ? "checkmark.circle.fill": "circle")
                 .font(.system(size: 25, weight: .light))
-                .foregroundColor(.primaryBlue)
+                .foregroundColor(.primary)
         }
         
         var body: some View {

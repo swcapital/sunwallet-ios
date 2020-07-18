@@ -4,12 +4,12 @@ struct SecondaryButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(.primaryBlue)
+            .foregroundColor(.primary)
             .padding()
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.primaryBlue, lineWidth: 2)
+                    .stroke(Color.primary, lineWidth: 2)
             )
     }
 }

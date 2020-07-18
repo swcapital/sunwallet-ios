@@ -34,7 +34,7 @@ struct MultiChart: View {
             
             SegmentedControl(
                 titles: titles,
-                accentColor: .primaryBlue,
+                accentColor: .primary,
                 labelsColor: .darkGray,
                 selectedIndex: self.$tabIndex
             )

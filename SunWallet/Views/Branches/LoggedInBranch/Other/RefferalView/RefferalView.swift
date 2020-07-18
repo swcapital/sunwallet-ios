@@ -8,7 +8,7 @@ struct RefferalView: View {
             Text("copy")
         }
         .padding()
-        .foregroundColor(.primaryBlue)
+        .foregroundColor(.primary)
     }
     private var textFieldBorder: some View {
         RoundedRectangle(cornerRadius: 8)

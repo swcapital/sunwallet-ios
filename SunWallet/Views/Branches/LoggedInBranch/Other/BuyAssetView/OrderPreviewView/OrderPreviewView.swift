@@ -90,7 +90,7 @@ struct OrderPreviewView: View {
     private var amountView: some View {
         Text("\(amount.decimalString) \(assetExchange.source.code)")
             .font(.largeTitle)
-            .foregroundColor(Color.primaryBlue)
+            .foregroundColor(Color.primary)
             .frame(maxWidth: .infinity)
             .lineLimit(1)
             .frame(height: 80)

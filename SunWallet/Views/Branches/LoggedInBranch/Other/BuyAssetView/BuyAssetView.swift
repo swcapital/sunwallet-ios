@@ -39,7 +39,7 @@ struct BuyAssetView: View {
             
             Text("\(self.amountLabel) \(assetExchange.source.code)")
                 .font(.system(size: 56))
-                .foregroundColor(Color.primaryBlue)
+                .foregroundColor(Color.primary)
                 .frame(maxWidth: .infinity)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
@@ -54,7 +54,7 @@ struct BuyAssetView: View {
             Text("One time purchase")
         }
         .font(.headline)
-        .foregroundColor(.primaryBlue)
+        .foregroundColor(.primary)
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
         .background(Capsule().fill(Color(red: 243 / 255, green: 246 / 255, blue: 253 / 255)))

@@ -20,7 +20,7 @@ struct PromoteSection: View {
                     VStack(alignment: .leading) {
                         Text("Earn rewards")
                             .padding(16)
-                            .foregroundColor(.primaryBlue)
+                            .foregroundColor(.primary)
                         Text("Invate to friend to SunWallet and you'll both get $10")
                             .padding(.horizontal, 16)
                         Image("referrals")

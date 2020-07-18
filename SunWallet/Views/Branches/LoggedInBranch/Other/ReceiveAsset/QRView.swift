@@ -29,7 +29,7 @@ struct QRView: View {
     }
     private var copyButton: some View {
         Button("Copy") {}
-            .foregroundColor(.primaryBlue)
+            .foregroundColor(.primary)
     }
     
     var body: some View {

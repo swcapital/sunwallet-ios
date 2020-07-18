@@ -11,7 +11,7 @@ struct LoggedInBranch: View {
                 .foregroundColor(.white)
                 .font(.headline)
                 .frame(width: 60, height: 40)
-                .background(Circle().fill(Color.primaryBlue))
+                .background(Circle().fill(Color.primary))
                 .padding(5)
         }
     }
