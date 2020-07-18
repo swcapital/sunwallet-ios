@@ -20,12 +20,3 @@ struct BlockchainRepository {
 private struct BalanceResponse: Codable {
     let balance: Double
 }
-
-private extension WalletCurrency {
-    var code: String {
-        switch self {
-        case .btc: return "btc"
-        case .eth: return "eth"
-        }
-    }
-}

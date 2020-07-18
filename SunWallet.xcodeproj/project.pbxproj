@@ -33,7 +33,6 @@
 		DB2A131324AF8F820007197F /* AnimatingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A131224AF8F820007197F /* AnimatingImage.swift */; };
 		DB2A131624AFAC350007197F /* bootstrap.json in Resources */ = {isa = PBXBuildFile; fileRef = DB2A131524AFAC350007197F /* bootstrap.json */; };
 		DB343FAE24936BAD003DDA0B /* ReceiveAssetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB343FAD24936BAD003DDA0B /* ReceiveAssetSheet.swift */; };
-		DB35615024B45166006828ED /* WalletCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB35614F24B45166006828ED /* WalletCurrency.swift */; };
 		DB35615224B48A9F006828ED /* ORView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB35615124B48A9F006828ED /* ORView.swift */; };
 		DB35615424B48D36006828ED /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB35615324B48D36006828ED /* String.swift */; };
 		DB35619424B6F8E7006828ED /* WalletStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB35619324B6F8E7006828ED /* WalletStore.swift */; };
@@ -177,7 +176,6 @@
 		DB2A131224AF8F820007197F /* AnimatingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingImage.swift; sourceTree = "<group>"; };
 		DB2A131524AFAC350007197F /* bootstrap.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bootstrap.json; sourceTree = "<group>"; };
 		DB343FAD24936BAD003DDA0B /* ReceiveAssetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAssetSheet.swift; sourceTree = "<group>"; };
-		DB35614F24B45166006828ED /* WalletCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrency.swift; sourceTree = "<group>"; };
 		DB35615124B48A9F006828ED /* ORView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORView.swift; sourceTree = "<group>"; };
 		DB35615324B48D36006828ED /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DB35619324B6F8E7006828ED /* WalletStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStore.swift; sourceTree = "<group>"; };
@@ -697,7 +695,6 @@
 				DB865AE824B34E25004303F3 /* MasterKey.swift */,
 				DB865AEA24B34E3E004303F3 /* MasterKeyInfo.swift */,
 				DB865AE624B349D9004303F3 /* Wallet.swift */,
-				DB35614F24B45166006828ED /* WalletCurrency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1154,7 +1151,6 @@
 				DB00A6332482AE6F006FD5A0 /* WatchListSection+Cell.swift in Sources */,
 				DB68BC22247BC5E200377A72 /* SceneDelegate.swift in Sources */,
 				DBE7D95524B8AD3A00E1E97E /* BlockchainRepository.swift in Sources */,
-				DB35615024B45166006828ED /* WalletCurrency.swift in Sources */,
 				DBC6A632247E311C00550115 /* User.swift in Sources */,
 				DB5725032491F9D400F283BF /* LoggedInBranch.swift in Sources */,
 				DBF5D5472482B4A4006AF99B /* Article.swift in Sources */,
