@@ -4,11 +4,18 @@ struct PreferenceView: View {
     @EnvironmentObject
     var appStateStore: AppStateStore
     
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     // MARK:- Subviews
     private var rows: some View {
         VStack {
             makeRow(title: "Limits and features", subtitle: "Level 2")
-            makeRow(title: "Native currency", subtitle: "USD", destination: NativeCurrencyView())
+            makeRow(
+                title: "Native currency",
+                subtitle: userSettingsStore.currency,
+                destination: NativeCurrencyView()
+            )
             makeRow(title: "Country", subtitle: "Germany")
             makeRow(title: "Phone numbers")
             makeRow(title: "Notification Settings")

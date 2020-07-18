@@ -7,14 +7,13 @@ extension GuestBranch {
     class ViewModel: ObservableObject {
         @Published
         private(set) var state: State = .none
-        
-        private let userSettingsStore: UserSettingsStore = .init()
-        
-        func loadIfNeeded() {
+                
+        func loadIfNeeded(currency: String) {
             guard case State.none = state else { return }
             
+            let base = Asset(currency)
             let cancellable = CacheProxyHistoryRepository()
-                .history(base: userSettingsStore.userCurrency, targets: targets)
+                .history(base: base, targets: targets)
                 .receive(on: DispatchQueue.main)
                 .sink(
                     receiveValue: { value in

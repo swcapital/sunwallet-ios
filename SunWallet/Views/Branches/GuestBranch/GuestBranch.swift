@@ -3,6 +3,9 @@ import SwiftUI
 struct GuestBranch: View {
     @ObservedObject private var viewModel = ViewModel()
     
+    @EnvironmentObject
+    var userSettingsStore: UserSettingsStore
+    
     var body: some View {
         switch viewModel.state {
         case .loading:
@@ -14,7 +17,7 @@ struct GuestBranch: View {
                 }
             )
         case .none:
-            viewModel.loadIfNeeded()
+            viewModel.loadIfNeeded(currency: userSettingsStore.currency)
             return AnyView(EmptyView())
         }
     }

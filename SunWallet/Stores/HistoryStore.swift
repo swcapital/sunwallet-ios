@@ -11,9 +11,12 @@ class HistoryStore: ObservableObject {
     
     let userSettingsStore: UserSettingsStore
     
+    private var userCurrencyAsset: Asset { .init(userSettingsStore.currency) }
+    
     init(userSettingsStore: UserSettingsStore) {
         self.userSettingsStore = userSettingsStore
-        self.favorites = CacheProxyHistoryRepository().cachedData(base: userSettingsStore.userCurrency, targets: userSettingsStore.favorites)
+        self.favorites = []
+        self.favorites = CacheProxyHistoryRepository().cachedData(base: self.userCurrencyAsset, targets: userSettingsStore.favorites)
         
         subscribeOnUserSettings()
         refreshFavorites()
@@ -25,9 +28,9 @@ class HistoryStore: ObservableObject {
             .store(in: &cancalables)
     }
     
-    func refreshFavorites() {        
+    func refreshFavorites() {
         CacheProxyHistoryRepository()
-            .history(base: userSettingsStore.userCurrency, targets: userSettingsStore.favorites)
+            .history(base: userCurrencyAsset, targets: userSettingsStore.favorites)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { self.favorites = $0 })
             .store(in: &cancalables)

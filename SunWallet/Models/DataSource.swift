@@ -20,15 +20,6 @@ class DataSource: ObservableObject {
         .init(title: "OmiseGO", code: "OMG", imageName: "omg"),
     ]
     
-    let currencies: [Currency] = [
-        Currency(title: "Australian dollar", subtitle: "AUD"),
-        Currency(title: "British Pound", subtitle: "GBP"),
-        Currency(title: "Canadian Dollar", subtitle: "CAD"),
-        Currency(title: "Chinese Renminbi Yuan", subtitle: "CNY"),
-        Currency(title: "Euro", subtitle: "EUR"),
-        Currency(title: "Japanese Yen", subtitle: "JPY")
-    ]
-    
     let articles: [Article] = [
         .init(
             title: "ETH is in Focus Ahead of Ethereum 2.0: What to Expect?",
@@ -62,9 +53,6 @@ class DataSource: ObservableObject {
         favorites: Array(assets.random(6)),
         balance: Dictionary(uniqueKeysWithValues: assets.map { ($0, Double.random(in: 0 ..< 20)) })
     )
-    
-    private let launchAssetTitles = ["BTC", "BCH", "ETH", "BNT", "KCS"]
-    var launchAssets: [Asset2] { assets.filter { launchAssetTitles.contains($0.code) } }
 }
 
 
