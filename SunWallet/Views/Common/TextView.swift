@@ -16,6 +16,8 @@ struct TextView: UIViewRepresentable {
         textView.autocorrectionType = .no
         textView.textContainerInset = .init(top: 12, left: 12, bottom: 12, right: 12)
         textView.backgroundColor = UIColor(white: 0.0, alpha: 0.05)
+        
+        textView.returnKeyType = .done
 
         return textView
     }
@@ -32,6 +34,11 @@ struct TextView: UIViewRepresentable {
         }
 
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            guard text != "\n" else {
+                textView.resignFirstResponder()
+                return false
+            }
+            
             return true
         }
 
