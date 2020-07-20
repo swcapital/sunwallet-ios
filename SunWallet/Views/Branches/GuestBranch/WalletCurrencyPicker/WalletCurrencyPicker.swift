@@ -7,22 +7,17 @@ struct WalletCurrencyPicker: View {
     @ObservedObject
     private var viewModel: ViewModel
     
-    @State
-    private var selection: Set<Wallet>
-    
     init(masterKeys: [MasterKey], showBalances: Bool) {
-        let viewModel = ViewModel(masterKeys: masterKeys, showBalances: showBalances)
-        self.viewModel = viewModel
-        self._selection = .init(initialValue: Set(viewModel.wallets))
+        self.viewModel = ViewModel(masterKeys: masterKeys, showBalances: showBalances)
     }
     
     private var continueButton: some View {
         Button("Continue") {
-            self.viewModel.save(wallets: Array(self.selection))
+            self.viewModel.saveData()
             self.appStateStore.logIn()
         }
         .buttonStyle(PrimaryButtonStyle())
-        .disabled(self.selection.isEmpty)
+        .disabled(!viewModel.canContinue)
     }
     
     private var walletList: some View {
@@ -32,7 +27,7 @@ struct WalletCurrencyPicker: View {
                 Cell(
                     wallet: wallet,
                     balance: self.viewModel.balance(for: wallet),
-                    selection: self.$selection
+                    selection: self.$viewModel.selection
                 )
                 .padding(.horizontal)
                 
@@ -54,7 +49,6 @@ struct WalletCurrencyPicker: View {
         .alert(item: self.$viewModel.error) { error in
             Alert(title: Text(error))
         }
-        .onAppear(perform: viewModel.onAppear)
         .showLoading(viewModel.isLoading)
     }
 }
