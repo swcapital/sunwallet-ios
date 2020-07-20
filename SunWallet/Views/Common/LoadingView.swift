@@ -9,9 +9,9 @@ struct LoadingView: View {
                 .edgesIgnoringSafeArea(.all)
             
             Rectangle()
-                .fill(Color.init(.sRGB, white: 0, opacity: 0.5))
-                .frame(width: 100, height: 100)
-                .cornerRadius(8)
+                .fill(Color.primary)
+                .frame(width: 120, height: 120)
+                .cornerRadius(12)
             
             ActivityIndicator(animating: .constant(true))
         }
