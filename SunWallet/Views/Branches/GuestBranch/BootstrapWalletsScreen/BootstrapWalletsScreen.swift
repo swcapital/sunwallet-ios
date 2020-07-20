@@ -1,10 +1,7 @@
 import SwiftUI
 
 struct BootstrapWalletsScreen: View {
-    // MARK:- Environment
-    @EnvironmentObject
-    var appStateStore: AppStateStore
-    
+    // MARK:- Environment    
     @EnvironmentObject
     var walletStore: WalletStore
     
@@ -17,12 +14,14 @@ struct BootstrapWalletsScreen: View {
             .buttonStyle(PrimaryButtonStyle())
     }
     private var createWalletButton: some View {
-        let destination = WalletCurrencyPicker(masterKeys: [MasterKey()], showAddresses: false)
+        let destination = LazyView(
+            WalletCurrencyPicker(masterKeys: [MasterKey()], showBalances: false)
+        )
         return NavigationLink("Create Wallets", destination: destination)
             .buttonStyle(PrimaryButtonStyle())
     }
     private var restoreWalletsButton: some View {
-        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showAddresses: true)
+        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showBalances: true)
         return VStack {
             NavigationLink(destination: destination, tag: ActionState.restored, selection: $actionState) {
                 EmptyView()

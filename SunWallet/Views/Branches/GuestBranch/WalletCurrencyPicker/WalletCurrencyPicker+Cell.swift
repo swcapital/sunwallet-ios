@@ -3,7 +3,7 @@ import SwiftUI
 extension WalletCurrencyPicker {
     struct Cell: View {
         let wallet: Wallet
-        let showAddress: Bool
+        let balance: Double?
         @Binding var selection: Set<Wallet>
         
         private var isSelected: Bool { selection.contains(wallet) }
@@ -17,8 +17,9 @@ extension WalletCurrencyPicker {
         var body: some View {
             HStack {
                 Image(wallet.asset.imageName)
-                Text(self.showAddress ? wallet.address : wallet.asset.title)
+                Text(wallet.asset.title)
                 Spacer()
+                balance.map { Text($0.dollarString) }
                 selectionImage
             }
             .padding(.vertical, 8)

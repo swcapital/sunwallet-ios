@@ -3,7 +3,7 @@ import Foundation
 import SwiftUI
 
 class BlockchainStore: ObservableObject {
-    private var cancalables: Set<AnyCancellable> = []
+    private var cancelables: Set<AnyCancellable> = []
     
     let objectWillChange = PassthroughSubject<Void, Never>()
     
@@ -25,7 +25,7 @@ class BlockchainStore: ObservableObject {
     func subscribeOnWalletStore() {
         walletStore.objectWillChange
             .sink(receiveValue: { self.updateBalances() })
-            .store(in: &cancalables)
+            .store(in: &cancelables)
     }
     
     func updateBalances() {
@@ -45,6 +45,6 @@ class BlockchainStore: ObservableObject {
                     self.balances = Dictionary(uniqueKeysWithValues: zip(wallets, $0))
                 }
             )
-            .store(in: &cancalables)
+            .store(in: &cancelables)
     }
 }

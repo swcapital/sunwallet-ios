@@ -1,42 +1,24 @@
 import SwiftUI
 
 struct WalletCurrencyPicker: View {
-    private let wallets: [Wallet]
-    
-    let masterKeys: [MasterKey]
-    let showAddresses: Bool
-    
-    init(masterKeys: [MasterKey], showAddresses: Bool) {
-        self.masterKeys = masterKeys
-        self.showAddresses = showAddresses
-        
-        let wallets = masterKeys.map { $0.wallets() }.reduce([], +)
-        self.wallets = wallets
-        self._selection = .init(initialValue: Set(wallets))
-    }
-    
     @EnvironmentObject
     var appStateStore: AppStateStore
     
-    @EnvironmentObject
-    var walletStore: WalletStore
+    @ObservedObject
+    private var viewModel: ViewModel
     
     @State
     private var selection: Set<Wallet>
     
-    @State
-    private var error: String?
+    init(masterKeys: [MasterKey], showBalances: Bool) {
+        let viewModel = ViewModel(masterKeys: masterKeys, showBalances: showBalances)
+        self.viewModel = viewModel
+        self._selection = .init(initialValue: Set(viewModel.wallets))
+    }
     
     private var continueButton: some View {
         Button("Continue") {
-            let masterKeys = self.masterKeys.filter { masterKey in
-                self.wallets.first(where: { $0.masterKeyID == masterKey.id }) != nil
-            }
-            guard self.walletStore.save(masterKeys: masterKeys) else {
-                self.error = "Couldn't save wallets"
-                return
-            }
-            self.walletStore.save(wallets: Array(self.selection))
+            self.viewModel.save(wallets: Array(self.selection))
             self.appStateStore.logIn()
         }
         .buttonStyle(PrimaryButtonStyle())
@@ -46,10 +28,10 @@ struct WalletCurrencyPicker: View {
     private var walletList: some View {
         ScrollView {
             Divider()
-            ForEach(wallets.indices) { index in
+            ForEach(viewModel.wallets) { wallet in
                 Cell(
-                    wallet: self.wallets[index],
-                    showAddress: self.showAddresses,
+                    wallet: wallet,
+                    balance: self.viewModel.balance(for: wallet),
                     selection: self.$selection
                 )
                 .padding(.horizontal)
@@ -69,8 +51,10 @@ struct WalletCurrencyPicker: View {
                 .padding(.horizontal)
         }
         .padding(.bottom, 48)
-        .alert(item: $error) { error in
+        .alert(item: self.$viewModel.error) { error in
             Alert(title: Text(error))
         }
+        .onAppear(perform: viewModel.onAppear)
+        .showLoading(viewModel.isLoading)
     }
 }

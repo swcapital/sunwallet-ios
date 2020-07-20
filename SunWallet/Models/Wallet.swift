@@ -7,7 +7,8 @@ struct Wallet: Codable  {
     let masterKeyID: UUID
 }
 
-extension Wallet: Hashable {
+extension Wallet: Hashable, Identifiable {
+    var id: String { address }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(address)

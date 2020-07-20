@@ -9,7 +9,7 @@ struct ImportWalletScreen: View {
     
     private var importWalletButton: some View {
         let destination = LazyView(
-            WalletCurrencyPicker(masterKeys: [MasterKey(mnemonic: self.text)], showAddresses: true)
+            WalletCurrencyPicker(masterKeys: [MasterKey(mnemonic: self.text)], showBalances: true)
         )
         return NavigationLink("Next", destination: destination)
             .buttonStyle(PrimaryButtonStyle())

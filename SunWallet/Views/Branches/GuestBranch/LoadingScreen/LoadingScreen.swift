@@ -12,7 +12,7 @@ struct LoadingScreen: View {
     }
 }
 
-struct LoadingView_Previews: PreviewProvider {
+struct LoadingScreen_Previews: PreviewProvider {
     static var previews: some View {
         LoadingScreen()
     }
