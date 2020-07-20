@@ -24,17 +24,6 @@ struct SunWalletHistoryRepository {
     }
 }
 
-extension Publisher where Self.Output == Data  {
-    
-    func printJsonData() -> AnyPublisher<Self.Output, Self.Failure> {
-        map { data in
-            Swift.print(String(data: data, encoding: .utf8) ?? "Error")
-            return data
-        }
-        .eraseToAnyPublisher()
-    }
-}
-
 private extension SunWalletHistoryRepository {
     struct HistoryResponse: Codable {
         let pairs: [ExchangeHistory]

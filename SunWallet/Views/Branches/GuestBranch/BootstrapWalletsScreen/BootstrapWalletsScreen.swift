@@ -1,13 +1,9 @@
 import SwiftUI
 
 struct BootstrapWalletsScreen: View {
-    // MARK:- Environment    
-    @EnvironmentObject
-    var walletStore: WalletStore
-    
-    @State private var actionState: ActionState?
-    @State private var error: String?
-    @State private var restoredMasterKeys: [MasterKey] = []
+    // MARK:- Environment
+    @ObservedObject
+    private var viewModel: ViewModel = .init()
     
     private var importWalletsButton: some View {
         return NavigationLink("Import Wallets", destination: ImportWalletScreen())
@@ -15,26 +11,22 @@ struct BootstrapWalletsScreen: View {
     }
     private var createWalletButton: some View {
         let destination = LazyView(
-            WalletCurrencyPicker(masterKeys: [MasterKey()], showBalances: false)
+            WalletCurrencyPicker(masterKeys: [self.viewModel.newMasterKey()], showBalances: false)
         )
         return NavigationLink("Create Wallets", destination: destination)
             .buttonStyle(PrimaryButtonStyle())
     }
     private var restoreWalletsButton: some View {
-        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showBalances: true)
+        let destination = WalletCurrencyPicker(masterKeys: viewModel.restoredMasterKeys, showBalances: true)
         return VStack {
-            NavigationLink(destination: destination, tag: ActionState.restored, selection: $actionState) {
+            NavigationLink(destination: destination, isActive: $viewModel.useRestoreMasterKeys) {
                 EmptyView()
             }
+            
             Button("Restore from Keychain") {
-                let masterKeys = self.walletStore.loadMasterKeys(hint: "Restore previous Master Keys")
-                if masterKeys.count > 0 {
-                    self.restoredMasterKeys = masterKeys
-                    self.actionState = .restored
-                } else {
-                    self.error = "You don't have previously stored Master Keys"
-                }
+                self.viewModel.restoreFromKeychain()
             }
+            .accentColor(.primary)
         }
         
     }
@@ -64,7 +56,7 @@ struct BootstrapWalletsScreen: View {
             .padding(.bottom, 48)
         }
         .navigationBarTitle("Create wallet")
-        .alert(item: $error) { error in
+        .alert(item: $viewModel.error) { error in
             Alert(title: Text(error))
         }
     }

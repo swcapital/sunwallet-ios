@@ -19,7 +19,7 @@ class BlockchainStore: ObservableObject {
         self.balances = walletStore.wallets.reduce(into: [:], { $0[$1] = 0 })
         
         subscribeOnWalletStore()
-        updateBalances()
+        //updateBalances()
     }
     
     func subscribeOnWalletStore() {

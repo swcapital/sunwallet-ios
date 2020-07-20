@@ -16,6 +16,8 @@
 		DB01234824C49933006E72FD /* WalletCurrencyPicker+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234724C49933006E72FD /* WalletCurrencyPicker+ViewModel.swift */; };
 		DB01234A24C4B473006E72FD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234924C4B473006E72FD /* LoadingView.swift */; };
 		DB01234C24C4B6B4006E72FD /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234B24C4B6B4006E72FD /* View.swift */; };
+		DB01234E24C57900006E72FD /* BootstrapWalletsScreen+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234D24C57900006E72FD /* BootstrapWalletsScreen+ViewModel.swift */; };
+		DB01235024C57F2F006E72FD /* Publisher+printJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234F24C57F2F006E72FD /* Publisher+printJSONData.swift */; };
 		DB0376CA247CFD13005ACB03 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376C9247CFD13005ACB03 /* Color.swift */; };
 		DB0376CD247CFEF4005ACB03 /* ExchangeFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */; };
 		DB0376CF247D2B60005ACB03 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CE247D2B60005ACB03 /* Thumb.swift */; };
@@ -163,6 +165,8 @@
 		DB01234724C49933006E72FD /* WalletCurrencyPicker+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletCurrencyPicker+ViewModel.swift"; sourceTree = "<group>"; };
 		DB01234924C4B473006E72FD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DB01234B24C4B6B4006E72FD /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		DB01234D24C57900006E72FD /* BootstrapWalletsScreen+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BootstrapWalletsScreen+ViewModel.swift"; sourceTree = "<group>"; };
+		DB01234F24C57F2F006E72FD /* Publisher+printJSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+printJSONData.swift"; sourceTree = "<group>"; };
 		DB0376C9247CFD13005ACB03 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFieldType.swift; sourceTree = "<group>"; };
 		DB0376CE247D2B60005ACB03 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -772,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				DB865ACF24B1D864004303F3 /* BootstrapWalletsScreen.swift */,
+				DB01234D24C57900006E72FD /* BootstrapWalletsScreen+ViewModel.swift */,
 			);
 			path = BootstrapWalletsScreen;
 			sourceTree = "<group>";
@@ -857,6 +862,7 @@
 			isa = PBXGroup;
 			children = (
 				DBE7D95824B8B72D00E1E97E /* DataTaskPublisher+extractData.swift */,
+				DB01234F24C57F2F006E72FD /* Publisher+printJSONData.swift */,
 			);
 			path = Publishers;
 			sourceTree = "<group>";
@@ -1118,11 +1124,13 @@
 				DB865AE724B349D9004303F3 /* Wallet.swift in Sources */,
 				DB19DC38249A3B87008F7F79 /* ControlButton.swift in Sources */,
 				DB865AD024B1D864004303F3 /* BootstrapWalletsScreen.swift in Sources */,
+				DB01234E24C57900006E72FD /* BootstrapWalletsScreen+ViewModel.swift in Sources */,
 				DB24C4E8247CF8C40091FF44 /* AssetField.swift in Sources */,
 				DB68BC36247BF48C00377A72 /* KeyboardNumber.swift in Sources */,
 				DBC2E3862485212700C871E4 /* MultiChart.swift in Sources */,
 				DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */,
 				DBF5D551248386A4006AF99B /* ValueHistory.swift in Sources */,
+				DB01235024C57F2F006E72FD /* Publisher+printJSONData.swift in Sources */,
 				DB65ACE424961A9400252A93 /* SecondaryButtonStyle.swift in Sources */,
 				DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */,
 				DB68BC38247C085D00377A72 /* Asset2.swift in Sources */,

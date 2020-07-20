@@ -15,12 +15,7 @@ extension GuestBranch {
             let cancellable = CacheProxyHistoryRepository()
                 .history(base: base, targets: targets)
                 .receive(on: DispatchQueue.main)
-                .sink(
-                    receiveValue: { value in
-                        print(value)
-                        self.state = .loaded(value)
-                    }
-                )
+                .sink(receiveValue: { self.state = .loaded($0) })
             state = .loading(cancellable)
         }
     }
