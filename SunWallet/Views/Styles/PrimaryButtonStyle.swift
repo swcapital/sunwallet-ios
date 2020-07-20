@@ -16,9 +16,9 @@ struct PrimaryButtonStyle: ButtonStyle {
         
         var backgroundColor: Color {
             if !isEnabled {
-                return Color.lightBlue
+                return Color.primary.opacity(0.3)
             } else if configuration.isPressed {
-                return Color.lightBlue
+                return Color.primary.opacity(0.3)
             } else {
                 return Color.primary
             }
