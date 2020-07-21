@@ -33,7 +33,7 @@ struct SWScrollView<Content: View>: View {
     }
     private var navigationBar: some View {
         Rectangle()
-            .fill(Color.white)
+            .fill(Color(UIColor.systemBackground))
             .frame(height: 64)
             .frame(maxWidth: .infinity)
             .shadow(radius: navigationBarShadow)
