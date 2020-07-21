@@ -65,9 +65,7 @@ struct WalletCurrencyPicker: View {
                 .padding(.horizontal)
         }
         .padding(.bottom, 48)
-        .alert(item: self.$error) { error in
-            Alert(title: Text(error))
-        }
+        .showAlert(error: $error)
         .showLoading(isLoading)
         .onAppear(perform: updateWalletsIfNeeded)
         .navigationBarTitle("", displayMode: .inline)

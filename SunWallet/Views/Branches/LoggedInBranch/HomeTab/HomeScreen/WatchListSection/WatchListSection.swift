@@ -1,15 +1,11 @@
 import SwiftUI
 
 struct WatchListSection: View {
-    // MARK:- Properties
-    @State
-    private var exchangeHistories: [ExchangeHistory] = []
-    
     @EnvironmentObject
     var historyStore: HistoryStore
     
-    @EnvironmentObject
-    var userSettingsStore: UserSettingsStore
+    @State
+    private var exchangeHistories: [ExchangeHistory] = []
     
     // MARK:- Subviews
     private var header: some View {
@@ -30,12 +26,6 @@ struct WatchListSection: View {
             }
             .listStyle(GroupedListStyle())
         }
-        .onAppear(perform: loadIfNeeded)
-    }
-    
-    func loadIfNeeded() {
-        historyStore.history(targets: userSettingsStore.favorites) {
-            self.exchangeHistories = $0
-        }
+        .onReceive(historyStore.publisher(for: .favorites)) { self.exchangeHistories = $0 ?? [] }
     }
 }

@@ -15,4 +15,10 @@ extension View {
     func showLoading(_ value: Bool) -> some View {
         self.overlay(LoadingView(), isVisible: value)
     }
+    
+    func showAlert(error: Binding<String?>) -> some View {
+        self.alert(item: error) { error in
+            Alert(title: Text(error))
+        }
+    }
 }

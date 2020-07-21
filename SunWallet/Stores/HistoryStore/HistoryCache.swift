@@ -1,6 +1,6 @@
 import Foundation
 
-extension CacheProxyHistoryRepository {
+extension HistoryStore {
     internal struct HistoryCache: Codable {
         private var storage: [_ExchangeHistory] = []
         

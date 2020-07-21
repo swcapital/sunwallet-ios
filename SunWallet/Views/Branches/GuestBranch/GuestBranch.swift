@@ -6,8 +6,7 @@ struct GuestBranch: View {
     @EnvironmentObject
     var historyStore: HistoryStore
     
-    @State
-    private var isLoading: Bool = false
+    private var isLoading: Bool { history == nil }
     
     @State
     private var history: [ExchangeHistory]?
@@ -23,17 +22,7 @@ struct GuestBranch: View {
                 LoadingScreen()
             }
         }
-        .onAppear(perform: loadIfNeeded)
-    }
-    
-    func loadIfNeeded() {
-        guard !isLoading, history == nil else { return }
-        
-        isLoading = true
-        historyStore.history(targets: targets) {
-            self.history = $0
-            self.isLoading = false
-        }
+        .onReceive(historyStore.publisher(for: .bootstrap)) { self.history = $0 }
     }
 }
 
