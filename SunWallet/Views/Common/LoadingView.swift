@@ -6,7 +6,6 @@ struct LoadingView: View {
             Rectangle()
                 .fill(Color.init(.sRGB, white: 0, opacity: 0.1))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
             
             Rectangle()
                 .fill(Color.primary)
@@ -15,7 +14,8 @@ struct LoadingView: View {
             
             ActivityIndicator(animating: .constant(true))
         }
-        
+        .edgesIgnoringSafeArea(.all)
+        .scaledToFill()
     }
 }
 
