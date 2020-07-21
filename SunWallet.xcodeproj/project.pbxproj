@@ -17,6 +17,8 @@
 		DB01234C24C4B6B4006E72FD /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234B24C4B6B4006E72FD /* View.swift */; };
 		DB01235024C57F2F006E72FD /* Publisher+printJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01234F24C57F2F006E72FD /* Publisher+printJSONData.swift */; };
 		DB01235324C6BACF006E72FD /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235224C6BACF006E72FD /* HistoryRepository.swift */; };
+		DB01235524C70FF8006E72FD /* CacheKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235424C70FF8006E72FD /* CacheKey.swift */; };
+		DB01235724C7101E006E72FD /* FileCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235624C7101E006E72FD /* FileCacheRepository.swift */; };
 		DB0376CA247CFD13005ACB03 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376C9247CFD13005ACB03 /* Color.swift */; };
 		DB0376CD247CFEF4005ACB03 /* ExchangeFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */; };
 		DB0376CF247D2B60005ACB03 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CE247D2B60005ACB03 /* Thumb.swift */; };
@@ -161,6 +163,8 @@
 		DB01234B24C4B6B4006E72FD /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		DB01234F24C57F2F006E72FD /* Publisher+printJSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+printJSONData.swift"; sourceTree = "<group>"; };
 		DB01235224C6BACF006E72FD /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
+		DB01235424C70FF8006E72FD /* CacheKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheKey.swift; sourceTree = "<group>"; };
+		DB01235624C7101E006E72FD /* FileCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheRepository.swift; sourceTree = "<group>"; };
 		DB0376C9247CFD13005ACB03 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFieldType.swift; sourceTree = "<group>"; };
 		DB0376CE247D2B60005ACB03 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -590,6 +594,8 @@
 			isa = PBXGroup;
 			children = (
 				DB5F36CC24AF273D00DDCA7A /* CacheRepository.swift */,
+				DB01235624C7101E006E72FD /* FileCacheRepository.swift */,
+				DB01235424C70FF8006E72FD /* CacheKey.swift */,
 			);
 			path = CacheRepository;
 			sourceTree = "<group>";
@@ -1127,6 +1133,7 @@
 				DB01234624C3396B006E72FD /* LazyView.swift in Sources */,
 				DBE7D95924B8B72D00E1E97E /* DataTaskPublisher+extractData.swift in Sources */,
 				DBF5D5452482B42B006AF99B /* PromoteSection.swift in Sources */,
+				DB01235524C70FF8006E72FD /* CacheKey.swift in Sources */,
 				DB50249724B0B70A002E1547 /* KeychainRepository.swift in Sources */,
 				DB77E176247E881100BF1A88 /* TrackableScrollView.swift in Sources */,
 				DB35615224B48A9F006828ED /* ORView.swift in Sources */,
@@ -1200,6 +1207,7 @@
 				DBF576D424975F1600FB01E3 /* PaymentMethodCell.swift in Sources */,
 				DBF5D54F24836F25006AF99B /* CoinDetailsScreen.swift in Sources */,
 				DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */,
+				DB01235724C7101E006E72FD /* FileCacheRepository.swift in Sources */,
 				DB68BC3A247C08B300377A72 /* DataSource.swift in Sources */,
 				DB68BC24247BC5E200377A72 /* ConvertAssetsView.swift in Sources */,
 				DBC5538D24A786970037763F /* LoadingScreen.swift in Sources */,

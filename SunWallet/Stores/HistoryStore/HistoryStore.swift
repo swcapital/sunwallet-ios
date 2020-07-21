@@ -13,7 +13,7 @@ class HistoryStore: ObservableObject {
     }
     
     private let historyRepository: HistoryRepository = SunWalletHistoryRepository()
-    private let cacheRepository: CacheRepository = CacheRepository()
+    private let cacheRepository: CacheRepository = FileCacheRepository()
     
     private var cancellables: Set<AnyCancellable> = []
     private var userCurrencyAsset: Asset { .init(userSettingsStore.currency) }
