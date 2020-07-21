@@ -7,7 +7,6 @@ class AppStateStore: ObservableObject {
     @UserDefault("loggedIn", defaultValue: false)
     private(set) var loggedIn: Bool { didSet { objectWillChange.send() } }
     
-    
     func logIn() {
         loggedIn = true
     }

@@ -6,7 +6,7 @@ struct RootView: View {
     
     @ViewBuilder
     var body: some View {
-         if appStateStore.loggedIn {
+        if appStateStore.loggedIn {
             LoggedInBranch()
         } else {
             GuestBranch()
