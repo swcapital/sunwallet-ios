@@ -1,9 +1,6 @@
 import SwiftUI
 
 struct ImportWalletScreen: View {
-    @EnvironmentObject
-    var walletStore: WalletStore
-    
     @State
     private var text: String = ""
     
@@ -40,6 +37,5 @@ struct ImportWalletScreen: View {
 struct AddWalletView_Previews: PreviewProvider {
     static var previews: some View {
         ImportWalletScreen()
-            .environmentObject(WalletStore())
     }
 }
