@@ -22,6 +22,7 @@ struct PreferenceView: View {
             makeRow(title: "Privacy")
             
             Button("Logout") { self.appStateStore.logOut() }
+                .padding()
                 .buttonStyle(PrimaryButtonStyle())
         }
     }
@@ -45,7 +46,6 @@ struct PreferenceView: View {
         NavigationView {
             scrollView
         }
-        .accentColor(.primary)
     }
     
     // MARK:- Methods
@@ -54,6 +54,8 @@ struct PreferenceView: View {
             NavigationLink(destination: destination) {
                 PreferenceCell(title: title, subtitle: subtitle)
             }
+            .buttonStyle(PlainButtonStyle())
+            
             Divider()
         }
     }

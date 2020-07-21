@@ -34,7 +34,6 @@ struct BootstrapWalletsScreen: View {
             Button("Restore from Keychain") {
                 self.restoreFromKeychain()
             }
-            .accentColor(.primary)
         }
         
     }

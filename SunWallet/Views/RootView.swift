@@ -6,11 +6,14 @@ struct RootView: View {
     
     @ViewBuilder
     var body: some View {
-        if appStateStore.loggedIn {
-            LoggedInBranch()
-        } else {
-            GuestBranch()
+        Group {
+            if appStateStore.loggedIn {
+                LoggedInBranch()
+            } else {
+                GuestBranch()
+            }
         }
+        .accentColor(.primary)
     }
 }
 

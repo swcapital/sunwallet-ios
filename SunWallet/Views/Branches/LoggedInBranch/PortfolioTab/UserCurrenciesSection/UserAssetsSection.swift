@@ -14,9 +14,8 @@ extension PortfolioScreen {
                 ForEach(wallets) { wallet in
                     NavigationLink(destination: Text("")) {//CoinDetailsScreen(asset: wallet.asset)) {
                         Cell(wallet: wallet, balance: self.balances[wallet, default: 0])
-                            .foregroundColor(.primary)
                     }
-                    
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .listStyle(GroupedListStyle())
             }

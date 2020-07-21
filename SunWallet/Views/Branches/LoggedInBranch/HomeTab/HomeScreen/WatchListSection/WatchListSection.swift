@@ -20,8 +20,8 @@ struct WatchListSection: View {
             ForEach(exchangeHistories, id: \.source.code) { history in
                 NavigationLink(destination: CoinDetailsScreen(exchangeHistory: history)) {
                     Cell(exchangeHistory: history)
-                        .foregroundColor(.primary)
                 }
+                .buttonStyle(PlainButtonStyle()) 
                 
             }
             .listStyle(GroupedListStyle())

@@ -37,7 +37,6 @@ struct HomeScreen: View {
         NavigationView() {
             scrollView
         }
-        .accentColor(.primary)
         .onReceive(blockchainStore.walletsBalancePublisher, perform: { self.balances = $0 })
     }
 }

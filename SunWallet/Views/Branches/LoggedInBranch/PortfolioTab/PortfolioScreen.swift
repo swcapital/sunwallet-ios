@@ -51,7 +51,6 @@ struct PortfolioScreen: View {
             scrollView
                 .navigationBarTitle(title)
         }
-        .accentColor(.primary)
         .onReceive(blockchainStore.walletsBalancePublisher, perform: { self.balances = $0 })
     }
 }
