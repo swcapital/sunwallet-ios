@@ -5,6 +5,8 @@ import SwiftUI
 class BlockchainStore: ObservableObject {
     private var balanceSubject: CurrentValueSubject<[Wallet: Double]?, Never>?
     private var cancellables: Set<AnyCancellable> = []
+    
+    private let blockchainRepository: BlockchainRepository = BlockchairBlockchainRepository()
         
     let walletStore: WalletStore
         
@@ -26,8 +28,6 @@ class BlockchainStore: ObservableObject {
     }
     
     func balances(wallets: [Wallet], completion: @escaping ([Wallet: Double]?) -> Void) {
-        let blockchainRepository = BlockchainRepository()
-        
         let publishers = wallets.map {
             blockchainRepository.balance(for: $0)
         }

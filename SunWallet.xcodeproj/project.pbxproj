@@ -19,6 +19,8 @@
 		DB01235324C6BACF006E72FD /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235224C6BACF006E72FD /* HistoryRepository.swift */; };
 		DB01235524C70FF8006E72FD /* CacheKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235424C70FF8006E72FD /* CacheKey.swift */; };
 		DB01235724C7101E006E72FD /* FileCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235624C7101E006E72FD /* FileCacheRepository.swift */; };
+		DB01235924C710F8006E72FD /* BlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235824C710F8006E72FD /* BlockchainRepository.swift */; };
+		DB01235B24C713BE006E72FD /* BlockchairBlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */; };
 		DB0376CA247CFD13005ACB03 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376C9247CFD13005ACB03 /* Color.swift */; };
 		DB0376CD247CFEF4005ACB03 /* ExchangeFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */; };
 		DB0376CF247D2B60005ACB03 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CE247D2B60005ACB03 /* Thumb.swift */; };
@@ -112,7 +114,7 @@
 		DBC6A630247E2B5C00550115 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6A62F247E2B5C00550115 /* HomeScreen.swift */; };
 		DBC6A632247E311C00550115 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6A631247E311C00550115 /* User.swift */; };
 		DBE23008247D2EA400F2751A /* ExchangeFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE23007247D2EA400F2751A /* ExchangeFields.swift */; };
-		DBE7D95524B8AD3A00E1E97E /* BlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95424B8AD3A00E1E97E /* BlockchainRepository.swift */; };
+		DBE7D95524B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95424B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift */; };
 		DBE7D95924B8B72D00E1E97E /* DataTaskPublisher+extractData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95824B8B72D00E1E97E /* DataTaskPublisher+extractData.swift */; };
 		DBE7D95B24B8B8CF00E1E97E /* BlockchainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */; };
 		DBE7D95D24B9A80300E1E97E /* UserSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7D95C24B9A80300E1E97E /* UserSettingsStore.swift */; };
@@ -165,6 +167,8 @@
 		DB01235224C6BACF006E72FD /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
 		DB01235424C70FF8006E72FD /* CacheKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheKey.swift; sourceTree = "<group>"; };
 		DB01235624C7101E006E72FD /* FileCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheRepository.swift; sourceTree = "<group>"; };
+		DB01235824C710F8006E72FD /* BlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainRepository.swift; sourceTree = "<group>"; };
+		DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchairBlockchainRepository.swift; sourceTree = "<group>"; };
 		DB0376C9247CFD13005ACB03 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFieldType.swift; sourceTree = "<group>"; };
 		DB0376CE247D2B60005ACB03 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -261,7 +265,7 @@
 		DBC6A62F247E2B5C00550115 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		DBC6A631247E311C00550115 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DBE23007247D2EA400F2751A /* ExchangeFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFields.swift; sourceTree = "<group>"; };
-		DBE7D95424B8AD3A00E1E97E /* BlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainRepository.swift; sourceTree = "<group>"; };
+		DBE7D95424B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchyperBlockchainRepository.swift; sourceTree = "<group>"; };
 		DBE7D95824B8B72D00E1E97E /* DataTaskPublisher+extractData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataTaskPublisher+extractData.swift"; sourceTree = "<group>"; };
 		DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainStore.swift; sourceTree = "<group>"; };
 		DBE7D95C24B9A80300E1E97E /* UserSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsStore.swift; sourceTree = "<group>"; };
@@ -828,7 +832,9 @@
 		DBE7D95624B8AD3F00E1E97E /* BlockchainRepository */ = {
 			isa = PBXGroup;
 			children = (
-				DBE7D95424B8AD3A00E1E97E /* BlockchainRepository.swift */,
+				DB01235824C710F8006E72FD /* BlockchainRepository.swift */,
+				DBE7D95424B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift */,
+				DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */,
 			);
 			path = BlockchainRepository;
 			sourceTree = "<group>";
@@ -1128,6 +1134,7 @@
 				DB865AD624B1F4CC004303F3 /* HorizontalLine.swift in Sources */,
 				DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */,
 				DB01234C24C4B6B4006E72FD /* View.swift in Sources */,
+				DB01235924C710F8006E72FD /* BlockchainRepository.swift in Sources */,
 				DB35619624B70209006828ED /* WalletCurrencyPicker.swift in Sources */,
 				DBF576DE249791C000FB01E3 /* FocusingTextField.swift in Sources */,
 				DB01234624C3396B006E72FD /* LazyView.swift in Sources */,
@@ -1144,10 +1151,11 @@
 				DBFDB7572492A80A00A1DFAD /* BottomSheetView.swift in Sources */,
 				DB5F36A024A9D79800DDCA7A /* HistoryEntry.swift in Sources */,
 				DB3A5C1124862705007F19F2 /* HistoryChartSection.swift in Sources */,
+				DB01235B24C713BE006E72FD /* BlockchairBlockchainRepository.swift in Sources */,
 				DBFDB7612493635C00A1DFAD /* ReceiveAssetCell.swift in Sources */,
 				DB00A6332482AE6F006FD5A0 /* WatchListSection+Cell.swift in Sources */,
 				DB68BC22247BC5E200377A72 /* SceneDelegate.swift in Sources */,
-				DBE7D95524B8AD3A00E1E97E /* BlockchainRepository.swift in Sources */,
+				DBE7D95524B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift in Sources */,
 				DBC6A632247E311C00550115 /* User.swift in Sources */,
 				DB5725032491F9D400F283BF /* LoggedInBranch.swift in Sources */,
 				DBF5D5472482B4A4006AF99B /* Article.swift in Sources */,
