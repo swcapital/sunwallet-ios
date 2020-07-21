@@ -4,8 +4,8 @@ import Foundation
 private let bootstrapTargets: [Asset] = [.btc, .bch, .eth, .init("etc"), .init("ltc")]
 
 class HistoryStore: ObservableObject {
+    private typealias HistorySubject = CurrentValueSubject<[ExchangeHistory]?, Never>
     typealias HistoryPublisher = AnyPublisher<[ExchangeHistory]?, Never>
-    typealias HistorySubject = CurrentValueSubject<[ExchangeHistory]?, Never>
     
     enum PublisherName: CaseIterable {
         case bootstrap

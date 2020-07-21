@@ -2,19 +2,18 @@ import SwiftUI
 
 extension PortfolioScreen {
     struct UserAssetsSection: View {
-        // MARK:- Environment
-        @EnvironmentObject var blockchainStore: BlockchainStore
+        let balances: [Wallet: Double]
         
         // MARK:- Calculated Variables
         private var wallets: [Wallet] {
-            Array(blockchainStore.balances.keys)
+            Array(balances.keys)
         }
         
         var body: some View {
             Section() {
-                ForEach(wallets, id: \.address) { wallet in
+                ForEach(wallets) { wallet in
                     NavigationLink(destination: Text("")) {//CoinDetailsScreen(asset: wallet.asset)) {
-                        Cell(wallet: wallet)
+                        Cell(wallet: wallet, balance: self.balances[wallet, default: 0])
                             .foregroundColor(.primary)
                     }
                     

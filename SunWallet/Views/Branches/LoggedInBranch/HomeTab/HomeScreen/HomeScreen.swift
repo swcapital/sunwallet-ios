@@ -8,9 +8,14 @@ struct HomeScreen: View {
     @EnvironmentObject
     var dataSource: DataSource
     
+    @State
+    private var balances: [Wallet: Double]?
+    
+    private var totalBalance: Double { balances?.values.reduce(0, +) ?? 0 }
+    
     // MARK:- Subviews
     private var title: Text {
-        Text(blockchainStore.totalBalance.dollarString)
+        Text(totalBalance.dollarString)
             .font(.largeTitle)
             .bold()
     }
@@ -33,6 +38,7 @@ struct HomeScreen: View {
             scrollView
         }
         .accentColor(.primary)
+        .onReceive(blockchainStore.walletsBalancePublisher, perform: { self.balances = $0 })
     }
 }
 

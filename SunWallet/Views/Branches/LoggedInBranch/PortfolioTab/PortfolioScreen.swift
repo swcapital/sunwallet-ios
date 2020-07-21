@@ -2,15 +2,24 @@ import SwiftUI
 
 struct PortfolioScreen: View {    
     // MARK:- Environment
-    @EnvironmentObject var blockchainStore: BlockchainStore
+    @EnvironmentObject
+    var blockchainStore: BlockchainStore
     
     // MARK:- States
-    @State private var selectedValue: Double? = nil
-    @State private var selectedValueChange: Double? = nil
+    @State
+    private var selectedValue: Double? = nil
+    
+    @State
+    private var selectedValueChange: Double? = nil
+    
+    @State
+    private var balances: [Wallet: Double]?
+    
+    private var totalBalance: Double { balances?.values.reduce(0, +) ?? 0 }
 
     // MARK:- Calculated Variables
     private var currentValue: Double {
-        selectedValue ?? blockchainStore.totalBalance
+        selectedValue ?? totalBalance
     }
     
     // MARK:- Subviews
@@ -32,7 +41,7 @@ struct PortfolioScreen: View {
 //                    selectedValueChange: self.$selectedValueChange
 //                )
                 Divider()
-                UserAssetsSection()
+                UserAssetsSection(balances: self.balances ?? [:])
             }
         }
     }
@@ -43,6 +52,7 @@ struct PortfolioScreen: View {
                 .navigationBarTitle(title)
         }
         .accentColor(.primary)
+        .onReceive(blockchainStore.walletsBalancePublisher, perform: { self.balances = $0 })
     }
 }
 

@@ -4,9 +4,7 @@ extension PortfolioScreen.UserAssetsSection {
     struct Cell: View {
         // MARK:- Properties
         let wallet: Wallet
-        
-        // MARK:- Environment
-        @EnvironmentObject var blockchainStore: BlockchainStore
+        let balance: Double
         
         var body: some View {
             VStack {
@@ -21,7 +19,7 @@ extension PortfolioScreen.UserAssetsSection {
                     
                     Spacer()
                     
-                    Text(blockchainStore.balances[wallet]!.dollarString)
+                    Text(balance.dollarString)
                 }
                 .padding(.horizontal, 16)
                 
