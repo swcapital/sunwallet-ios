@@ -1,9 +1,17 @@
 import SwiftUI
 
 struct BootstrapWalletsScreen: View {
-    // MARK:- Environment
-    @ObservedObject
-    private var viewModel: ViewModel = .init()
+    @EnvironmentObject
+    var walletStore: WalletStore
+    
+    @State
+    private var restoredMasterKeys: [MasterKey] = []
+    
+    @State
+    private var error: String?
+    
+    @State
+    private var useRestoredMasterKeys: Bool = false
     
     private var importWalletsButton: some View {
         return NavigationLink("Import Wallets", destination: ImportWalletScreen())
@@ -11,20 +19,20 @@ struct BootstrapWalletsScreen: View {
     }
     private var createWalletButton: some View {
         let destination = LazyView(
-            WalletCurrencyPicker(masterKeys: [self.viewModel.newMasterKey()], showBalances: false)
+            WalletCurrencyPicker(masterKeys: [MasterKey()], showBalances: false)
         )
         return NavigationLink("Create Wallets", destination: destination)
             .buttonStyle(PrimaryButtonStyle())
     }
     private var restoreWalletsButton: some View {
-        let destination = WalletCurrencyPicker(masterKeys: viewModel.restoredMasterKeys, showBalances: true)
+        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showBalances: true)
         return VStack {
-            NavigationLink(destination: destination, isActive: $viewModel.useRestoreMasterKeys) {
+            NavigationLink(destination: destination, isActive: $useRestoredMasterKeys) {
                 EmptyView()
             }
             
             Button("Restore from Keychain") {
-                self.viewModel.restoreFromKeychain()
+                self.restoreFromKeychain()
             }
             .accentColor(.primary)
         }
@@ -56,15 +64,19 @@ struct BootstrapWalletsScreen: View {
             .padding(.bottom, 48)
         }
         .navigationBarTitle("Create wallet")
-        .alert(item: $viewModel.error) { error in
+        .alert(item: $error) { error in
             Alert(title: Text(error))
         }
     }
-}
-
-extension BootstrapWalletsScreen {
-    private enum ActionState: Int {
-        case restored
+    
+    private func restoreFromKeychain() {
+        let masterKeys = walletStore.loadMasterKeys(hint: "Restore previous Master Keys")
+        if let masterKeys = masterKeys, masterKeys.count > 0 {
+            self.restoredMasterKeys = masterKeys
+            self.useRestoredMasterKeys = true
+        } else {
+            self.error = "You don't have previously stored Master Keys"
+        }
     }
 }
 

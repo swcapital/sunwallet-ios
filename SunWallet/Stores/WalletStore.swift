@@ -4,14 +4,13 @@ import Foundation
 private let masterKeysKey = "masterKeys"
 
 class WalletStore: ObservableObject {
-    let objectWillChange = PassthroughSubject<Void, Never>()
     
     @UserDefault("wallets", defaultValue: [])
-    private(set) var wallets: [Wallet] { didSet { objectWillChange.send() } }
+    var wallets: [Wallet]
     
-    func loadMasterKeys(hint: String) -> [MasterKey] {
+    func loadMasterKeys(hint: String) -> [MasterKey]? {
         let keychain = KeychainRepository()
-        return keychain.loadValue(atKey: masterKeysKey, accessHint: hint) ?? []
+        return keychain.loadValue(atKey: masterKeysKey, accessHint: hint)
     }
     
     func save(masterKeys: [MasterKey]) -> Bool {

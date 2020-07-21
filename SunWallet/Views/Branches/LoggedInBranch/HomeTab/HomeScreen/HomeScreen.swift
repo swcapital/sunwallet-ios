@@ -2,9 +2,11 @@ import SwiftUI
 
 struct HomeScreen: View {
     // MARK:- Environment
-    @EnvironmentObject var blockchainStore: BlockchainStore
-    @EnvironmentObject var dataSource: DataSource
-    @EnvironmentObject var historyStore: HistoryStore
+    @EnvironmentObject
+    var blockchainStore: BlockchainStore
+    
+    @EnvironmentObject
+    var dataSource: DataSource
     
     // MARK:- Subviews
     private var title: Text {
@@ -18,7 +20,7 @@ struct HomeScreen: View {
     private var scrollView: some View {
         SWScrollView(title: title, subtitle: subtitle) {
             VStack(alignment: .leading, spacing: 8) {
-                WatchListSection(exchangeHistories: self.historyStore.favorites)
+                WatchListSection()
                 TopMoversSection(assets: self.dataSource.topMovers)
                 PromoteSection()
                 NewsSection(articles: self.dataSource.articles)

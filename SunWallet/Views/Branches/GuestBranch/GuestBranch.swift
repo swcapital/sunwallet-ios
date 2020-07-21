@@ -1,24 +1,38 @@
 import SwiftUI
 
+private let targets: [Asset] = [.btc, .bch, .eth, .init("etc"), .init("ltc")]
+
 struct GuestBranch: View {
-    @ObservedObject private var viewModel = ViewModel()
-    
     @EnvironmentObject
-    var userSettingsStore: UserSettingsStore
+    var historyStore: HistoryStore
+    
+    @State
+    private var isLoading: Bool = false
+    
+    @State
+    private var history: [ExchangeHistory]?
     
     var body: some View {
-        switch viewModel.state {
-        case .loading:
-            return AnyView(LoadingScreen())
-        case .loaded(let pairs):
-            return AnyView(
+        Group {
+            history.map { history in
                 NavigationView {
-                    WelcomeScreen(assets: pairs)
+                    WelcomeScreen(assets: history)
                 }
-            )
-        case .none:
-            viewModel.loadIfNeeded(currency: userSettingsStore.currency)
-            return AnyView(EmptyView())
+            }
+            if isLoading {
+                LoadingScreen()
+            }
+        }
+        .onAppear(perform: loadIfNeeded)
+    }
+    
+    func loadIfNeeded() {
+        guard !isLoading, history == nil else { return }
+        
+        isLoading = true
+        historyStore.history(targets: targets) {
+            self.history = $0
+            self.isLoading = false
         }
     }
 }
