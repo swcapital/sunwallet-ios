@@ -76,7 +76,7 @@ struct WalletCurrencyPicker: View {
         
         isLoading = true
         DispatchQueue.global(qos: .background).async {
-            let wallets = self.masterKeys.map { $0.wallets() }.reduce([], +)
+            let wallets = self.masterKeys.map { $0.wallets() }.reduce([], +).sorted(by: { $0.asset < $1.asset})
             DispatchQueue.main.async {
                 self.wallets = wallets
                 self.selection = Set(wallets)

@@ -80,3 +80,10 @@ extension Asset: Equatable {
         lhs.code == rhs.code
     }
 }
+
+extension Asset: Comparable {
+    
+    static func < (lhs: Asset, rhs: Asset) -> Bool {
+        lhs.code < rhs.code
+    }
+}
