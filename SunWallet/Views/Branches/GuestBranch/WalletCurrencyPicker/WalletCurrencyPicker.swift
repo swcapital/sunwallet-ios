@@ -68,7 +68,7 @@ struct WalletCurrencyPicker: View {
         .showAlert(error: $error)
         .showLoading(isLoading)
         .onAppear(perform: updateWalletsIfNeeded)
-        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarTitle("Choose wallets", displayMode: .inline)
     }
     
     private func updateWalletsIfNeeded() {
