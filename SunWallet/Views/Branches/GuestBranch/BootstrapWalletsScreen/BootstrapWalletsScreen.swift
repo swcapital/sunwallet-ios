@@ -52,7 +52,7 @@ struct BootstrapWalletsScreen: View {
     }
     
     var body: some View {
-        ScrollView {
+        Group {
             VStack(alignment: .leading, spacing: 32.0) {
                 Text("You don't have any wallets yet")
                     .font(.title)
@@ -60,7 +60,8 @@ struct BootstrapWalletsScreen: View {
                 buttonsBlock
             }
             .padding(.horizontal)
-            .padding(.bottom, 48)
+            
+            Spacer()
         }
         .navigationBarTitle("Create wallet")
         .alert(item: $error) { error in
