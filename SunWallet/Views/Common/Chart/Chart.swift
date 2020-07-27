@@ -38,12 +38,14 @@ struct Chart: View {
     // MARK:- Calculated Variables
     private let points: [Double]
     
-    private var maxPoint: CGPoint {
-        let offset = CGFloat(points.firstIndex(of: 1)!) / CGFloat(points.count)
+    private var maxPoint: CGPoint? {
+        guard let index = points.firstIndex(of: 1) else { return nil }
+        let offset = CGFloat(index) / CGFloat(points.count)
         return .init(x: offset, y: 0)
     }
-    private var minPoint: CGPoint {
-        let offset = CGFloat(points.firstIndex(of: 0)!) / CGFloat(points.count)
+    private var minPoint: CGPoint? {
+        guard let index = points.firstIndex(of: 0) else { return nil }
+        let offset = CGFloat(index) / CGFloat(points.count)
         return .init(x: offset, y: 1)
     }
     
@@ -69,10 +71,12 @@ struct Chart: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
-                self.makeMinMaxLabel(title: self.maxValue.currencyString(code: self.userSettingsStore.currency))
-                    .alignmentGuide(.leading) {
-                        self.xPosition(at: self.maxPoint.x, in: geometry, d: $0)
-                    }
+                self.maxPoint.map { maxPoint in
+                    self.makeMinMaxLabel(title: self.maxValue.currencyString(code: self.userSettingsStore.currency))
+                        .alignmentGuide(.leading) {
+                            self.xPosition(at: maxPoint.x, in: geometry, d: $0)
+                        }
+                }
                 
                 LineChartShape(points: .init(self.points))
                     .stroke(self.accentColor, style: .chart)
@@ -86,10 +90,12 @@ struct Chart: View {
                         .opacity(self.showOverlay ? 1 : 0)
                     )
                 
-                self.makeMinMaxLabel(title: self.minValue.currencyString(code: self.userSettingsStore.currency))
-                    .alignmentGuide(.leading) {
-                        self.xPosition(at: self.minPoint.x, in: geometry, d: $0)
-                    }
+                self.minPoint.map { minPoint in
+                    self.makeMinMaxLabel(title: self.minValue.currencyString(code: self.userSettingsStore.currency))
+                        .alignmentGuide(.leading) {
+                            self.xPosition(at: minPoint.x, in: geometry, d: $0)
+                        }
+                }
             }
             .contentShape(Rectangle())
             .gesture(self.dragGeture(geometery: geometry))
