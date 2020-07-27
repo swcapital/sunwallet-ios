@@ -56,7 +56,9 @@ extension BlockchainStore {
         let publishers = wallets.map {
             blockchainRepository.balance(for: $0)
         }
-        return Publishers.MergeMany(publishers)
+        // TODO: Should be async.
+        // MergeMany doesn't fit here - we loose an order
+        return publishers.serialize()!
             .collect()
             .map { Dictionary(uniqueKeysWithValues: zip(wallets, $0)) }
             .replaceError(with: nil)
@@ -100,4 +102,14 @@ extension BlockchainStore {
 
 private extension CacheKey {
     static let blockchain = CacheKey(value: "blockchain")
+}
+
+extension Collection where Element: Publisher {
+    
+    func serialize() -> AnyPublisher<Element.Output, Element.Failure>? {
+        guard let start = self.first else { return nil }
+        return self.dropFirst().reduce(start.eraseToAnyPublisher()) {
+            $0.append($1).eraseToAnyPublisher()
+        }
+    }
 }
