@@ -33,7 +33,7 @@ class PortfolioStore: ObservableObject {
     }
     
     func walletsHistoryPublisher(wallets: [Wallet]) -> WalletsHistoryPublisher {
-        let infoPublisher = blockchainStore.walletsInfoPublisher(wallets: walletStore.wallets)
+        let infoPublisher = blockchainStore.walletsInfoPublisher(wallets: wallets)
         let historyPublisher = historyStore.publisher(for: .mainPair)
         
         return Publishers.CombineLatest(infoPublisher, historyPublisher)
@@ -50,6 +50,7 @@ class PortfolioStore: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveValue: {
+                    
                     completion($0)
                     cancellable?.cancel()
                 }
@@ -59,7 +60,7 @@ class PortfolioStore: ObservableObject {
     private func generateWalletsHistory(info: [Wallet : WalletInfo], history: [ExchangeHistory]) -> [Wallet: WalletHistory] {
         var result: [Wallet: WalletHistory] = [:]
         for (wallet, walletInfo) in info {
-            guard let exchangeHistory = history.first(where: { $0.destination == wallet.asset }) else { continue }
+            guard let exchangeHistory = history.first(where: { $0.source == wallet.asset }) else { continue }
             result[wallet] = self.generateWalletHistory(walletInfo: walletInfo, historySet: exchangeHistory.historySet)
         }
         return result
