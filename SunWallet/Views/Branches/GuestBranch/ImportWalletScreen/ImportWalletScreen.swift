@@ -5,11 +5,14 @@ struct ImportWalletScreen: View {
     private var text: String = ""
     
     private var importWalletButton: some View {
-        let destination = LazyView(
-            WalletCurrencyPicker(masterKeys: [MasterKey(mnemonic: self.text)], showBalances: true)
+        NavigationLink(
+            "Next",
+            destination: WalletCurrencyPicker(
+                masterKeys: [MasterKey(mnemonic: text)],
+                showBalances: true
+            )
         )
-        return NavigationLink("Next", destination: destination)
-            .buttonStyle(PrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle())
     }
     
     var body: some View {
