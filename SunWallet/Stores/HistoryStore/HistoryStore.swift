@@ -70,7 +70,7 @@ extension HistoryStore {
     }
     
     private func updateMainPairHistorySubject() {
-        guard let subject = self.subjects[.favorites] else { return }
+        guard let subject = self.subjects[.mainPair] else { return }
         update(subject: subject, base: userCurrencyAsset, targets: [.btc, .eth])
     }
     
