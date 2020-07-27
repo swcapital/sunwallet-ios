@@ -25,6 +25,8 @@ struct BlockchairBlockchainRepository: BlockchainRepository {
 }
 
 //MARK: - Bitcoin
+private let satoshiRatio: Double = 100_000_000
+
 extension BlockchairBlockchainRepository {
     
     private func bitcoinBalance(address: String) -> AnyPublisher<WalletInfo, Error> {
@@ -36,10 +38,10 @@ extension BlockchairBlockchainRepository {
             .print()
             .map {
                 let data = $0.data.first!.value
-                let balance = data.address.balance ?? 0
+                let balance = (data.address.balance ?? 0) / satoshiRatio
                 let transactions = data.transactions
                     .sorted(by: { $0.time > $1.time })
-                    .map { Transaction(date: $0.time, value: $0.balanceChange) }
+                    .map { Transaction(date: $0.time, value: $0.balanceChange / satoshiRatio) }
                     .reversed()
                 return WalletInfo(balance: balance, transactions: Array(transactions))
         }
@@ -73,6 +75,8 @@ extension BlockchairBlockchainRepository {
 }
 
 //MARK: - Etherium
+private let weiRatio: Double = 1_000_000_000_000_000_000
+
 extension BlockchairBlockchainRepository {
     
     private func etheriumBalance(address: String) -> AnyPublisher<WalletInfo, Error> {
@@ -84,10 +88,10 @@ extension BlockchairBlockchainRepository {
             .print()
             .map {
                 let data = $0.data.first!.value
-                let balance = data.address.balance.map { Double($0) ?? 0 } ?? 0
+                let balance = (data.address.balance.map { Double($0) ?? 0 } ?? 0) / weiRatio
                 let transactions = data.calls
                     .sorted(by: { $0.time > $1.time })
-                    .map { Transaction(date: $0.time, value: $0.value) }
+                    .map { Transaction(date: $0.time, value: $0.value / weiRatio) }
                     .reversed()
                 return WalletInfo(balance: balance, transactions: Array(transactions))
         }
