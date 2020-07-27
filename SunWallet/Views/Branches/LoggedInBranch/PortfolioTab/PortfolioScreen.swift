@@ -3,7 +3,7 @@ import SwiftUI
 struct PortfolioScreen: View {    
     // MARK:- Environment
     @EnvironmentObject
-    var blockchainStore: BlockchainStore
+    var portfolioStore: PortfolioStore
     
     // MARK:- States
     @State
@@ -13,9 +13,13 @@ struct PortfolioScreen: View {
     private var selectedValueChange: Double? = nil
     
     @State
-    private var balances: [Wallet: Double]?
+    private var walletsHistory: [Wallet: WalletHistory]?
     
-    private var totalBalance: Double { balances?.values.reduce(0, +) ?? 0 }
+    private var totalBalance: Double {
+        walletsHistory?.values
+            .map { $0.userCurrencyBalance }
+            .reduce(0, +) ?? 0
+    }
 
     // MARK:- Calculated Variables
     private var currentValue: Double {
@@ -41,7 +45,7 @@ struct PortfolioScreen: View {
 //                    selectedValueChange: self.$selectedValueChange
 //                )
                 Divider()
-                UserAssetsSection(balances: self.balances ?? [:])
+                UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
             }
         }
     }
@@ -51,7 +55,7 @@ struct PortfolioScreen: View {
             scrollView
                 .navigationBarTitle(title)
         }
-        .onReceive(blockchainStore.walletsBalancePublisher, perform: { self.balances = $0 })
+        .onReceive(portfolioStore.portfolioHistoryPublisher, perform: { self.walletsHistory = $0 })
     }
 }
 

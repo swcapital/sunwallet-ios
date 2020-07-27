@@ -5,9 +5,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let appStateStore = AppStateStore()
     private let walletStore = WalletStore()
     private let userSettingsStore = UserSettingsStore()
+    private let blockchainStore = BlockchainStore()
     
-    private lazy var blockchainStore = BlockchainStore(walletStore: walletStore)
     private lazy var historyStore = HistoryStore(userSettingsStore: userSettingsStore)
+    private lazy var portfolioStore = PortfolioStore(
+        historyStore: historyStore,
+        blockchainStore: blockchainStore,
+        walletStore: walletStore
+    )
     
     var window: UIWindow?
 
@@ -16,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(appStateStore)
             .environmentObject(blockchainStore)
             .environmentObject(historyStore)
+            .environmentObject(portfolioStore)
             .environmentObject(walletStore)
             .environmentObject(userSettingsStore)
             .environmentObject(DataSource())

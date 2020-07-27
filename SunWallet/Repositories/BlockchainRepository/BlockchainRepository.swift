@@ -1,5 +1,5 @@
 import Combine
 
 protocol BlockchainRepository {
-    func balance(for wallet: Wallet) -> AnyPublisher<Double, Error>
+    func balance(for wallet: Wallet) -> AnyPublisher<WalletInfo, Error>
 }

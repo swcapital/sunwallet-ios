@@ -14,6 +14,14 @@ extension HistoryStore {
                     .map { $0.original }
             }
         }
+        
+        func get(base: Asset, targets: [Asset], maxAge: TimeInterval) -> [ExchangeHistory?] {
+            let threshold = Date(timeIntervalSinceNow: -maxAge)
+            return targets.map { target in
+                storage.first(where: { $0.source == target && $0.destination == base && $0.date > threshold })
+                    .map { $0.original }
+            }
+        }
     }
 }
 
@@ -21,6 +29,7 @@ private struct _ExchangeHistory: Codable {
     let source: Asset
     let destination: Asset
     let historySet: _TradeHistorySet
+    let date = Date()
     
     init(_ original: ExchangeHistory) {
         self.source = original.source
@@ -34,48 +43,54 @@ private struct _ExchangeHistory: Codable {
 }
 
 private struct _TradeHistorySet: Codable {
-    let dates: [Date]
-    let values: [Double]
+    let values: [HistoryValue]
     
     let hourly: Range<Int>
     let daily: Range<Int>
     let weekly: Range<Int>
     let monthly: Range<Int>
+    let yearly: Range<Int>
     let all: Range<Int>
     
-    init(_ original: TradeHistorySet) {
-        var dates: [Date] = []
-        var values: [Double] = []
+    init(_ original: HistorySet) {
+        var values: [HistoryValue] = []
         
         var i = 0
-        let ranges = [original.hourly, original.daily, original.weekly, original.monthly, original.yearly].map { tradeDataSet -> Range<Int> in
-            i = dates.count
-            dates += tradeDataSet.map { $0.date }
-            values += tradeDataSet.map { $0.close }
-            return i..<dates.count
+        let ranges = [
+            original.hourly,
+            original.daily,
+            original.weekly,
+            original.monthly,
+            original.yearly,
+            original.all
+        ].map { historyRange -> Range<Int> in
+            i = values.count
+            values += historyRange
+            return i..<values.count
         }
         
-        self.dates = dates
         self.values = values
         
         self.hourly = ranges[0]
         self.daily = ranges[1]
         self.weekly = ranges[2]
         self.monthly = ranges[3]
-        self.all = ranges[4]
+        self.yearly = ranges[4]
+        self.all = ranges[5]
     }
     
-    var original: TradeHistorySet {
+    var original: HistorySet {
         .init(
-            hourly: tradeDataSet(hourly),
-            daily: tradeDataSet(daily),
-            weekly: tradeDataSet(weekly),
-            monthly: tradeDataSet(monthly),
-            all: tradeDataSet(all)
+            hourly: historyRange(hourly),
+            daily: historyRange(daily),
+            weekly: historyRange(weekly),
+            monthly: historyRange(monthly),
+            yearly: historyRange(yearly),
+            all: historyRange(all)
         )
     }
     
-    private func tradeDataSet(_ range: Range<Int>) -> [TradeData] {
-        zip(dates[range], values[range]).map { TradeData(date: $0.0, close: $0.1) }
+    private func historyRange(_ range: Range<Int>) -> [HistoryValue] {
+        Array(values[range])
     }
 }

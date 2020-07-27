@@ -10,15 +10,16 @@ class HistoryStore: ObservableObject {
     enum PublisherName: CaseIterable {
         case bootstrap
         case favorites
+        case mainPair
     }
+    
+    private var cancellables: Set<AnyCancellable> = []
+    private var subjects: [PublisherName: HistorySubject] = [:]
+    
+    private var userCurrencyAsset: Asset { .init(userSettingsStore.currency) }
     
     private let historyRepository: HistoryRepository = SunWalletHistoryRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
-    
-    private var cancellables: Set<AnyCancellable> = []
-    private var userCurrencyAsset: Asset { .init(userSettingsStore.currency) }
-    
-    private var subjects: [PublisherName: HistorySubject] = [:]
     
     let userSettingsStore: UserSettingsStore
     
@@ -39,6 +40,7 @@ class HistoryStore: ObservableObject {
 
 // MARK: - Publishers
 extension HistoryStore {
+    
     private func makeSubject(for name: PublisherName) -> HistorySubject {
         let subject = HistorySubject(nil)
         subjects[name] = subject
@@ -52,41 +54,44 @@ extension HistoryStore {
             updateBootstrapHistorySubject()
         case .favorites:
             updateFavoritesHistorySubject()
+        case .mainPair:
+            updateMainPairHistorySubject()
         }
     }
     
     private func updateBootstrapHistorySubject() {
         guard let subject = self.subjects[.bootstrap] else { return }
-        
-        var cancellable: AnyCancellable?
-        cancellable = historyPublisher(base: userCurrencyAsset, targets: bootstrapTargets)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveValue: { receivedValue in
-                    let history = receivedValue ?? self.bundleData()
-                    subject.send(history)
-                    cancellable?.cancel()
-                }
-            )
+        update(subject: subject, base: userCurrencyAsset, targets: bootstrapTargets, onError: bundleData())
     }
     
     private func updateFavoritesHistorySubject() {
         guard let subject = self.subjects[.favorites] else { return }
-        
-        if subject.value == nil {
-            let cache = cachedData(base: userCurrencyAsset, targets: userSettingsStore.favorites)
+        update(subject: subject, base: userCurrencyAsset, targets: userSettingsStore.favorites)
+    }
+    
+    private func updateMainPairHistorySubject() {
+        guard let subject = self.subjects[.favorites] else { return }
+        update(subject: subject, base: userCurrencyAsset, targets: [.btc, .eth])
+    }
+    
+    private func update(subject: HistorySubject, base: Asset, targets: [Asset], onError: [ExchangeHistory]? = nil) {
+        if let cache = freshCache(base: base, targets: targets) {
             subject.send(cache)
+        } else {
+            if subject.value == nil {
+                let cache = anyCache(base: base, targets: targets)
+                subject.send(cache)
+            }
+            var cancellable: AnyCancellable?
+            cancellable = historyPublisher(base: userCurrencyAsset, targets: userSettingsStore.favorites)
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveValue: {
+                        subject.send($0 ?? onError)
+                        cancellable?.cancel()
+                    }
+                )
         }
-        
-        var cancellable: AnyCancellable?
-        cancellable = historyPublisher(base: userCurrencyAsset, targets: userSettingsStore.favorites)
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveValue: {
-                    subject.send($0)
-                    cancellable?.cancel()
-                }
-            )
     }
     
     private func historyPublisher(base: Asset, targets: [Asset]) -> AnyPublisher<[ExchangeHistory]?, Never> {
@@ -95,7 +100,7 @@ extension HistoryStore {
                 self.addCache(history)
                 return history
             }
-            .replaceError(with: cachedData(base: base, targets: targets))
+            .replaceError(with: anyCache(base: base, targets: targets))
             .eraseToAnyPublisher()
     }
     
@@ -110,8 +115,16 @@ extension HistoryStore {
 
 // MARK: - Cache
 extension HistoryStore {
-    private func cachedData(base: Asset, targets: [Asset]) -> [ExchangeHistory]? {
+    
+    private func anyCache(base: Asset, targets: [Asset]) -> [ExchangeHistory]? {
         return historyCache()?.get(base: base, targets: targets).compactMap { $0 }
+    }
+    
+    private func freshCache(base: Asset, targets: [Asset]) -> [ExchangeHistory]? {
+        guard let cache = historyCache() else { return nil }
+        let history = cache.get(base: base, targets: targets, maxAge: 60 * 5).compactMap { $0 }
+        guard targets.count == history.count else { return nil }
+        return history
     }
     
     private func addCache(_ history: [ExchangeHistory]) {

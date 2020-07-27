@@ -24,10 +24,10 @@ extension WatchListSection {
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: 3) {
-                        Text(exchangeHistory.historySet.currentPrice.currencyString(code: userSettingsStore.currency))
-                        Text(exchangeHistory.historySet.currentPriceChange.priceChangeString)
+                        Text(exchangeHistory.historySet.lastValue.currencyString(code: userSettingsStore.currency))
+                        Text(exchangeHistory.historySet.lastValueDiff.priceChangeString)
                             .font(.caption)
-                            .foregroundColor(exchangeHistory.historySet.currentPriceChange.isPositive ? .green : .red)
+                            .foregroundColor(exchangeHistory.historySet.lastValueDiff.isPositive ? .green : .red)
                     }
                 }
                 .padding(.horizontal, 16)

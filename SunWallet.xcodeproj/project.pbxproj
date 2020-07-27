@@ -21,6 +21,9 @@
 		DB01235724C7101E006E72FD /* FileCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235624C7101E006E72FD /* FileCacheRepository.swift */; };
 		DB01235924C710F8006E72FD /* BlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235824C710F8006E72FD /* BlockchainRepository.swift */; };
 		DB01235B24C713BE006E72FD /* BlockchairBlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */; };
+		DB01235D24C86971006E72FD /* WalletInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235C24C86971006E72FD /* WalletInfo.swift */; };
+		DB01235F24CAE645006E72FD /* PortfolioStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01235E24CAE644006E72FD /* PortfolioStore.swift */; };
+		DB01236224CAE6D8006E72FD /* WalletHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01236124CAE6D8006E72FD /* WalletHistory.swift */; };
 		DB0376CA247CFD13005ACB03 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376C9247CFD13005ACB03 /* Color.swift */; };
 		DB0376CD247CFEF4005ACB03 /* ExchangeFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */; };
 		DB0376CF247D2B60005ACB03 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376CE247D2B60005ACB03 /* Thumb.swift */; };
@@ -67,8 +70,7 @@
 		DB5F36BB24AEFDA000DDCA7A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */; };
 		DB5F36BD24AF0C0200DDCA7A /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BC24AF0C0200DDCA7A /* Cache.swift */; };
 		DB5F36C624AF0CB900DDCA7A /* ExchangeHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36C124AF0C2900DDCA7A /* ExchangeHistory.swift */; };
-		DB5F36C724AF0CBB00DDCA7A /* TradeHistorySet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BF24AF0C2900DDCA7A /* TradeHistorySet.swift */; };
-		DB5F36C824AF0CBE00DDCA7A /* TradeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36C024AF0C2900DDCA7A /* TradeData.swift */; };
+		DB5F36C724AF0CBB00DDCA7A /* HistorySet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BF24AF0C2900DDCA7A /* HistorySet.swift */; };
 		DB5F36CD24AF273D00DDCA7A /* CacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36CC24AF273D00DDCA7A /* CacheRepository.swift */; };
 		DB65ACDA2495EE7000252A93 /* WalletDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACD92495EE7000252A93 /* WalletDetailView.swift */; };
 		DB65ACDC24960B5C00252A93 /* WalletDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACDB24960B5C00252A93 /* WalletDetailCell.swift */; };
@@ -86,6 +88,9 @@
 		DB68BC38247C085D00377A72 /* Asset2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68BC37247C085D00377A72 /* Asset2.swift */; };
 		DB68BC3A247C08B300377A72 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68BC39247C08B300377A72 /* DataSource.swift */; };
 		DB68BC3C247C0A0A00377A72 /* AssetExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68BC3B247C0A0A00377A72 /* AssetExchange.swift */; };
+		DB6D46C724CCAFA500BA61E6 /* HistoryValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D46C624CCAFA500BA61E6 /* HistoryValue.swift */; };
+		DB6D46C924CD856200BA61E6 /* BalanceHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D46C824CD856200BA61E6 /* BalanceHistory.swift */; };
+		DB6D46CC24CDC11400BA61E6 /* BlockchainCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D46CB24CDC11400BA61E6 /* BlockchainCache.swift */; };
 		DB77E172247E3C2100BF1A88 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB77E171247E3C2100BF1A88 /* Double.swift */; };
 		DB77E174247E3C5700BF1A88 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB77E173247E3C5700BF1A88 /* NumberFormatter.swift */; };
 		DB77E176247E881100BF1A88 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB77E175247E881100BF1A88 /* TrackableScrollView.swift */; };
@@ -169,6 +174,9 @@
 		DB01235624C7101E006E72FD /* FileCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheRepository.swift; sourceTree = "<group>"; };
 		DB01235824C710F8006E72FD /* BlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainRepository.swift; sourceTree = "<group>"; };
 		DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchairBlockchainRepository.swift; sourceTree = "<group>"; };
+		DB01235C24C86971006E72FD /* WalletInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfo.swift; sourceTree = "<group>"; };
+		DB01235E24CAE644006E72FD /* PortfolioStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStore.swift; sourceTree = "<group>"; };
+		DB01236124CAE6D8006E72FD /* WalletHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHistory.swift; sourceTree = "<group>"; };
 		DB0376C9247CFD13005ACB03 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DB0376CC247CFEF4005ACB03 /* ExchangeFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeFieldType.swift; sourceTree = "<group>"; };
 		DB0376CE247D2B60005ACB03 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -215,8 +223,7 @@
 		DB5F36B624AE4DE900DDCA7A /* View+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+alert.swift"; sourceTree = "<group>"; };
 		DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		DB5F36BC24AF0C0200DDCA7A /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		DB5F36BF24AF0C2900DDCA7A /* TradeHistorySet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeHistorySet.swift; sourceTree = "<group>"; };
-		DB5F36C024AF0C2900DDCA7A /* TradeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeData.swift; sourceTree = "<group>"; };
+		DB5F36BF24AF0C2900DDCA7A /* HistorySet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySet.swift; sourceTree = "<group>"; };
 		DB5F36C124AF0C2900DDCA7A /* ExchangeHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeHistory.swift; sourceTree = "<group>"; };
 		DB5F36CC24AF273D00DDCA7A /* CacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheRepository.swift; sourceTree = "<group>"; };
 		DB65ACD92495EE7000252A93 /* WalletDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailView.swift; sourceTree = "<group>"; };
@@ -237,6 +244,9 @@
 		DB68BC37247C085D00377A72 /* Asset2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset2.swift; sourceTree = "<group>"; };
 		DB68BC39247C08B300377A72 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		DB68BC3B247C0A0A00377A72 /* AssetExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetExchange.swift; sourceTree = "<group>"; };
+		DB6D46C624CCAFA500BA61E6 /* HistoryValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryValue.swift; sourceTree = "<group>"; };
+		DB6D46C824CD856200BA61E6 /* BalanceHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistory.swift; sourceTree = "<group>"; };
+		DB6D46CB24CDC11400BA61E6 /* BlockchainCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainCache.swift; sourceTree = "<group>"; };
 		DB77E171247E3C2100BF1A88 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		DB77E173247E3C5700BF1A88 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		DB77E175247E881100BF1A88 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
@@ -361,6 +371,16 @@
 			path = HistoryStore;
 			sourceTree = "<group>";
 		};
+		DB01236024CAE6B3006E72FD /* PortfolioStore */ = {
+			isa = PBXGroup;
+			children = (
+				DB01235E24CAE644006E72FD /* PortfolioStore.swift */,
+				DB01236124CAE6D8006E72FD /* WalletHistory.swift */,
+				DB6D46C824CD856200BA61E6 /* BalanceHistory.swift */,
+			);
+			path = PortfolioStore;
+			sourceTree = "<group>";
+		};
 		DB0376CB247CFD17005ACB03 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,9 +488,10 @@
 			children = (
 				DBC5539024A78D6F0037763F /* AppStateStore.swift */,
 				DB35619324B6F8E7006828ED /* WalletStore.swift */,
-				DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */,
 				DBE7D95C24B9A80300E1E97E /* UserSettingsStore.swift */,
 				DB01235124C6BA8A006E72FD /* HistoryStore */,
+				DB6D46CA24CDC07F00BA61E6 /* BlockchainStore */,
+				DB01236024CAE6B3006E72FD /* PortfolioStore */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -539,8 +560,8 @@
 				DB01235224C6BACF006E72FD /* HistoryRepository.swift */,
 				DBC5538724A768C00037763F /* SunWalletHistoryRepository.swift */,
 				DB5F36C124AF0C2900DDCA7A /* ExchangeHistory.swift */,
-				DB5F36BF24AF0C2900DDCA7A /* TradeHistorySet.swift */,
-				DB5F36C024AF0C2900DDCA7A /* TradeData.swift */,
+				DB5F36BF24AF0C2900DDCA7A /* HistorySet.swift */,
+				DB6D46C624CCAFA500BA61E6 /* HistoryValue.swift */,
 			);
 			path = HistoryRepository;
 			sourceTree = "<group>";
@@ -706,6 +727,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		DB6D46CA24CDC07F00BA61E6 /* BlockchainStore */ = {
+			isa = PBXGroup;
+			children = (
+				DBE7D95A24B8B8CF00E1E97E /* BlockchainStore.swift */,
+				DB6D46CB24CDC11400BA61E6 /* BlockchainCache.swift */,
+			);
+			path = BlockchainStore;
+			sourceTree = "<group>";
+		};
 		DB85FA8B247D361400A43B3D /* ConvertAssetsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +865,7 @@
 				DB01235824C710F8006E72FD /* BlockchainRepository.swift */,
 				DBE7D95424B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift */,
 				DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */,
+				DB01235C24C86971006E72FD /* WalletInfo.swift */,
 			);
 			path = BlockchainRepository;
 			sourceTree = "<group>";
@@ -1118,6 +1149,7 @@
 				DB85FA8D247D45D400A43B3D /* CircleIcon.swift in Sources */,
 				DBF576D624975F5F00FB01E3 /* LinkCardView.swift in Sources */,
 				DB3A34852482672500C4D61F /* TopMoverCell.swift in Sources */,
+				DB6D46C924CD856200BA61E6 /* BalanceHistory.swift in Sources */,
 				DBFDB7502492959500A1DFAD /* UserAssetsSection.swift in Sources */,
 				DB19DC3A249A3B87008F7F79 /* PinKeyboardView.swift in Sources */,
 				DB092792249F74C200A9A107 /* TitleView.swift in Sources */,
@@ -1127,13 +1159,16 @@
 				DBE7D95F24B9AC2A00E1E97E /* HistoryStore.swift in Sources */,
 				DBC5538F24A787640037763F /* ActivityIndicator.swift in Sources */,
 				DBFDB759249340F400A1DFAD /* TradeSheetCell.swift in Sources */,
+				DB01235D24C86971006E72FD /* WalletInfo.swift in Sources */,
 				DBF576D12497557300FB01E3 /* PaymentMethodView.swift in Sources */,
 				DB00A6352482AEF8006FD5A0 /* TopMoversSection.swift in Sources */,
+				DB01236224CAE6D8006E72FD /* WalletHistory.swift in Sources */,
 				DBF5D55324838B4C006AF99B /* LineChartShape.swift in Sources */,
 				DB0376CA247CFD13005ACB03 /* Color.swift in Sources */,
 				DB865AD624B1F4CC004303F3 /* HorizontalLine.swift in Sources */,
 				DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */,
 				DB01234C24C4B6B4006E72FD /* View.swift in Sources */,
+				DB01235F24CAE645006E72FD /* PortfolioStore.swift in Sources */,
 				DB01235924C710F8006E72FD /* BlockchainRepository.swift in Sources */,
 				DB35619624B70209006828ED /* WalletCurrencyPicker.swift in Sources */,
 				DBF576DE249791C000FB01E3 /* FocusingTextField.swift in Sources */,
@@ -1163,6 +1198,7 @@
 				DB24C4E5247CF6BE0091FF44 /* ExchangeDirectionView.swift in Sources */,
 				DB0376D1247D2CBE005ACB03 /* ConvertAssetCell.swift in Sources */,
 				DB19DC30249A3B54008F7F79 /* NativeCurrencyView.swift in Sources */,
+				DB6D46CC24CDC11400BA61E6 /* BlockchainCache.swift in Sources */,
 				DBFABEEE249D167F00EDE526 /* OrderPreviewCell.swift in Sources */,
 				DB05B310249A46690058124A /* SearchBar.swift in Sources */,
 				DBF576DC2497851600FB01E3 /* Language.swift in Sources */,
@@ -1182,7 +1218,6 @@
 				DB0CCA692498BBF20060E884 /* WelcomeScreen.swift in Sources */,
 				DB01235324C6BACF006E72FD /* HistoryRepository.swift in Sources */,
 				DB01234A24C4B473006E72FD /* LoadingView.swift in Sources */,
-				DB5F36C824AF0CBE00DDCA7A /* TradeData.swift in Sources */,
 				DBC2E3822484F17A00C871E4 /* StrokeStyle.swift in Sources */,
 				DB35615424B48D36006828ED /* String.swift in Sources */,
 				DB35619424B6F8E7006828ED /* WalletStore.swift in Sources */,
@@ -1193,12 +1228,13 @@
 				DB77E172247E3C2100BF1A88 /* Double.swift in Sources */,
 				DB5725072492070F00F283BF /* PortfolioScreen.swift in Sources */,
 				DB19DC2A249A3A8F008F7F79 /* PreferenceView.swift in Sources */,
-				DB5F36C724AF0CBB00DDCA7A /* TradeHistorySet.swift in Sources */,
+				DB5F36C724AF0CBB00DDCA7A /* HistorySet.swift in Sources */,
 				DB9199CE247C24EB00D2B6A5 /* ExchangeDirectionButton.swift in Sources */,
 				DBFABEEB249D14F700EDE526 /* OrderPreviewView.swift in Sources */,
 				DBFDB752249295A500A1DFAD /* UserAssetsSection+Cell.swift in Sources */,
 				DB4ED06B249C842000D6A558 /* SelectAssetView.swift in Sources */,
 				DB65ACDA2495EE7000252A93 /* WalletDetailView.swift in Sources */,
+				DB6D46C724CCAFA500BA61E6 /* HistoryValue.swift in Sources */,
 				DBE23008247D2EA400F2751A /* ExchangeFields.swift in Sources */,
 				DBC5538824A768C00037763F /* SunWalletHistoryRepository.swift in Sources */,
 				DB19DC39249A3B87008F7F79 /* DotView.swift in Sources */,

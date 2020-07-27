@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HistoryChartSection: View {
     // MARK:- Properties
-    let exchangeHistory: ExchangeHistory
+    let historySet: HistorySet
     let color: Color
     
     // MARK:- Bindings
@@ -15,27 +15,26 @@ struct HistoryChartSection: View {
     
     
     // MARK:- Calculated Variables
-    private var currentPrice: Double {
+    private var currentValue: Double {
         let values = historyData(withPeriodIndex: selectedChartPeriod)
         let index = highlightedIndex ?? values.count - 1
-        return values[index].close
+        return values[index].value
     }
-    private var currentPriceDiff: Double {
+    private var currentValueDiff: Double {
         let values = historyData(withPeriodIndex: selectedChartPeriod)
         let index = highlightedIndex ?? values.count - 1
         guard index > 0 else { return 0 }
         
-        return values[index].close - values[index - 1].close
+        return values[index].value - values[index - 1].value
     }
     private var chartTabs: [MultiChart.ChartTab] {
-        let historySet = exchangeHistory.historySet
-        return [
-            .init(title: "1H", values: historySet.hourly.rawValues()),
-            .init(title: "1D", values: historySet.daily.rawValues()),
-            .init(title: "1W", values: historySet.weekly.rawValues()),
-            .init(title: "1M", values: historySet.monthly.rawValues()),
-            .init(title: "1Y", values: historySet.yearly.rawValues()),
-            .init(title: "ALL", values: historySet.all.rawValues()),
+        [
+            .init(title: "1H", values: historySet.hourly.onlyValues()),
+            .init(title: "1D", values: historySet.daily.onlyValues()),
+            .init(title: "1W", values: historySet.weekly.onlyValues()),
+            .init(title: "1M", values: historySet.monthly.onlyValues()),
+            .init(title: "1Y", values: historySet.yearly.onlyValues()),
+            .init(title: "ALL", values: historySet.all.onlyValues()),
         ]
     }
     
@@ -50,8 +49,7 @@ struct HistoryChartSection: View {
         }
     }
     
-    private func historyData(withPeriodIndex index: Int) -> [TradeData] {
-        let historySet = exchangeHistory.historySet
+    private func historyData(withPeriodIndex index: Int) -> [HistoryValue] {
         switch index {
         case 0: return historySet.hourly
         case 1: return historySet.daily

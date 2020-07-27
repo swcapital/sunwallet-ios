@@ -8,7 +8,7 @@ struct WalletCurrencyPicker: View {
     var appStateStore: AppStateStore
     
     @EnvironmentObject
-    var blockchainStore: BlockchainStore
+    var portfolioStore: PortfolioStore
     
     @EnvironmentObject
     var walletStore: WalletStore
@@ -23,7 +23,7 @@ struct WalletCurrencyPicker: View {
     private var error: String?
     
     @State
-    private var balances: [Wallet: Double]?
+    private var walletsHistory: [Wallet: WalletHistory]?
     
     @State
     private var selection: Set<Wallet> = []
@@ -91,15 +91,15 @@ struct WalletCurrencyPicker: View {
         guard showBalances else { return }
         
         isLoading = true
-        blockchainStore.balances(wallets: wallets) {
-            self.balances = $0
+        portfolioStore.walletsHistory(wallets: wallets) {
+            self.walletsHistory = $0
             self.isLoading = false
         }
     }
     
     private func balance(for wallet: Wallet) -> Double? {
         guard showBalances else { return nil }
-        return balances?[wallet, default: 0] ?? 0
+        return walletsHistory?[wallet]?.userCurrencyBalance ?? 0
     }
     
     private func saveData() {

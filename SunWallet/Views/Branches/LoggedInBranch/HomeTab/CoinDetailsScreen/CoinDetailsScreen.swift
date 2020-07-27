@@ -22,10 +22,10 @@ struct CoinDetailsScreen: View {
     }
     
     private var currentValue: Double {
-        selectedValue ?? exchangeHistory.historySet.currentPrice
+        selectedValue ?? exchangeHistory.historySet.lastValue
     }
     private var currentValueChange: Double {
-        selectedValueChange ?? exchangeHistory.historySet.currentPriceChange
+        selectedValueChange ?? exchangeHistory.historySet.lastValueDiff
     }
     
     // MARK:- Subviews
@@ -47,7 +47,7 @@ struct CoinDetailsScreen: View {
         SWScrollView(title: title, subtitle: subtitle, presentationMode: presentationMode) {
             VStack(alignment: .leading, spacing: 8) {
                 HistoryChartSection(
-                    exchangeHistory: self.exchangeHistory,
+                    historySet: self.exchangeHistory.historySet,
                     color: .orange,
                     selectedValue: self.$selectedValue,
                     selectedValueChange: self.$selectedValueChange

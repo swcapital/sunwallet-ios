@@ -3,15 +3,36 @@ import SwiftUI
 struct HomeScreen: View {
     // MARK:- Environment
     @EnvironmentObject
-    var blockchainStore: BlockchainStore
+    var portfolioStore: PortfolioStore
     
     @EnvironmentObject
     var dataSource: DataSource
     
     @State
-    private var balances: [Wallet: Double]?
+    private var walletsHistory: [Wallet: WalletHistory]?
     
-    private var totalBalance: Double { balances?.values.reduce(0, +) ?? 0 }
+    @State
+    private var selectedValue: Double? = nil
+    
+    @State
+    private var selectedValueChange: Double? = nil
+    
+    private var totalBalance: Double {
+        walletsHistory?.values
+            .map { $0.userCurrencyBalance }
+            .reduce(0, +) ?? 0
+    }
+    private var chartValues: HistorySet? {
+        guard let walletsHistory = walletsHistory, walletsHistory.count > 0 else {
+            return nil
+        }
+        let sets = walletsHistory.values.map(\.historySet)
+        let initialSet = sets.first!
+        
+        return sets.dropFirst().reduce(initialSet) {
+            $0 + $1
+        }
+    }
     
     // MARK:- Subviews
     private var title: Text {
@@ -25,6 +46,14 @@ struct HomeScreen: View {
     private var scrollView: some View {
         SWScrollView(title: title, subtitle: subtitle) {
             VStack(alignment: .leading, spacing: 8) {
+                self.chartValues.map {
+                    HistoryChartSection(
+                        historySet: $0,
+                        color: .orange,
+                        selectedValue: self.$selectedValue,
+                        selectedValueChange: self.$selectedValueChange
+                    )
+                }
                 WatchListSection()
                 TopMoversSection(assets: self.dataSource.topMovers)
                 PromoteSection()
@@ -37,13 +66,6 @@ struct HomeScreen: View {
         NavigationView() {
             scrollView
         }
-        .onReceive(blockchainStore.walletsBalancePublisher, perform: { self.balances = $0 })
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
-            .environmentObject(DataSource())
+        .onReceive(portfolioStore.portfolioHistoryPublisher, perform: { self.walletsHistory = $0 })
     }
 }
