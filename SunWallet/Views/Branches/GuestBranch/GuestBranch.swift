@@ -15,7 +15,7 @@ struct GuestBranch: View {
         Group {
             history.map { history in
                 NavigationView {
-                    WelcomeScreen(assets: history)
+                    WelcomeScreen(history: history)
                 }
             }
             if isLoading {

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct WelcomeScreen: View {
     // MARK:- Properties
-    let assets: [ExchangeHistory]
+    let history: [ExchangeHistory]
     
     // MARK:- Subviews
     private var registerButton: some View {
@@ -21,7 +21,7 @@ struct WelcomeScreen: View {
         VStack {
             LogoView()
             
-            AssetsChart(exchangeHistory: assets)
+            AssetsChart(history: history)
             
             Spacer()
             

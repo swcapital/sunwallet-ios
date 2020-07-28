@@ -2,7 +2,7 @@ import SwiftUI
 
 extension WelcomeScreen {
     struct AssetsChart: View {
-        let exchangeHistory: [ExchangeHistory]
+        let history: [ExchangeHistory]
         
         @EnvironmentObject
         var userSettingsStore: UserSettingsStore
@@ -14,7 +14,7 @@ extension WelcomeScreen {
         
         // MARK:- Calculated Variables
         private var assetTitles: [String] {
-            exchangeHistory.map { $0.source.code.uppercased() }
+            history.map { $0.source.code.uppercased() }
         }
         private var currentPrice: Double {
             let values = historyData(withPeriodIndex: selectedChartPeriod)
@@ -29,7 +29,7 @@ extension WelcomeScreen {
             return values[index].value - values[index - 1].value
         }
         private var chartTabs: [ChartTab] {
-            let historySet = exchangeHistory[selectedAssetIndex].historySet
+            let historySet = history[selectedAssetIndex].historySet
             return [
                 .init(title: "1H", values: historySet.hourly.onlyValues()),
                 .init(title: "1D", values: historySet.daily.onlyValues()),
@@ -137,7 +137,7 @@ extension WelcomeScreen {
         }
         
         private func historyData(withPeriodIndex index: Int) -> [HistoryValue] {
-            let historySet = exchangeHistory[selectedAssetIndex].historySet
+            let historySet = history[selectedAssetIndex].historySet
             switch index {
             case 0: return historySet.hourly
             case 1: return historySet.daily
