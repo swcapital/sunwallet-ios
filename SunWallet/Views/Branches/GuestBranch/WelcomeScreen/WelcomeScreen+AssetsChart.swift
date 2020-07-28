@@ -21,12 +21,9 @@ extension WelcomeScreen {
             let index = highlightedIndex ?? values.count - 1
             return values[index].value
         }
-        private var currentPriceDiff: Double {
+        private var termPriceDiff: Double {
             let values = historyData(withPeriodIndex: selectedChartPeriod)
-            let index = highlightedIndex ?? values.count - 1
-            guard index > 0 else { return 0 }
-            
-            return values[index].value - values[index - 1].value
+            return (values.last?.value ?? 0) - (values.first?.value ?? 0)
         }
         private var chartTabs: [ChartTab] {
             let historySet = history[selectedAssetIndex].historySet
@@ -87,7 +84,7 @@ extension WelcomeScreen {
                 Spacer()
                 VStack(spacing: 0.0) {
                     HStack(spacing: 4.0) {
-                        Text(currentPriceDiff.currencyString(code: userSettingsStore.currency) + .extraSpace)
+                        Text(termPriceDiff.currencyString(code: userSettingsStore.currency) + .extraSpace)
                             .font(.headline)
                             .foregroundColor(Color.white)
                         
@@ -116,8 +113,8 @@ extension WelcomeScreen {
         }
         
         private var dynamicArrow: some View {
-            Image(systemName: currentPriceDiff.isPositive ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
-                .foregroundColor(currentPriceDiff.isPositive ? .green : .red)
+            Image(systemName: termPriceDiff.isPositive ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                .foregroundColor(termPriceDiff.isPositive ? .green : .red)
                 .font(.caption)
         }
         
