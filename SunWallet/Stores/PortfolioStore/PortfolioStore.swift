@@ -50,6 +50,7 @@ class PortfolioStore: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveValue: {
+                    guard $0 != nil else { return }
                     completion($0)
                     cancellable?.cancel()
                 }
