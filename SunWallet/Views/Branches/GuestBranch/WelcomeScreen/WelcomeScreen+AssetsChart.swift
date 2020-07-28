@@ -130,6 +130,8 @@ extension WelcomeScreen {
         // MARK:- Methods
         private func makeAssetButton(title: String, index: Int) -> some View {
             Button(title, action: { self.selectedAssetIndex = index })
+                .lineLimit(1)
+                .frame(width: 45)
                 .foregroundColor(self.selectedAssetIndex == index ? .white : Color.white.opacity(0.7))
         }
         
