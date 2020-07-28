@@ -11,22 +11,18 @@ struct HistoryChartSection: View {
     
     // MARK:- States
     @State private var selectedChartPeriod: Int = 0
-    @State private var highlightedIndex: Int?
     
-    
-    // MARK:- Calculated Variables
-    private var currentValue: Double {
-        let values = historyData(withPeriodIndex: selectedChartPeriod)
-        let index = highlightedIndex ?? values.count - 1
-        return values[index].value
-    }
-    private var currentValueDiff: Double {
-        let values = historyData(withPeriodIndex: selectedChartPeriod)
-        let index = highlightedIndex ?? values.count - 1
-        guard index > 0 else { return 0 }
-        
-        return values[index].value - values[index - 1].value
-    }
+    private var highlightedIndex: Binding<Int?> {
+        Binding<Int?>(
+            get: { nil },
+            set: { newValue in
+                let values = self.historyData(withPeriodIndex: self.selectedChartPeriod)
+                let index = newValue ?? values.count - 1
+                self.selectedValue = values[index].value
+            }
+        )
+    }    
+
     private var chartTabs: [MultiChart.ChartTab] {
         [
             .init(title: "1H", values: historySet.hourly.onlyValues()),
@@ -44,7 +40,7 @@ struct HistoryChartSection: View {
                 tabs: chartTabs,
                 color: color,
                 tabIndex: $selectedChartPeriod,
-                highlightedIndex: $highlightedIndex
+                highlightedIndex: highlightedIndex
             )
         }
     }

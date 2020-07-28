@@ -36,7 +36,7 @@ struct HomeScreen: View {
     
     // MARK:- Subviews
     private var title: Text {
-        Text(totalBalance.dollarString)
+        Text((selectedValue ?? totalBalance).dollarString)
             .font(.largeTitle)
             .bold()
     }
