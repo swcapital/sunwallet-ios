@@ -95,7 +95,7 @@ extension BlockchainStore {
         guard let cache = blockchainCache() else { return nil }
         var result: [Wallet: WalletInfo] = [:]
         for wallet in wallets {
-            guard let info = cache.get(for: wallet) else { return nil }
+            guard let info = cache.get(for: wallet, maxAge: 60 * 5) else { return nil }
             result[wallet] = info
         }
         return result
