@@ -60,7 +60,13 @@ extension BlockchainStore {
         // MergeMany doesn't fit here - we loose an order
         return publishers.serialize()!
             .collect()
-            .map { Dictionary(uniqueKeysWithValues: zip(wallets, $0)) }
+            .map { walletsInfoArray in
+                let tuple = zip(wallets, walletsInfoArray)
+                for (wallet, walletInfo) in tuple {
+                    self.addCache(walletInfo: walletInfo, for: wallet)
+                }
+                return Dictionary(uniqueKeysWithValues: tuple)
+            }
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
