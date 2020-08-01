@@ -19,7 +19,7 @@ struct GuestBranch: View {
                 }
             }
             if isLoading {
-                LoadingScreen()
+                LoadingScreen(background: LinearGradient.background)
             }
         }
         .onReceive(historyStore.publisher(for: .bootstrap)) { self.history = $0 }

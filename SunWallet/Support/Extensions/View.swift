@@ -13,7 +13,7 @@ extension View {
     }
     
     func showLoading(_ value: Bool) -> some View {
-        self.overlay(LoadingView(), isVisible: value)
+        self.overlay(LoadingScreen(background: Color.white.opacity(0.05)), isVisible: value)
     }
     
     func showAlert(error: Binding<String?>) -> some View {
