@@ -28,7 +28,7 @@ struct BalanceHistory {
     }
     
     private func balance(at date: Date) -> Double {
-        historyValues.last(where: { date < $0.date })?.value ?? 0
+        historyValues.first(where: { date > $0.date })?.value ?? 0
     }
     
     private func converted(historyValues: [HistoryValue]) -> [HistoryValue] {
