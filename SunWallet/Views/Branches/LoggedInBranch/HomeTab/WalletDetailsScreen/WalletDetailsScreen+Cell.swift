@@ -1,22 +1,20 @@
 import SwiftUI
 
-extension UserAssetsSection {
+extension WalletDetailsScreen {
     struct Cell: View {
-        // MARK:- Properties
-        let wallet: Wallet
-        let walletHistory: WalletHistory
+        let assetHistory: AssetHistory
         
         var body: some View {
             HStack {
-                CircleIcon(radius: 40, imageName: wallet.asset.imageName)
+                CircleIcon(radius: 40, imageName: assetHistory.asset.imageName)
                 
                 VStack(alignment: .leading) {
-                    Text(wallet.asset.title)
+                    Text(assetHistory.asset.title)
                 }
                 
                 Spacer()
                 
-                Text(walletHistory.totalEquity.dollarString)
+                Text(assetHistory.equity.dollarString)
             }
             .padding(.horizontal, 16)
         }
