@@ -15,15 +15,15 @@ struct PortfolioScreen: View {
     @State
     private var walletsHistory: [Wallet: WalletHistory]?
     
-    private var totalBalance: Double {
+    private var totalEquity: Double {
         walletsHistory?.values
-            .map { $0.userCurrencyBalance }
+            .map { $0.totalEquity }
             .reduce(0, +) ?? 0
     }
 
     // MARK:- Calculated Variables
     private var currentValue: Double {
-        selectedValue ?? totalBalance
+        selectedValue ?? totalEquity
     }
     
     // MARK:- Subviews
@@ -45,7 +45,7 @@ struct PortfolioScreen: View {
 //                    selectedValueChange: self.$selectedValueChange
 //                )
                 Divider()
-                UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
+                //UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
             }
         }
     }

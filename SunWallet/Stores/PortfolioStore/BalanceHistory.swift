@@ -3,9 +3,9 @@ import Foundation
 struct BalanceHistory {
     private let historyValues: [HistoryValue]
     
-    init(walletInfo: WalletInfo) {
-        var currentBalance = walletInfo.balance
-        let transactionValues = walletInfo.transactions
+    init(assetInfo: AssetBalance) {
+        var currentBalance = assetInfo.balance
+        let transactionValues = assetInfo.transactions
             .reversed()
             .map { transaction -> HistoryValue in
                 defer { currentBalance -= transaction.value }
@@ -28,7 +28,7 @@ struct BalanceHistory {
     }
     
     private func balance(at date: Date) -> Double {
-        historyValues.first(where: { date > $0.date })?.value ?? 0
+        historyValues.last(where: { date > $0.date })?.value ?? 0
     }
     
     private func converted(historyValues: [HistoryValue]) -> [HistoryValue] {

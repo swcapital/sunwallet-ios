@@ -99,7 +99,7 @@ struct WalletCurrencyPicker: View {
     
     private func balance(for wallet: Wallet) -> Double? {
         guard showBalances else { return nil }
-        return walletsHistory?[wallet]?.userCurrencyBalance ?? 0
+        return walletsHistory?[wallet]?.totalEquity ?? 0
     }
     
     private func saveData() {

@@ -12,7 +12,7 @@ struct BlockchairBlockchainRepository: BlockchainRepository {
         return decoder
     }
     
-    func balance(for wallet: Wallet) -> AnyPublisher<WalletInfo, Error> {
+    func balance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
         switch wallet.asset {
         case .btc:
             return bitcoinBalance(address: wallet.address)
@@ -29,7 +29,7 @@ private let satoshiRatio: Double = 100_000_000
 
 extension BlockchairBlockchainRepository {
     
-    private func bitcoinBalance(address: String) -> AnyPublisher<WalletInfo, Error> {
+    private func bitcoinBalance(address: String) -> AnyPublisher<WalletBalance, Error> {
         let address = "\(host)/bitcoin/dashboards/address/\(address)" + "?limit=1&transaction_details=true"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
@@ -43,7 +43,8 @@ extension BlockchairBlockchainRepository {
                     .sorted(by: { $0.time > $1.time })
                     .map { Transaction(date: $0.time, value: $0.balanceChange / satoshiRatio) }
                     .reversed()
-                return WalletInfo(balance: balance, transactions: Array(transactions))
+                let assetBalance = AssetBalance(asset: .btc, balance: balance, transactions: Array(transactions))
+                return .init(assets: [assetBalance])
         }
         .eraseToAnyPublisher()
     }
@@ -79,8 +80,8 @@ private let weiRatio: Double = 1_000_000_000_000_000_000
 
 extension BlockchairBlockchainRepository {
     
-    private func etheriumBalance(address: String) -> AnyPublisher<WalletInfo, Error> {
-        let address = "\(host)/ethereum/dashboards/address/\(address)" + "?limit=1"
+    private func etheriumBalance(address: String) -> AnyPublisher<WalletBalance, Error> {
+        let address = "\(host)/ethereum/dashboards/address/\(address)" + "?erc_20=true"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
             .extractData()
@@ -88,12 +89,19 @@ extension BlockchairBlockchainRepository {
             .print()
             .map {
                 let data = $0.data.first!.value
-                let balance = (data.address.balance.map { Double($0) ?? 0 } ?? 0) / weiRatio
+                let balance = (data.address.balance?.doubleValue ?? 0) / weiRatio
                 let transactions = data.calls
                     .sorted(by: { $0.time > $1.time })
                     .map { Transaction(date: $0.time, value: $0.value / weiRatio) }
                     .reversed()
-                return WalletInfo(balance: balance, transactions: Array(transactions))
+                let assetBalance = AssetBalance(asset: .eth, balance: balance, transactions: Array(transactions))
+                
+                let erc20 = data.layer2?.erc20Array.map { erc20 -> AssetBalance in
+                    let asset = Asset(erc20.symbol)
+                    let balance = erc20.balance.doubleValue / weiRatio
+                    return AssetBalance(asset: asset, balance: balance, transactions: [])
+                }
+                return .init(assets: [assetBalance] + (erc20 ?? []))
         }
         .eraseToAnyPublisher()
     }
@@ -101,6 +109,13 @@ extension BlockchairBlockchainRepository {
     private struct EtheriumData: Codable {
         let address: EtheriumBalance
         let calls: [EtheriumCall]
+        let layer2: Layer2?
+        
+        enum CodingKeys: String, CodingKey {
+            case address = "address"
+            case calls = "calls"
+            case layer2 = "layer_2"
+        }
     }
     
     private struct EtheriumBalance: Codable {
@@ -122,16 +137,40 @@ extension BlockchairBlockchainRepository {
             case value = "value"
         }
     }
+    
+    private struct Layer2: Codable {
+        let erc20Array: [ERC20]
+        
+        enum CodingKeys: String, CodingKey {
+            case erc20Array = "erc_20"
+        }
+    }
+    
+    private struct ERC20: Codable {
+        let balance: String
+        let symbol: String
+        
+        enum CodingKeys: String, CodingKey {
+            case balance = "balance"
+            case symbol = "token_symbol"
+        }
+    }
 }
 
 private struct BalancesResponse<T: Codable>: Codable {
     let data: [String: T]
 }
 
-extension DateFormatter {
+private extension DateFormatter {
     static let bcDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter
     }()
+}
+
+private extension String {
+    var doubleValue: Double {
+        Double(self) ?? 0
+    }
 }

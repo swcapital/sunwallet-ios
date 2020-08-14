@@ -3,16 +3,16 @@ import Foundation
 import SwiftUI
 
 class BlockchainStore: ObservableObject {
-    private typealias WalletsInfoSubject = CurrentValueSubject<[Wallet: WalletInfo]?, Never>
-    typealias WalletsInfoPublisher = AnyPublisher<[Wallet: WalletInfo]?, Never>
+    private typealias WalletsBalanceSubject = CurrentValueSubject<[Wallet: WalletBalance]?, Never>
+    typealias WalletsBalancePublisher = AnyPublisher<[Wallet: WalletBalance]?, Never>
     
     private var cancellables: Set<AnyCancellable> = []
-    private var subject: WalletsInfoSubject?
+    private var subject: WalletsBalanceSubject?
     
     private let blockchainRepository: BlockchainRepository = BlockchairBlockchainRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
     
-    func walletsInfo(wallets: [Wallet], completion: @escaping ([Wallet: WalletInfo]?) -> Void) {
+    func walletsInfo(wallets: [Wallet], completion: @escaping ([Wallet: WalletBalance]?) -> Void) {
         var cancellable: AnyCancellable?
         cancellable = walletsInfoPublisher(wallets: wallets)
             .receive(on: DispatchQueue.main)
@@ -24,8 +24,8 @@ class BlockchainStore: ObservableObject {
             )
     }
     
-    func walletsInfoPublisher(wallets: [Wallet]) -> WalletsInfoPublisher {
-        let subject = self.subject ?? WalletsInfoSubject(nil)
+    func walletsInfoPublisher(wallets: [Wallet]) -> WalletsBalancePublisher {
+        let subject = self.subject ?? WalletsBalanceSubject(nil)
         self.subject = subject
         
         if let cache = freshCache(for: wallets) {
@@ -52,7 +52,7 @@ class BlockchainStore: ObservableObject {
 // MARK: - Publishers
 extension BlockchainStore {
     
-    private func _walletsInfoPublisher(wallets: [Wallet]) -> WalletsInfoPublisher {
+    private func _walletsInfoPublisher(wallets: [Wallet]) -> WalletsBalancePublisher {
         let publishers = wallets.map {
             blockchainRepository.balance(for: $0)
         }
@@ -60,10 +60,10 @@ extension BlockchainStore {
         // MergeMany doesn't fit here - we loose an order
         return publishers.serialize()!
             .collect()
-            .map { walletsInfoArray in
-                let tuple = zip(wallets, walletsInfoArray)
-                for (wallet, walletInfo) in tuple {
-                    self.addCache(walletInfo: walletInfo, for: wallet)
+            .map { walletsBalance in
+                let tuple = zip(wallets, walletsBalance)
+                for (wallet, walletBalance) in tuple {
+                    self.addCache(walletBalance, for: wallet)
                 }
                 return Dictionary(uniqueKeysWithValues: tuple)
             }
@@ -75,9 +75,9 @@ extension BlockchainStore {
 // MARK: - Cache
 extension BlockchainStore {
     
-    private func anyCache(for wallets: [Wallet]) -> [Wallet: WalletInfo]? {
+    private func anyCache(for wallets: [Wallet]) -> [Wallet: WalletBalance]? {
         guard let cache = blockchainCache() else { return nil }
-        var result: [Wallet: WalletInfo] = [:]
+        var result: [Wallet: WalletBalance] = [:]
         for wallet in wallets {
             guard let info = cache.get(for: wallet) else { continue }
             result[wallet] = info
@@ -85,15 +85,15 @@ extension BlockchainStore {
         return result
     }
     
-    private func addCache(walletInfo: WalletInfo, for wallet: Wallet) {
+    private func addCache(_ walletBalance: WalletBalance, for wallet: Wallet) {
         var cache = blockchainCache() ?? .init()
-        cache.add(walletInfo, for: wallet)
+        cache.add(walletBalance, for: wallet)
         cacheRepository.save(cache, atKey: .blockchain)
     }
     
-    private func freshCache(for wallets: [Wallet]) -> [Wallet: WalletInfo]? {
+    private func freshCache(for wallets: [Wallet]) -> [Wallet: WalletBalance]? {
         guard let cache = blockchainCache() else { return nil }
-        var result: [Wallet: WalletInfo] = [:]
+        var result: [Wallet: WalletBalance] = [:]
         for wallet in wallets {
             guard let info = cache.get(for: wallet, maxAge: 60 * 5) else { return nil }
             result[wallet] = info

@@ -32,3 +32,13 @@ extension Array where Element == HistoryValue {
         zip(lhs, rhs).map { HistoryValue(date: $0.0.date, value: $0.0.value + $0.1.value) }
     }
 }
+
+extension Array where Element == HistorySet {
+    
+    func total() -> HistorySet? {
+        guard let first = first else { return nil }
+        guard count > 1 else { return first }
+        
+        return dropFirst().reduce(first, +)
+    }
+}

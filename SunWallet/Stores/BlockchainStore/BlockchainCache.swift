@@ -2,17 +2,17 @@ import Foundation
 
 extension BlockchainStore {
     internal struct BlockchainCache: Codable {
-        private var storage: [Wallet: _WalletInfo] = [:]
+        private var storage: [Wallet: Wrapper] = [:]
         
-        mutating func add(_ walletInfo: WalletInfo, for wallet: Wallet) {
-            storage[wallet] = _WalletInfo(walletInfo)
+        mutating func add(_ walletBalance: WalletBalance, for wallet: Wallet) {
+            storage[wallet] = Wrapper(walletBalance)
         }
         
-        func get(for wallet: Wallet) -> WalletInfo? {
+        func get(for wallet: Wallet) -> WalletBalance? {
             storage[wallet]?.original()
         }
         
-        func get(for wallet: Wallet, maxAge: TimeInterval) -> WalletInfo? {
+        func get(for wallet: Wallet, maxAge: TimeInterval) -> WalletBalance? {
             let threshold = Date(timeIntervalSinceNow: -maxAge)
             guard let info = storage[wallet], info.date > threshold else { return nil }
             return info.original()
@@ -20,18 +20,16 @@ extension BlockchainStore {
     }
 }
 
-fileprivate struct _WalletInfo: Codable {
-    let balance: Double
-    let transactions: [Transaction]
+fileprivate struct Wrapper: Codable {
+    let walletBalance: WalletBalance
     let date: Date
     
-    init(_ walletInfo: WalletInfo) {
-        self.balance = walletInfo.balance
-        self.transactions = walletInfo.transactions
+    init(_ walletBalance: WalletBalance) {
+        self.walletBalance = walletBalance
         self.date = Date()
     }
     
-    func original() -> WalletInfo {
-        .init(balance: balance, transactions: transactions)
+    func original() -> WalletBalance {
+        walletBalance
     }
 }

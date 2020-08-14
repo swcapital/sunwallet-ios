@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension PortfolioScreen.UserAssetsSection {
+extension UserAssetsSection {
     struct Cell: View {
         // MARK:- Properties
         let wallet: Wallet
@@ -13,13 +13,11 @@ extension PortfolioScreen.UserAssetsSection {
                     
                     VStack(alignment: .leading) {
                         Text(wallet.asset.title)
-                        Text(wallet.address)
-                            .font(.caption)
                     }
                     
                     Spacer()
                     
-                    Text(walletHistory.userCurrencyBalance.dollarString)
+                    Text(walletHistory.totalEquity.dollarString)
                 }
                 .padding(.horizontal, 16)
                 

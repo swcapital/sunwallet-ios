@@ -17,26 +17,18 @@ struct HomeScreen: View {
     @State
     private var selectedValueChange: Double? = nil
     
-    private var totalBalance: Double {
+    private var totalEquity: Double {
         walletsHistory?.values
-            .map { $0.userCurrencyBalance }
+            .map { $0.totalEquity }
             .reduce(0, +) ?? 0
     }
     private var chartValues: HistorySet? {
-        guard let walletsHistory = walletsHistory, walletsHistory.count > 0 else {
-            return nil
-        }
-        let sets = walletsHistory.values.map(\.historySet)
-        let initialSet = sets.first!
-        
-        return sets.dropFirst().reduce(initialSet) {
-            $0 + $1
-        }
+        walletsHistory?.values.compactMap(\.historySet).total()
     }
     
     // MARK:- Subviews
     private var title: Text {
-        Text((selectedValue ?? totalBalance).dollarString)
+        Text((selectedValue ?? totalEquity).dollarString)
             .font(.largeTitle)
             .bold()
     }
@@ -54,10 +46,8 @@ struct HomeScreen: View {
                         selectedValueChange: self.$selectedValueChange
                     )
                 }
-                WatchListSection()
+                UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
                 TopMoversSection(assets: self.dataSource.topMovers)
-                PromoteSection()
-                NewsSection(articles: self.dataSource.articles)
             }
         }
     }
@@ -66,6 +56,11 @@ struct HomeScreen: View {
         NavigationView() {
             scrollView
         }
-        .onReceive(portfolioStore.portfolioHistoryPublisher, perform: { self.walletsHistory = $0 })
+        .onReceive(portfolioStore.portfolioHistoryPublisher, perform: {
+            let newValues = $0?.filter { $0.value.totalEquity != 0 }
+            if newValues != self.walletsHistory {
+                self.walletsHistory = newValues
+            }
+        })
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct AssetInfo {
+struct AssetBalance: Codable {
     let asset: Asset
     let balance: Double
     let transactions: [Transaction]

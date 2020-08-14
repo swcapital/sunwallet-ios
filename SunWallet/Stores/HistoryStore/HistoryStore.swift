@@ -10,7 +10,7 @@ class HistoryStore: ObservableObject {
     enum PublisherName: CaseIterable {
         case bootstrap
         case favorites
-        case mainPair
+        case all
     }
     
     private var cancellables: Set<AnyCancellable> = []
@@ -54,8 +54,8 @@ extension HistoryStore {
             updateBootstrapHistorySubject()
         case .favorites:
             updateFavoritesHistorySubject()
-        case .mainPair:
-            updateMainPairHistorySubject()
+        case .all:
+            updateAllHistorySubject()
         }
     }
     
@@ -69,9 +69,14 @@ extension HistoryStore {
         update(subject: subject, base: userCurrencyAsset, targets: userSettingsStore.favorites)
     }
     
-    private func updateMainPairHistorySubject() {
-        guard let subject = self.subjects[.mainPair] else { return }
-        update(subject: subject, base: userCurrencyAsset, targets: [.btc, .eth])
+    private func updateAllHistorySubject() {
+        guard let subject = self.subjects[.all] else { return }
+        let target: [Asset] = [
+            .knc, .okb, .lend, .band, .ht, .lrc, .matic, .rep, .comp, .bnt, .snx, .paxg,
+            .ampl, .ftt, .link, .xaut, .cusdc, .cusdt, .bal, .leo,
+            .bat, .bnb, .btc, .busd, .dai, .eth, .mana, .pax, .tusd, .usdc, .usdt, .zrx
+        ]
+        update(subject: subject, base: userCurrencyAsset, targets: target)
     }
     
     private func update(subject: HistorySubject, base: Asset, targets: [Asset], onError: [ExchangeHistory]? = nil) {
@@ -83,7 +88,7 @@ extension HistoryStore {
                 subject.send(cache)
             }
             var cancellable: AnyCancellable?
-            cancellable = historyPublisher(base: userCurrencyAsset, targets: userSettingsStore.favorites)
+            cancellable = historyPublisher(base: base, targets: targets)
                 .receive(on: DispatchQueue.main)
                 .sink(
                     receiveValue: {

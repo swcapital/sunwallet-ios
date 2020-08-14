@@ -34,7 +34,7 @@ class PortfolioStore: ObservableObject {
     
     func walletsHistoryPublisher(wallets: [Wallet]) -> WalletsHistoryPublisher {
         let infoPublisher = blockchainStore.walletsInfoPublisher(wallets: wallets)
-        let historyPublisher = historyStore.publisher(for: .mainPair)
+        let historyPublisher = historyStore.publisher(for: .all)
         
         return Publishers.CombineLatest(infoPublisher, historyPublisher)
             .map { info, history -> [Wallet: WalletHistory]? in
@@ -57,20 +57,25 @@ class PortfolioStore: ObservableObject {
             )
     }
     
-    private func generateWalletsHistory(info: [Wallet : WalletInfo], history: [ExchangeHistory]) -> [Wallet: WalletHistory] {
+    private func generateWalletsHistory(info: [Wallet : WalletBalance], history: [ExchangeHistory]) -> [Wallet: WalletHistory] {
         var result: [Wallet: WalletHistory] = [:]
-        for (wallet, walletInfo) in info {
-            guard let exchangeHistory = history.first(where: { $0.source == wallet.asset }) else { continue }
-            result[wallet] = self.generateWalletHistory(walletInfo: walletInfo, historySet: exchangeHistory.historySet)
+        for (wallet, walletBalance) in info {
+            let assetsHistory = walletBalance.assets.compactMap { assetBalance -> AssetHistory? in
+                guard let exchangeHistory = history.first(where: { $0.source == assetBalance.asset }) else { return nil }
+                return AssetHistory(assetBalance: assetBalance, historySet: exchangeHistory.historySet)
+            }
+            result[wallet] = WalletHistory(assetsHistory: assetsHistory)
         }
         return result
     }
-    
-    private func generateWalletHistory(walletInfo: WalletInfo, historySet: HistorySet) -> WalletHistory {
-        let userCurrencyBalance = historySet.lastValue * walletInfo.balance
-        let balanceHistory = BalanceHistory(walletInfo: walletInfo)
+}
+
+private extension AssetHistory {
+    init(assetBalance: AssetBalance, historySet: HistorySet) {
+        let equity = historySet.lastValue * assetBalance.balance
+        let balanceHistory = BalanceHistory(assetInfo: assetBalance)
         let convertedHistorySet = balanceHistory.converted(historySet: historySet)
-        return .init(balance: walletInfo.balance, userCurrencyBalance: userCurrencyBalance, historySet: convertedHistorySet)
+        self.init(asset: assetBalance.asset, balance: assetBalance.balance, equity: equity, historySet: convertedHistorySet)
     }
 }
 
