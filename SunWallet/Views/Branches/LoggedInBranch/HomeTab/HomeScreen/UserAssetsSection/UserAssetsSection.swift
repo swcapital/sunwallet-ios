@@ -10,6 +10,7 @@ struct UserAssetsSection: View {
     
     var body: some View {
         Section() {
+            Divider()
             ForEach(wallets) { wallet in
                 NavigationLink(destination: Text("")) {//CoinDetailsScreen(asset: wallet.asset)) {
                     Cell(wallet: wallet, walletHistory: self.walletsHistory[wallet]!)

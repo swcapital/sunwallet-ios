@@ -1,7 +1,14 @@
 import SwiftUI
 
 struct TopMoverCell: View {
-    let asset: Asset2
+    let history: ExchangeHistory
+    
+    private var priceDiff: Double {
+        history.historySet.daily.growth()
+    }
+    private var asset: Asset {
+        history.source
+    }
     
     // MARK:- Subviews
     private var overlay: some View {
@@ -13,7 +20,7 @@ struct TopMoverCell: View {
         VStack(alignment: .leading) {
             Spacer()
             
-            Text(asset.dollarPriceChange.priceChangeString)
+            Text(priceDiff.priceChangeString)
                 .foregroundColor(.green)
                 .font(.title)
             

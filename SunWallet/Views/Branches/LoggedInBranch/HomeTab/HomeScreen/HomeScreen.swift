@@ -2,20 +2,11 @@ import SwiftUI
 
 struct HomeScreen: View {
     // MARK:- Environment
-    @EnvironmentObject
-    var portfolioStore: PortfolioStore
+    @EnvironmentObject var portfolioStore: PortfolioStore
     
-    @EnvironmentObject
-    var dataSource: DataSource
-    
-    @State
-    private var walletsHistory: [Wallet: WalletHistory]?
-    
-    @State
-    private var selectedValue: Double? = nil
-    
-    @State
-    private var selectedValueChange: Double? = nil
+    @State private var walletsHistory: [Wallet: WalletHistory]?
+    @State private var selectedValue: Double? = nil
+    @State private var selectedValueChange: Double? = nil
     
     private var totalEquity: Double {
         walletsHistory?.values
@@ -47,7 +38,7 @@ struct HomeScreen: View {
                     )
                 }
                 UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
-                TopMoversSection(assets: self.dataSource.topMovers)
+                TopMoversSection()
             }
         }
     }
