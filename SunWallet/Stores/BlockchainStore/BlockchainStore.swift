@@ -7,7 +7,7 @@ class BlockchainStore: ObservableObject {
     typealias WalletsBalancePublisher = AnyPublisher<[Wallet: WalletBalance]?, Never>
     
     private var cancellables: Set<AnyCancellable> = []
-    private var subject: WalletsBalanceSubject?
+    private var subjects: [[Wallet]: WalletsBalanceSubject] = [:]
     
     private let blockchainRepository: BlockchainRepository = BlockchairBlockchainRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
@@ -25,8 +25,16 @@ class BlockchainStore: ObservableObject {
     }
     
     func walletsInfoPublisher(wallets: [Wallet]) -> WalletsBalancePublisher {
-        let subject = self.subject ?? WalletsBalanceSubject(nil)
-        self.subject = subject
+        if let subject = subjects[wallets] {
+            return subject.eraseToAnyPublisher()
+        } else {
+            return makeSubject(for: wallets).eraseToAnyPublisher()
+        }
+    }
+    
+    private func makeSubject(for wallets: [Wallet]) -> WalletsBalanceSubject {
+        let subject = WalletsBalanceSubject(nil)
+        subjects[wallets] = subject
         
         if let cache = freshCache(for: wallets) {
             subject.send(cache)
@@ -45,7 +53,7 @@ class BlockchainStore: ObservableObject {
                     }
                 )
         }
-        return subject.eraseToAnyPublisher()
+        return subject
     }
 }
 

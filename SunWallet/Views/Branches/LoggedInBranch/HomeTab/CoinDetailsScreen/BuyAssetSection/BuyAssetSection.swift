@@ -4,9 +4,6 @@ struct BuyAssetSection: View {
     // MARK:- Properties
     let asset: Asset
     
-    // MARK:- Environment
-    @EnvironmentObject var dataSource: DataSource
-    
     // MARK:- Subviews
     private var buyButton: some View {
         Button("Buy") {}

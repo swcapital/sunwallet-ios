@@ -18,7 +18,7 @@ struct WatchListSection: View {
         Section(header: header) {
             Divider()
             ForEach(exchangeHistories, id: \.source.code) { history in
-                NavigationLink(destination: CoinDetailsScreen(exchangeHistory: history)) {
+                NavigationLink(destination: EmptyView()) {
                     Cell(exchangeHistory: history)
                 }
                 .buttonStyle(PlainButtonStyle()) 

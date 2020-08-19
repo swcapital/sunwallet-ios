@@ -6,6 +6,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let walletStore = WalletStore()
     private let userSettingsStore = UserSettingsStore()
     private let blockchainStore = BlockchainStore()
+    private let assetInfoStore = AssetInfoStore()
     
     private lazy var historyStore = HistoryStore(userSettingsStore: userSettingsStore)
     private lazy var portfolioStore = PortfolioStore(
@@ -25,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(walletStore)
             .environmentObject(userSettingsStore)
             .environmentObject(DataSource())
+            .environmentObject(assetInfoStore)
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

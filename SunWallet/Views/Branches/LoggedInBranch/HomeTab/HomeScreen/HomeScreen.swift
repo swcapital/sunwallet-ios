@@ -44,14 +44,11 @@ struct HomeScreen: View {
     }
     
     var body: some View {
-        NavigationView() {
+        NavigationView {
             scrollView
         }
         .onReceive(portfolioStore.portfolioHistoryPublisher, perform: {
-            let newValues = $0?.filter { $0.value.totalEquity != 0 }
-            if newValues != self.walletsHistory {
-                self.walletsHistory = newValues
-            }
+            self.walletsHistory = $0?.filter { $0.value.totalEquity != 0 }
         })
     }
 }

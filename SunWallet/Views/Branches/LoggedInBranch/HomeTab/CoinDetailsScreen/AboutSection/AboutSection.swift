@@ -4,20 +4,33 @@ struct AboutSection: View {
     // MARK:- Properties
     let asset: Asset
     
+    @EnvironmentObject private var assetInfoStore: AssetInfoStore
+    
+    private var info: AssetInfo? { assetInfoStore.info(for: asset) }
+    
     // MARK:- Subviews
     private var cellContent: some View {
-        VStack(spacing: 16) {
-            HStack(spacing: 16) {
-                Image("website")
-                Text("Official website")
-                    .foregroundColor(.primary)
-                Spacer()
-            }
-            HStack(spacing: 16) {
-                Image("whitepaper")
-                Text("Whitepaper")
-                    .foregroundColor(.primary)
-                Spacer()
+        info.map { info in
+            VStack {
+                Button(action: {
+                    if let url = URL(string: info.website) {
+                       UIApplication.shared.open(url)
+                   }
+                }) {
+                    HStack(spacing: 16) {
+                        Image("website")
+                        Text("Official website")
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                }
+                .padding()
+                
+                Divider()
+                
+                Text(info.about)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding()
             }
         }
     }
@@ -33,22 +46,7 @@ struct AboutSection: View {
                 
                 Divider()
                 
-                Text("Fix Me")
-                //Text(asset.about)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding()
-                
-                Divider()
-                    .animation(nil)
-                
-                ExpandableCell(
-                    header: { Text("Recources") },
-                    content: { cellContent }
-                )
-                .padding(.horizontal, 16)
-                
-                Divider()
-                    .animation(nil)
+                cellContent
             }
         }
     }

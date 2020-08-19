@@ -1,8 +1,7 @@
 import Foundation
 
 struct WalletHistory {
-    // Using for fast comparsation
-    private let id = UUID()
+    let id = UUID()
     
     let assetsHistory: [AssetHistory]
     

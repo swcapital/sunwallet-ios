@@ -4,6 +4,8 @@ struct WalletDetailsScreen: View {
     let wallet: Wallet
     let walletHistory: WalletHistory
     
+    @EnvironmentObject private var blockchainStore: BlockchainStore
+    
     @State private var selectedValue: Double? = nil
     @State private var selectedValueChange: Double? = nil
     
@@ -32,11 +34,19 @@ struct WalletDetailsScreen: View {
         }
     }
     private var assetList: some View {
-        VStack {
+        let assetsHistory = walletHistory.assetsHistory.sorted(by: { $0.equity > $1.equity })
+        return VStack {
             Divider()
             ForEach(assetsHistory.indices, id: \.self) { i in
                 VStack {
-                    Cell(assetHistory: self.assetsHistory[i])
+                    NavigationLink(
+                        destination: CoinDetailsScreen(wallet: self.wallet, assetHistory: assetsHistory[i])
+                    ) {
+                        Cell(assetHistory: self.assetsHistory[i])
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
                     Divider()
                 }
             }
