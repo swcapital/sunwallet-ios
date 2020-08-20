@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension WalletDetailsScreen {
+extension AssetsView {
     struct Cell: View {
         let assetHistory: AssetHistory
         
@@ -10,6 +10,10 @@ extension WalletDetailsScreen {
                 
                 VStack(alignment: .leading) {
                     Text(assetHistory.asset.title)
+                    
+                    Text("\(assetHistory.balance) \(assetHistory.asset.code.uppercased())")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
                 }
                 
                 Spacer()

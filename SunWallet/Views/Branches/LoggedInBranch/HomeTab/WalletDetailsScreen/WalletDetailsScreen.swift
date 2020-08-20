@@ -3,9 +3,7 @@ import SwiftUI
 struct WalletDetailsScreen: View {
     let wallet: Wallet
     let walletHistory: WalletHistory
-    
-    @EnvironmentObject private var blockchainStore: BlockchainStore
-    
+        
     @State private var selectedValue: Double? = nil
     @State private var selectedValueChange: Double? = nil
     
@@ -17,6 +15,12 @@ struct WalletDetailsScreen: View {
     }
     private var assetsHistory: [AssetHistory] {
         walletHistory.assetsHistory.sorted(by: { $0.equity > $1.equity })
+    }
+    private var largestAssets: [AssetHistory] {
+        assetsHistory.prefix(5).array()
+    }
+    private var newestTransactions: [AssetTransaction] {
+        walletHistory.transactions.prefix(5).array()
     }
     
     // MARK:- Subviews
@@ -34,22 +38,40 @@ struct WalletDetailsScreen: View {
         }
     }
     private var assetList: some View {
-        let assetsHistory = walletHistory.assetsHistory.sorted(by: { $0.equity > $1.equity })
-        return VStack {
-            Divider()
-            ForEach(assetsHistory.indices, id: \.self) { i in
-                VStack {
-                    NavigationLink(
-                        destination: CoinDetailsScreen(wallet: self.wallet, assetHistory: assetsHistory[i])
-                    ) {
-                        Cell(assetHistory: self.assetsHistory[i])
-                            .contentShape(Rectangle())
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    Divider()
-                }
+        VStack {
+            HStack {
+                Text("Assets")
+                    .font(.headline)
+                
+                Spacer()
+                
+                NavigationLink(
+                    "See all",
+                    destination: AssetsScreen(assetsHistory: assetsHistory, wallet: wallet)
+                )
             }
+            .padding(.horizontal)
+                        
+            AssetsView(assetsHistory: largestAssets, wallet: wallet)
+        }
+    }
+    private var transactionList: some View {
+        VStack {
+            HStack {
+                Text("History")
+                    .font(.headline)
+                    
+                
+                Spacer()
+                
+                NavigationLink(
+                    "See all",
+                    destination: TransactionsScreen(transactions: walletHistory.transactions)
+                )
+            }
+            .padding(.horizontal)
+            
+            TransactionsView(transactions: newestTransactions)
         }
     }
     private var scrollView: some View {
@@ -69,6 +91,9 @@ struct WalletDetailsScreen: View {
                 }
                 
                 assetList
+                
+                transactionList
+                    .padding(.top, 32)
             }
         }
     }

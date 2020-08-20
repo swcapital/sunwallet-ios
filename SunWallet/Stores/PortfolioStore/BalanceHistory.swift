@@ -27,7 +27,7 @@ struct BalanceHistory {
         )
     }
     
-    private func balance(at date: Date) -> Double {
+    func balance(at date: Date) -> Double {
         historyValues.last(where: { date > $0.date })?.value ?? 0
     }
     
