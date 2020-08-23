@@ -48,7 +48,7 @@ struct HomeScreen: View {
             scrollView
         }
         .onReceive(portfolioStore.portfolioHistoryPublisher, perform: {
-            self.walletsHistory = $0?.filter { $0.value.totalEquity != 0 }
+            self.walletsHistory = $0
         })
     }
 }

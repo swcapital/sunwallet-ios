@@ -30,9 +30,9 @@ extension TransactionsView {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text("\(stringSign)\(transaction.value) \(transaction.asset.code.uppercased())")
+                    Text("\(stringSign)\(abs(transaction.value)) \(transaction.asset.code.uppercased())")
                     
-                    Text(stringSign + transaction.currencyValue.dollarString)
+                    Text(stringSign + abs(transaction.currencyValue).dollarString)
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }

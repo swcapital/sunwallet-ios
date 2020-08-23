@@ -76,7 +76,7 @@ private extension AssetHistory {
         let balanceHistory = BalanceHistory(assetInfo: assetBalance)
         let convertedHistorySet = balanceHistory.converted(historySet: historySet)
         let transactions = assetBalance.transactions.map { transaction -> AssetTransaction in
-            let historyPrice = historySet.all.first(where: { $0.date > transaction.date })?.value ?? 0
+            let historyPrice = (historySet.all + historySet.hourly).first(where: { $0.date > transaction.date })?.value ?? historySet.lastValue
             return AssetTransaction(
                 asset: assetBalance.asset,
                 value: transaction.value,

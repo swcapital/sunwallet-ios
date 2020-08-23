@@ -37,11 +37,11 @@ extension CryptoapisBlockchainRepository {
             .eraseToAnyPublisher()
     }
     
-    private func btcTransactionsPublisher(for address: String) -> AnyPublisher<Response<[_Transaction]>, Error> {
-        let endpoint = "/v1/bc/btc/mainnet/address/\(address)/basic/transactions"
+    private func btcTransactionsPublisher(for address: String) -> AnyPublisher<Response<[BitcoinTransaction]>, Error> {
+        let endpoint = "/v1/bc/btc/mainnet/address/\(address)/transactions"
         return dataTaskPublisher(for: endpoint)
             .extractData()
-            .decode(type: Response<[_Transaction]>.self, decoder: decoder)
+            .decode(type: Response<[BitcoinTransaction]>.self, decoder: decoder)
             .print()
             .eraseToAnyPublisher()
     }
@@ -51,11 +51,29 @@ extension CryptoapisBlockchainRepository {
         let transactionsPublisher = btcTransactionsPublisher(for: address)
         return Publishers.CombineLatest(balancePublisher, transactionsPublisher)
             .map { balanceResponse, transactionsResponse in
-                let transactions = transactionsResponse.payload.map { Transaction(date: $0.datetime, value: $0.amount.doubleValue) }
+                let transactions = transactionsResponse.payload.map { Transaction(date: $0.datetime, value: $0.amount(for: address)) }
                 let assetBalance = AssetBalance(asset: .btc, balance: balanceResponse.payload.balance.doubleValue, transactions: transactions)
                 return .init(assets: [assetBalance])
             }
             .eraseToAnyPublisher()
+    }
+    
+    private struct BitcoinTransaction: Codable {
+        let datetime: Date
+        let txins: [BitcoinTransactionDetails]
+        let txouts: [BitcoinTransactionDetails]
+        
+        func amount(for address: String) -> Double {
+            var balance = 0.0
+            balance -= txins.filter { $0.addresses.contains(address) }.map(\.amount.doubleValue).reduce(0, +)
+            balance += txouts.filter { $0.addresses.contains(address) }.map(\.amount.doubleValue).reduce(0, +)
+            return balance
+        }
+    }
+    
+    private struct BitcoinTransactionDetails: Codable {
+        let amount: String
+        let addresses: [String]
     }
 }
 
@@ -71,11 +89,11 @@ extension CryptoapisBlockchainRepository {
             .eraseToAnyPublisher()
     }
     
-    private func ethTransactionsPublisher(for address: String) -> AnyPublisher<Response<[_Transaction]>, Error> {
+    private func ethTransactionsPublisher(for address: String) -> AnyPublisher<Response<[EtheriumTransaction]>, Error> {
         let endpoint = "/v1/bc/eth/mainnet/address/\(address)/basic/transactions"
         return dataTaskPublisher(for: endpoint)
             .extractData()
-            .decode(type: Response<[_Transaction]>.self, decoder: decoder)
+            .decode(type: Response<[EtheriumTransaction]>.self, decoder: decoder)
             .print()
             .eraseToAnyPublisher()
     }
@@ -92,6 +110,11 @@ extension CryptoapisBlockchainRepository {
                 return .init(assets: [assetBalance] + erc20.assets)
             }
             .eraseToAnyPublisher()
+    }
+    
+    private struct EtheriumTransaction: Codable {
+        let amount: String
+        let datetime: Date
     }
 }
 
@@ -164,10 +187,5 @@ extension CryptoapisBlockchainRepository {
 
     private struct Balance: Codable {
         let balance: String
-    }
-
-    private struct _Transaction: Codable {
-        let amount: String
-        let datetime: Date
     }
 }

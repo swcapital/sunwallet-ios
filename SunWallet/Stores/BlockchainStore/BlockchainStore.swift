@@ -1,6 +1,5 @@
 import Combine
 import Foundation
-import SwiftUI
 
 class BlockchainStore: ObservableObject {
     private typealias WalletsBalanceSubject = CurrentValueSubject<[Wallet: WalletBalance]?, Never>
