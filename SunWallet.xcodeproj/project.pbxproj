@@ -88,6 +88,7 @@
 		DB65ACE424961A9400252A93 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65ACE324961A9400252A93 /* SecondaryButtonStyle.swift */; };
 		DB65BFEC24EEA6F1000DF3FC /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65BFEB24EEA6F1000DF3FC /* TransactionsView.swift */; };
 		DB65BFEF24EEA771000DF3FC /* TransactionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65BFEE24EEA771000DF3FC /* TransactionsScreen.swift */; };
+		DB65BFF124F144D6000DF3FC /* CryptoapisBlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65BFF024F144D6000DF3FC /* CryptoapisBlockchainRepository.swift */; };
 		DB68BC20247BC5E200377A72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68BC1F247BC5E200377A72 /* AppDelegate.swift */; };
 		DB68BC22247BC5E200377A72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68BC21247BC5E200377A72 /* SceneDelegate.swift */; };
 		DB68BC24247BC5E200377A72 /* ConvertAssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68BC23247BC5E200377A72 /* ConvertAssetsView.swift */; };
@@ -249,6 +250,7 @@
 		DB65ACE324961A9400252A93 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		DB65BFEB24EEA6F1000DF3FC /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		DB65BFEE24EEA771000DF3FC /* TransactionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsScreen.swift; sourceTree = "<group>"; };
+		DB65BFF024F144D6000DF3FC /* CryptoapisBlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoapisBlockchainRepository.swift; sourceTree = "<group>"; };
 		DB68BC1C247BC5E200377A72 /* SunWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB68BC1F247BC5E200377A72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB68BC21247BC5E200377A72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -930,6 +932,7 @@
 				DB01235824C710F8006E72FD /* BlockchainRepository.swift */,
 				DBE7D95424B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift */,
 				DB01235A24C713BE006E72FD /* BlockchairBlockchainRepository.swift */,
+				DB65BFF024F144D6000DF3FC /* CryptoapisBlockchainRepository.swift */,
 				DB01235C24C86971006E72FD /* AssetBalance.swift */,
 				DB1759FF24E55DDF00066284 /* WalletBalance.swift */,
 			);
@@ -1181,6 +1184,7 @@
 				DBF5D551248386A4006AF99B /* ValueHistory.swift in Sources */,
 				DB01235024C57F2F006E72FD /* Publisher+printJSONData.swift in Sources */,
 				DB3A7EA024E6D03100E41FDB /* AssetsView+Cell.swift in Sources */,
+				DB65BFF124F144D6000DF3FC /* CryptoapisBlockchainRepository.swift in Sources */,
 				DB65ACE424961A9400252A93 /* SecondaryButtonStyle.swift in Sources */,
 				DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */,
 				DB68BC38247C085D00377A72 /* Asset2.swift in Sources */,

@@ -9,7 +9,7 @@ class BlockchainStore: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private var subjects: [[Wallet]: WalletsBalanceSubject] = [:]
     
-    private let blockchainRepository: BlockchainRepository = BlockchairBlockchainRepository()
+    private let blockchainRepository: BlockchainRepository = CryptoapisBlockchainRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
     
     func walletsInfo(wallets: [Wallet], completion: @escaping ([Wallet: WalletBalance]?) -> Void) {
