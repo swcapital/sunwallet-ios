@@ -6,11 +6,15 @@ private let token = "PA__A7AmX35RoCXNBMUTKsR2xVR5u7IB"
 
 struct BlockchairBlockchainRepository: BlockchainRepository {
     
-    private var decoder: JSONDecoder {
+    private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(.bcDateFormatter)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
         return decoder
-    }
+    }()
     
     func balance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
         switch wallet.asset {
@@ -157,18 +161,4 @@ extension BlockchairBlockchainRepository {
 
 private struct BalancesResponse<T: Codable>: Codable {
     let data: [String: T]
-}
-
-private extension DateFormatter {
-    static let bcDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter
-    }()
-}
-
-private extension String {
-    var doubleValue: Double {
-        Double(self) ?? 0
-    }
 }

@@ -5,7 +5,11 @@ struct CryptoapisBlockchainRepository: BlockchainRepository {
     
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(.dateFormatter)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
         return decoder
     }()
     
@@ -139,21 +143,6 @@ extension CryptoapisBlockchainRepository {
         let value: String
         let datetime: Date
         let symbol: Asset
-    }
-}
-
-private extension DateFormatter {
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-        return formatter
-    }()
-}
-
-
-private extension String {
-    var doubleValue: Double {
-        Double(self) ?? 0
     }
 }
 
