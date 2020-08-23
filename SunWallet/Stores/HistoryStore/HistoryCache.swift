@@ -5,7 +5,10 @@ extension HistoryStore {
         private var storage: [_ExchangeHistory] = []
         
         mutating func add(_ history: [ExchangeHistory]) {
-            storage.append(contentsOf: history.map { .init($0) })
+            history.map { _ExchangeHistory($0) }.forEach { history in
+                storage.removeAll(where: { $0.source == history.source && $0.destination == history.destination })
+                storage.append(history)
+            }
         }
         
         func get(base: Asset, targets: [Asset]) -> [ExchangeHistory?] {
@@ -29,12 +32,13 @@ private struct _ExchangeHistory: Codable {
     let source: Asset
     let destination: Asset
     let historySet: _TradeHistorySet
-    let date = Date()
+    let date: Date
     
     init(_ original: ExchangeHistory) {
         self.source = original.source
         self.destination = original.destination
         self.historySet = .init(original.historySet)
+        self.date = Date()
     }
     
     var original: ExchangeHistory {
