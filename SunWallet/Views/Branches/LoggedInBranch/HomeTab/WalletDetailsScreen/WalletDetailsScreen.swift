@@ -20,7 +20,7 @@ struct WalletDetailsScreen: View {
         assetsHistory.prefix(5).array()
     }
     private var newestTransactions: [AssetTransaction] {
-        walletHistory.transactions.prefix(5).array()
+        walletHistory.transactions.sorted().prefix(5).array()
     }
     
     // MARK:- Subviews
@@ -66,7 +66,7 @@ struct WalletDetailsScreen: View {
                 
                 NavigationLink(
                     "See all",
-                    destination: TransactionsScreen(transactions: walletHistory.transactions)
+                    destination: TransactionsScreen(transactions: walletHistory.transactions.sorted())
                 )
             }
             .padding(.horizontal)

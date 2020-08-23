@@ -40,7 +40,6 @@ extension BlockchairBlockchainRepository {
                 let data = $0.data.first!.value
                 let balance = (data.address.balance ?? 0) / satoshiRatio
                 let transactions = data.transactions
-                    .sorted(by: { $0.time > $1.time })
                     .map { Transaction(date: $0.time, value: $0.balanceChange / satoshiRatio) }
                     .reversed()
                 let assetBalance = AssetBalance(asset: .btc, balance: balance, transactions: Array(transactions))
@@ -91,7 +90,6 @@ extension BlockchairBlockchainRepository {
                 let data = $0.data.first!.value
                 let balance = (data.address.balance?.doubleValue ?? 0) / weiRatio
                 let transactions = data.calls
-                    .sorted(by: { $0.time > $1.time })
                     .map { Transaction(date: $0.time, value: $0.value / weiRatio) }
                     .reversed()
                 let assetBalance = AssetBalance(asset: .eth, balance: balance, transactions: Array(transactions))

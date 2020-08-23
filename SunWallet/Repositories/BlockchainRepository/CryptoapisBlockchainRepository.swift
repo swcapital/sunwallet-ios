@@ -48,7 +48,7 @@ extension CryptoapisBlockchainRepository {
         return Publishers.CombineLatest(balancePublisher, transactionsPublisher)
             .map { balanceResponse, transactionsResponse in
                 let transactions = transactionsResponse.payload.map { Transaction(date: $0.datetime, value: $0.amount.doubleValue) }
-                let assetBalance = AssetBalance(asset: .btc, balance: balanceResponse.payload.balance.doubleValue, transactions: Array(transactions))
+                let assetBalance = AssetBalance(asset: .btc, balance: balanceResponse.payload.balance.doubleValue, transactions: transactions)
                 return .init(assets: [assetBalance])
             }
             .eraseToAnyPublisher()
@@ -84,7 +84,7 @@ extension CryptoapisBlockchainRepository {
         return Publishers.CombineLatest3(balancePublisher, transactionsPublisher, erc20Publisher)
             .map { balanceResponse, transactionsResponse, erc20 in
                 let transactions = transactionsResponse.payload.map { Transaction(date: $0.datetime, value: $0.amount.doubleValue) }
-                let assetBalance = AssetBalance(asset: .eth, balance: balanceResponse.payload.balance.doubleValue, transactions: Array(transactions))
+                let assetBalance = AssetBalance(asset: .eth, balance: balanceResponse.payload.balance.doubleValue, transactions: transactions)
                 return .init(assets: [assetBalance] + erc20.assets)
             }
             .eraseToAnyPublisher()
@@ -123,7 +123,6 @@ extension CryptoapisBlockchainRepository {
                     let transactions = transfersResponse.payload
                         .filter { $0.symbol == balance.symbol }
                         .map { Transaction(date: $0.datetime, value: $0.value.doubleValue) }
-                        .sorted(by: { $0.date < $1.date })
                     return AssetBalance(asset: balance.symbol, balance: balance.balance.doubleValue, transactions: transactions)
                 }
                 return .init(assets: assets)

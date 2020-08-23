@@ -8,3 +8,10 @@ struct AssetTransaction: Identifiable {
     let currencyValue: Double
     let date: Date
 }
+
+extension AssetTransaction: Comparable {
+    
+    static func < (lhs: AssetTransaction, rhs: AssetTransaction) -> Bool {
+        lhs.date > rhs.date
+    }
+}
