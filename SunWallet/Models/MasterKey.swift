@@ -1,5 +1,7 @@
 import Foundation
-import HDWalletKit
+import TrustWalletCore
+
+private let passphrase = ""
 
 struct MasterKey: Codable {
     let id: UUID
@@ -12,22 +14,21 @@ struct MasterKey: Codable {
     
     init() {
         self.id = UUID()
-        self.mnemonic = Mnemonic.create()
+        self.mnemonic = HDWallet(strength: 128, passphrase: passphrase).mnemonic
     }
     
     func wallets() -> [Wallet] {
         let assets: [Asset] = [.eth, .btc]
-        return assets.map { asset -> Wallet in
-            let seed = Mnemonic.createSeed(mnemonic: self.mnemonic)
-            let wallet = HDWalletKit.Wallet(seed: seed, coin: asset.coin)
-            let account = wallet.generateAccount()
-            return Wallet(address: account.address, title: account.address, asset: asset, masterKeyID: self.id)
+        return assets.map { asset -> Wallet in            
+            let wallet = HDWallet(mnemonic: self.mnemonic, passphrase: passphrase)
+            let address = wallet.getAddressForCoin(coin: asset.coin)
+            return Wallet(address: address, title: asset.title, asset: asset, masterKeyID: self.id)
         }
     }
 }
 
 private extension Asset {
-    var coin: Coin {
+    var coin: CoinType {
         switch self {
         case .btc: return .bitcoin
         case .eth: return .ethereum

@@ -1,24 +1,24 @@
 PODS:
-  - CryptoSwift (1.0.0)
-  - HDWalletKit (0.3.6):
-    - CryptoSwift (~> 1.0.0)
-    - secp256k1.swift (~> 0.1.4)
-  - secp256k1.swift (0.1.4)
+  - SwiftProtobuf (1.11.0)
+  - TrustWalletCore (2.2.6):
+    - TrustWalletCore/Core (= 2.2.6)
+  - TrustWalletCore/Core (2.2.6):
+    - TrustWalletCore/Types
+  - TrustWalletCore/Types (2.2.6):
+    - SwiftProtobuf
 
 DEPENDENCIES:
-  - HDWalletKit
+  - TrustWalletCore
 
 SPEC REPOS:
   trunk:
-    - CryptoSwift
-    - HDWalletKit
-    - secp256k1.swift
+    - SwiftProtobuf
+    - TrustWalletCore
 
 SPEC CHECKSUMS:
-  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
-  HDWalletKit: 6d97a15404b2edfe3418e3dc064faa967e51dac4
-  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  SwiftProtobuf: f889fe5772f90ef7d7b8aac352d1fddf39650713
+  TrustWalletCore: cbaf901a243668bb37cd3010f74cfb1a7c63484b
 
-PODFILE CHECKSUM: d381d4e819e8ab6a09416ab43b216cdef604f1c7
+PODFILE CHECKSUM: 0ed8305ed0c79e907b244d2a52abd5f86e8c98ce
 
 COCOAPODS: 1.9.3
