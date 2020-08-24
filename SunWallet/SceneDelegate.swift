@@ -2,12 +2,12 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    private let appStateStore = AppStateStore()
     private let walletStore = WalletStore()
     private let userSettingsStore = UserSettingsStore()
     private let blockchainStore = BlockchainStore()
     private let assetInfoStore = AssetInfoStore()
     
+    private lazy var appStateStore = AppStateStore(walletStore: walletStore)
     private lazy var historyStore = HistoryStore(userSettingsStore: userSettingsStore)
     private lazy var portfolioStore = PortfolioStore(
         historyStore: historyStore,

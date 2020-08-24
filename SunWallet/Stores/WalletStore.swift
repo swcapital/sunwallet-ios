@@ -6,7 +6,7 @@ private let masterKeysKey = "masterKeys"
 class WalletStore: ObservableObject {
     
     @UserDefault("wallets", defaultValue: [])
-    var wallets: [Wallet]
+    private(set) var wallets: [Wallet]  { didSet { objectWillChange.send() } }
     
     func loadMasterKeys(hint: String) -> [MasterKey]? {
         let keychain = KeychainRepository()
@@ -20,5 +20,9 @@ class WalletStore: ObservableObject {
     
     func save(wallets: [Wallet]) {
         self.wallets = wallets
+    }
+    
+    func reset() {
+        wallets = []
     }
 }

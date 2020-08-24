@@ -25,10 +25,7 @@ class PortfolioStore: ObservableObject {
         if let subject = portfolioSubject {
             return subject.eraseToAnyPublisher()
         } else {
-            let subject = WalletsHistorySubject(nil)
-            portfolioSubject = subject
-            updatePortfolioHistorySubject()
-            return subject.eraseToAnyPublisher()
+            return refreshPortfolioSubject().eraseToAnyPublisher()
         }
     }
     
@@ -98,12 +95,15 @@ private extension AssetHistory {
 // MARK: - Publishers
 extension PortfolioStore {
     
-    private func updatePortfolioHistorySubject() {
-        guard let subject = portfolioSubject else { return }
+    @discardableResult
+    private func refreshPortfolioSubject() -> WalletsHistorySubject {
+        let subject = WalletsHistorySubject(nil)
+        portfolioSubject = subject
         portfolioSubscription = walletsHistoryPublisher(wallets: walletStore.wallets).sink(receiveValue: { subject.send($0) })
+        return subject
     }
     
     private func subscribeOnWalletStore() {
-        walletsSubscription = walletStore.objectWillChange.sink(receiveValue: { self.updatePortfolioHistorySubject() })
+        walletsSubscription = walletStore.objectWillChange.sink(receiveValue: { self.refreshPortfolioSubject() })
     }
 }
