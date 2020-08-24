@@ -18,9 +18,13 @@ struct LineChartShape: Shape {
     // MARK:- Methods
     private func makePoints(fromValues values: [Double], in rect: CGRect) -> [CGPoint] {
         guard values.count > 0 else { return [] }
-        let maxValue = values.max()!
-        let minValue = values.min()!
-        guard maxValue > minValue else { return [] }
+        
+        var maxValue = values.max()!
+        var minValue = values.min()!
+        if minValue == maxValue {
+            maxValue += 0.9
+            minValue -= 0.1
+        }
         
         let horizontalStep = rect.size.width / CGFloat(values.count - 1)
         let verticleStep = rect.size.height / CGFloat(maxValue - minValue)

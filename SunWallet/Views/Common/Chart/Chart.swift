@@ -20,8 +20,13 @@ struct Chart: View {
         self.labelsColor = labelsColor
         self._selectedValueIndex = selectedValueIndex
         
-        let minValue = values.min()!
-        let maxValue = values.max()!
+        var minValue = values.min()!
+        var maxValue = values.max()!
+        
+        if minValue == maxValue {
+            maxValue += 0.9
+            minValue -= 0.1
+        }
         
         self.points = values.map {
             ($0 - minValue) / (maxValue - minValue)
