@@ -1,7 +1,5 @@
 import SwiftUI
 
-private let targets: [Asset] = [.btc, .bch, .eth, .init("etc"), .init("ltc")]
-
 struct GuestBranch: View {
     @EnvironmentObject
     var historyStore: HistoryStore
