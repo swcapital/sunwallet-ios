@@ -33,7 +33,6 @@ extension CryptoapisBlockchainRepository {
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<Balance>.self, decoder: decoder)
-            .print()
             .eraseToAnyPublisher()
     }
     
@@ -42,7 +41,6 @@ extension CryptoapisBlockchainRepository {
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[BitcoinTransaction]>.self, decoder: decoder)
-            .print()
             .eraseToAnyPublisher()
     }
     
@@ -85,7 +83,6 @@ extension CryptoapisBlockchainRepository {
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<Balance>.self, decoder: decoder)
-            .print()
             .eraseToAnyPublisher()
     }
     
@@ -94,7 +91,6 @@ extension CryptoapisBlockchainRepository {
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[EtheriumTransaction]>.self, decoder: decoder)
-            .print()
             .eraseToAnyPublisher()
     }
     
@@ -126,7 +122,6 @@ extension CryptoapisBlockchainRepository {
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[TokenBalance]>.self, decoder: decoder)
-            .print()
             .eraseToAnyPublisher()
     }
     
@@ -135,7 +130,6 @@ extension CryptoapisBlockchainRepository {
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[TokenTransfer]>.self, decoder: decoder)
-            .print()
             .eraseToAnyPublisher()
     }
     
