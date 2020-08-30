@@ -1,10 +1,10 @@
 import Foundation
 
 extension String: Identifiable {
-    public var id: ObjectIdentifier {
-        ObjectIdentifier(Self.self)
-    }
     
+    public var id: String {
+        self
+    }
     
     /// Needs for smooth animations.
     /// When label are constantly changing, this constant prevents trailing truncating dots `...`
