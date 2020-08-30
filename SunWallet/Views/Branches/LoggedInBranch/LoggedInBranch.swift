@@ -3,6 +3,7 @@ import SwiftUI
 struct LoggedInBranch: View {
     // MARK:- States
     @State private var showTradeSheet = false
+    @State private var actionView: AnyView?
     
     // MARK:- Subviews
     private var tradeButton: some View {
@@ -13,6 +14,38 @@ struct LoggedInBranch: View {
                 .frame(width: 60, height: 40)
                 .background(Circle().fill(Color.primary))
                 .padding(5)
+        }
+    }
+    private var actionViewSheet: some View {
+        actionView.map {
+            $0.edgesIgnoringSafeArea(.all)
+                .zIndex(3)
+                .transition(.move(edge: .bottom))
+                .background(Color.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+    private var actionButtonsSheet: some View {
+        BottomSheetView(isOpen: $showTradeSheet) {
+            TradeSheet(selectedView: .init(
+                get: { self.actionView },
+                set: { newValue in
+                    withAnimation(.easeIn(duration: 0.5)) {
+                        self.showTradeSheet = false
+                    }
+                    withAnimation(Animation.easeOut(duration: 0.5).delay(0.5)) {
+                        self.actionView = newValue
+                    }
+                })
+            )
+        }
+    }
+    private var closeButton: some View {
+        Button(action: { self.actionView = nil }) {
+            Image(systemName: "multiply")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .padding()
         }
     }
     
@@ -42,10 +75,11 @@ struct LoggedInBranch: View {
             }
             .overlay(tradeButton, alignment: .bottom)
             
+            actionViewSheet
+                .overlay(closeButton, alignment: .topLeading)
+            
             if showTradeSheet {
-                BottomSheetView(isOpen: $showTradeSheet) {
-                    TradeSheet()
-                }
+                actionButtonsSheet
             }
         }
     }

@@ -49,27 +49,20 @@ struct Asset: Codable {
 
 extension Asset {
     static let ampl = Asset("ampl")
-    static let atom = Asset("atom")
     static let bal = Asset("bal")
     static let band = Asset("band")
     static let bat = Asset("bat")
-    static let bch = Asset("bch")
     static let bnb = Asset("bnb")
     static let bnt = Asset("bnt")
     static let btc = Asset("btc")
     static let busd = Asset("busd")
-    static let cny = Asset("cny")
     static let comp = Asset("comp")
-    static let cusdt = Asset("cusdt")
     static let cusdc = Asset("cusdc")
+    static let cusdt = Asset("cusdt")
     static let dai = Asset("dai")
     static let eth = Asset("eth")
-    static let eur = Asset("eur")
     static let ftt = Asset("ftt")
-    static let gbp = Asset("gbp")
     static let ht = Asset("ht")
-    static let jpy = Asset("jpy")
-    static let kcs = Asset("kcs")
     static let knc = Asset("knc")
     static let lend = Asset("lend")
     static let leo = Asset("leo")
@@ -77,19 +70,25 @@ extension Asset {
     static let lrc = Asset("lrc")
     static let mana = Asset("mana")
     static let matic = Asset("matic")
-    static let nexo = Asset("nexo")
     static let okb = Asset("okb")
-    static let omg = Asset("omg")
     static let pax = Asset("pax")
     static let paxg = Asset("paxg")
     static let rep = Asset("rep")
     static let snx = Asset("snx")
     static let tusd = Asset("tusd")
-    static let usd = Asset("usd")
+    //static let usd = Asset("usd")
     static let usdc = Asset("usdc")
     static let usdt = Asset("usdt")
     static let xaut = Asset("xaut")
-    static let zrx = Asset("zrx") 
+    static let zrx = Asset("zrx")
+    
+    static let coins: [Asset] = [.btc, .eth]
+    static let etherTokens: [Asset] = [
+        .ampl, .bal, .band, .bat, .bnb, .bnt, .busd,
+        .comp, .cusdc, .cusdt, .dai, .ftt, .ht, .knc,
+        .lend, .leo, .link, .lrc, .mana, .matic, .okb,
+        .pax, .paxg, .rep, .snx, .tusd, .usdc, .usdt, .xaut, .zrx
+    ]
 }
 
 extension Asset: Hashable {

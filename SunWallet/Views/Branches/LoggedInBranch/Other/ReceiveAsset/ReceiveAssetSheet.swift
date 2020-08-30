@@ -1,37 +1,24 @@
 import SwiftUI
 
 struct ReceiveAssetSheet: View {
+    let accounts: [Account]
+    
     // MARK:- Bindings
-    @Binding var asset: Asset2
-    @Binding var isOpen: Bool
+    @Binding var selectedAccount: Account?
     
-    // MARK:- Environment
-    @EnvironmentObject var dataSource: DataSource
-    
+
     var body: some View {
-        VStack(alignment: .leading) {
+        List {
             Text("Select asset")
                 .padding(.horizontal)
                 .font(.headline)
             
-            Divider()
-            
-            List {
-                ForEach(dataSource.assets) { asset in
-                    ReceiveAssetCell(asset: asset)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            self.asset = asset
-                            self.isOpen = false
-                        }
+            ForEach(accounts) { account in
+                ReceiveAssetCell(asset: account.asset)
+                    .onTapGesture {
+                        self.selectedAccount = account
+                    }
                 }
             }
-        }
-    }
-}
-
-struct ReceiveCurrencySheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ReceiveAssetSheet(asset: .constant(TestData.randomAsset), isOpen: .constant(true))
     }
 }

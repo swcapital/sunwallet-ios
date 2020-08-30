@@ -28,7 +28,7 @@ struct WalletDetailView: View {
             Image("barcode")
         })
         .popover(isPresented: $showReceiveAssetPopover) {
-            ReceiveAsset()
+            ReceiveAssetView()
         }
     }
     private var sendButton: some View {

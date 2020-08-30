@@ -7,23 +7,21 @@ struct TradeSheetCell: View {
     let subtitle: String
     
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Image(imageName)
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                
-                VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.headline)
-                    Text(subtitle)
-                }
-                
-                Spacer()
-            }
-            .padding()
+        HStack {
+            Image(imageName)
+                .resizable()
+                .frame(width: 40, height: 40)
             
-            Divider()
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.headline)
+                
+                Text(subtitle)
+            }
+            
+            Spacer()
         }
+        .padding()
+        .contentShape(Rectangle())
     }
 }

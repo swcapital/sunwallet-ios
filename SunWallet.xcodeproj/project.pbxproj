@@ -106,6 +106,7 @@
 		DB77E172247E3C2100BF1A88 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB77E171247E3C2100BF1A88 /* Double.swift */; };
 		DB77E174247E3C5700BF1A88 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB77E173247E3C5700BF1A88 /* NumberFormatter.swift */; };
 		DB77E176247E881100BF1A88 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB77E175247E881100BF1A88 /* TrackableScrollView.swift */; };
+		DB85B37B24F7B09800BB8AD1 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB85B37A24F7B09800BB8AD1 /* Account.swift */; };
 		DB85FA8D247D45D400A43B3D /* CircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB85FA8C247D45D400A43B3D /* CircleIcon.swift */; };
 		DB865AD024B1D864004303F3 /* BootstrapWalletsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB865ACF24B1D864004303F3 /* BootstrapWalletsScreen.swift */; };
 		DB865AD324B1EEAC004303F3 /* ImportWalletScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB865AD224B1EEAC004303F3 /* ImportWalletScreen.swift */; };
@@ -116,6 +117,7 @@
 		DB865AEB24B34E3E004303F3 /* MasterKeyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB865AEA24B34E3E004303F3 /* MasterKeyInfo.swift */; };
 		DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */; };
 		DB9199CE247C24EB00D2B6A5 /* ExchangeDirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */; };
+		DB919D3424FBDE7C00876307 /* View+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3324FBDE7C00876307 /* View+share.swift */; };
 		DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DC249F4D8900617590 /* LinearGradient.swift */; };
 		DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */; };
 		DBC272DF249F4DBB00617590 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DE249F4DBB00617590 /* LogoView.swift */; };
@@ -160,7 +162,7 @@
 		DBFDB7552492A45000A1DFAD /* TradeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7542492A45000A1DFAD /* TradeSheet.swift */; };
 		DBFDB7572492A80A00A1DFAD /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7562492A80A00A1DFAD /* BottomSheetView.swift */; };
 		DBFDB759249340F400A1DFAD /* TradeSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB758249340F400A1DFAD /* TradeSheetCell.swift */; };
-		DBFDB75D249353B200A1DFAD /* ReceiveAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB75C249353B200A1DFAD /* ReceiveAsset.swift */; };
+		DBFDB75D249353B200A1DFAD /* ReceiveAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB75C249353B200A1DFAD /* ReceiveAssetView.swift */; };
 		DBFDB75F24935B0E00A1DFAD /* Image+qrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB75E24935B0E00A1DFAD /* Image+qrCode.swift */; };
 		DBFDB7612493635C00A1DFAD /* ReceiveAssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7602493635C00A1DFAD /* ReceiveAssetCell.swift */; };
 		DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7622493685D00A1DFAD /* QRView.swift */; };
@@ -270,6 +272,7 @@
 		DB77E171247E3C2100BF1A88 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		DB77E173247E3C5700BF1A88 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		DB77E175247E881100BF1A88 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
+		DB85B37A24F7B09800BB8AD1 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		DB85FA8C247D45D400A43B3D /* CircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIcon.swift; sourceTree = "<group>"; };
 		DB865ACF24B1D864004303F3 /* BootstrapWalletsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapWalletsScreen.swift; sourceTree = "<group>"; };
 		DB865AD224B1EEAC004303F3 /* ImportWalletScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletScreen.swift; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 		DB865AEA24B34E3E004303F3 /* MasterKeyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterKeyInfo.swift; sourceTree = "<group>"; };
 		DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionButton.swift; sourceTree = "<group>"; };
+		DB919D3324FBDE7C00876307 /* View+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+share.swift"; sourceTree = "<group>"; };
 		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
 		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Support/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
 		DBC272DE249F4DBB00617590 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -324,7 +328,7 @@
 		DBFDB7542492A45000A1DFAD /* TradeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSheet.swift; sourceTree = "<group>"; };
 		DBFDB7562492A80A00A1DFAD /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		DBFDB758249340F400A1DFAD /* TradeSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSheetCell.swift; sourceTree = "<group>"; };
-		DBFDB75C249353B200A1DFAD /* ReceiveAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAsset.swift; sourceTree = "<group>"; };
+		DBFDB75C249353B200A1DFAD /* ReceiveAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAssetView.swift; sourceTree = "<group>"; };
 		DBFDB75E24935B0E00A1DFAD /* Image+qrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+qrCode.swift"; sourceTree = "<group>"; };
 		DBFDB7602493635C00A1DFAD /* ReceiveAssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAssetCell.swift; sourceTree = "<group>"; };
 		DBFDB7622493685D00A1DFAD /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 				DBFDB75E24935B0E00A1DFAD /* Image+qrCode.swift */,
 				DB35615324B48D36006828ED /* String.swift */,
 				DB01234B24C4B6B4006E72FD /* View.swift */,
+				DB919D3324FBDE7C00876307 /* View+share.swift */,
 				DB3A7E9A24E6BC0A00E41FDB /* ArraySlice.swift */,
 			);
 			path = Extensions;
@@ -779,6 +784,7 @@
 				DB865AE824B34E25004303F3 /* MasterKey.swift */,
 				DB865AEA24B34E3E004303F3 /* MasterKeyInfo.swift */,
 				DB865AE624B349D9004303F3 /* Wallet.swift */,
+				DB85B37A24F7B09800BB8AD1 /* Account.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1048,7 +1054,7 @@
 		DBFDB75B2493539D00A1DFAD /* ReceiveAsset */ = {
 			isa = PBXGroup;
 			children = (
-				DBFDB75C249353B200A1DFAD /* ReceiveAsset.swift */,
+				DBFDB75C249353B200A1DFAD /* ReceiveAssetView.swift */,
 				DBFDB7602493635C00A1DFAD /* ReceiveAssetCell.swift */,
 				DBFDB7622493685D00A1DFAD /* QRView.swift */,
 				DB343FAD24936BAD003DDA0B /* ReceiveAssetSheet.swift */,
@@ -1188,6 +1194,7 @@
 				DB65ACE424961A9400252A93 /* SecondaryButtonStyle.swift in Sources */,
 				DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */,
 				DB68BC38247C085D00377A72 /* Asset2.swift in Sources */,
+				DB919D3424FBDE7C00876307 /* View+share.swift in Sources */,
 				DB865AE924B34E25004303F3 /* MasterKey.swift in Sources */,
 				DB50249B24B1A159002E1547 /* TextView.swift in Sources */,
 				DB85FA8D247D45D400A43B3D /* CircleIcon.swift in Sources */,
@@ -1266,6 +1273,7 @@
 				DB0CCA692498BBF20060E884 /* WelcomeScreen.swift in Sources */,
 				DB01235324C6BACF006E72FD /* HistoryRepository.swift in Sources */,
 				DB01234A24C4B473006E72FD /* LoadingView.swift in Sources */,
+				DB85B37B24F7B09800BB8AD1 /* Account.swift in Sources */,
 				DBC2E3822484F17A00C871E4 /* StrokeStyle.swift in Sources */,
 				DB35615424B48D36006828ED /* String.swift in Sources */,
 				DB35619424B6F8E7006828ED /* WalletStore.swift in Sources */,
@@ -1313,7 +1321,7 @@
 				DBC5538A24A785510037763F /* RootView.swift in Sources */,
 				DBFABEE9249CF85000EDE526 /* BuyAssetView.swift in Sources */,
 				DB65BFEC24EEA6F1000DF3FC /* TransactionsView.swift in Sources */,
-				DBFDB75D249353B200A1DFAD /* ReceiveAsset.swift in Sources */,
+				DBFDB75D249353B200A1DFAD /* ReceiveAssetView.swift in Sources */,
 				DB343FAE24936BAD003DDA0B /* ReceiveAssetSheet.swift in Sources */,
 				DBC5539324A790550037763F /* Asset.swift in Sources */,
 				DB865AE224B218A7004303F3 /* WalletCurrencyPicker+Cell.swift in Sources */,

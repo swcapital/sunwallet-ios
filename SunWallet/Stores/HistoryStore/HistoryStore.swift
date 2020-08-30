@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-private let bootstrapTargets: [Asset] = [.btc, .bch, .eth, .init("etc"), .init("ltc")]
+private let bootstrapTargets: [Asset] = [.btc, .init("bch"), .eth, .init("etc"), .init("ltc")]
 
 class HistoryStore: ObservableObject {
     private typealias HistorySubject = CurrentValueSubject<[ExchangeHistory]?, Never>
@@ -71,11 +71,7 @@ extension HistoryStore {
     
     private func updateAllHistorySubject() {
         guard let subject = self.subjects[.all] else { return }
-        let target: [Asset] = [
-            .knc, .okb, .lend, .band, .ht, .lrc, .matic, .rep, .comp, .bnt, .snx, .paxg,
-            .ampl, .ftt, .link, .xaut, .cusdc, .cusdt, .bal, .leo,
-            .bat, .bnb, .btc, .busd, .dai, .eth, .mana, .pax, .tusd, .usdc, .usdt, .zrx
-        ]
+        let target: [Asset] = Asset.coins + Asset.etherTokens
         update(subject: subject, base: userCurrencyAsset, targets: target)
     }
     

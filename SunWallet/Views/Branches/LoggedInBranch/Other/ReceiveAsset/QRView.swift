@@ -1,4 +1,5 @@
 import SwiftUI
+import MobileCoreServices
 
 struct QRView: View {
     // MARK:- Properties
@@ -21,6 +22,7 @@ struct QRView: View {
             Text("Wallet address")
                 .font(.callout)
                 .foregroundColor(.blueGray)
+            
             Text(address)
                 .lineLimit(1)
                 .truncationMode(.middle)
@@ -28,8 +30,10 @@ struct QRView: View {
         }
     }
     private var copyButton: some View {
-        Button("Copy") {}
-            .foregroundColor(.primary)
+        Button("Copy") {
+            UIPasteboard.general.setValue(self.address, forPasteboardType: kUTTypePlainText as String)
+        }
+        .foregroundColor(.primary)
     }
     
     var body: some View {
