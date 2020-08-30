@@ -118,6 +118,7 @@
 		DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */; };
 		DB9199CE247C24EB00D2B6A5 /* ExchangeDirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */; };
 		DB919D3424FBDE7C00876307 /* View+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3324FBDE7C00876307 /* View+share.swift */; };
+		DB919D3624FBE55600876307 /* QRCodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3524FBE55600876307 /* QRCodeStore.swift */; };
 		DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DC249F4D8900617590 /* LinearGradient.swift */; };
 		DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */; };
 		DBC272DF249F4DBB00617590 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DE249F4DBB00617590 /* LogoView.swift */; };
@@ -163,7 +164,6 @@
 		DBFDB7572492A80A00A1DFAD /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7562492A80A00A1DFAD /* BottomSheetView.swift */; };
 		DBFDB759249340F400A1DFAD /* TradeSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB758249340F400A1DFAD /* TradeSheetCell.swift */; };
 		DBFDB75D249353B200A1DFAD /* ReceiveAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB75C249353B200A1DFAD /* ReceiveAssetView.swift */; };
-		DBFDB75F24935B0E00A1DFAD /* Image+qrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB75E24935B0E00A1DFAD /* Image+qrCode.swift */; };
 		DBFDB7612493635C00A1DFAD /* ReceiveAssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7602493635C00A1DFAD /* ReceiveAssetCell.swift */; };
 		DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7622493685D00A1DFAD /* QRView.swift */; };
 /* End PBXBuildFile section */
@@ -284,6 +284,7 @@
 		DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionButton.swift; sourceTree = "<group>"; };
 		DB919D3324FBDE7C00876307 /* View+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+share.swift"; sourceTree = "<group>"; };
+		DB919D3524FBE55600876307 /* QRCodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeStore.swift; sourceTree = "<group>"; };
 		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
 		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Support/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
 		DBC272DE249F4DBB00617590 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -329,7 +330,6 @@
 		DBFDB7562492A80A00A1DFAD /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		DBFDB758249340F400A1DFAD /* TradeSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSheetCell.swift; sourceTree = "<group>"; };
 		DBFDB75C249353B200A1DFAD /* ReceiveAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAssetView.swift; sourceTree = "<group>"; };
-		DBFDB75E24935B0E00A1DFAD /* Image+qrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+qrCode.swift"; sourceTree = "<group>"; };
 		DBFDB7602493635C00A1DFAD /* ReceiveAssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveAssetCell.swift; sourceTree = "<group>"; };
 		DBFDB7622493685D00A1DFAD /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		EF424D1DC3AFA3029954CC4C /* Pods-SunWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunWallet.release.xcconfig"; path = "Target Support Files/Pods-SunWallet/Pods-SunWallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -428,7 +428,6 @@
 				DB0376C9247CFD13005ACB03 /* Color.swift */,
 				DB77E171247E3C2100BF1A88 /* Double.swift */,
 				DB77E173247E3C5700BF1A88 /* NumberFormatter.swift */,
-				DBFDB75E24935B0E00A1DFAD /* Image+qrCode.swift */,
 				DB35615324B48D36006828ED /* String.swift */,
 				DB01234B24C4B6B4006E72FD /* View.swift */,
 				DB919D3324FBDE7C00876307 /* View+share.swift */,
@@ -535,6 +534,7 @@
 				DB6D46CA24CDC07F00BA61E6 /* BlockchainStore */,
 				DB01236024CAE6B3006E72FD /* PortfolioStore */,
 				DB551E0124EAFE98007E17DA /* AssetInfoStore */,
+				DB919D3524FBE55600876307 /* QRCodeStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -1238,6 +1238,7 @@
 				DBFDB7552492A45000A1DFAD /* TradeSheet.swift in Sources */,
 				DB1759FC24E5538000066284 /* WalletHistory.swift in Sources */,
 				DBFDB7572492A80A00A1DFAD /* BottomSheetView.swift in Sources */,
+				DB919D3624FBE55600876307 /* QRCodeStore.swift in Sources */,
 				DB5F36A024A9D79800DDCA7A /* HistoryEntry.swift in Sources */,
 				DB3A5C1124862705007F19F2 /* HistoryChartSection.swift in Sources */,
 				DB01235B24C713BE006E72FD /* BlockchairBlockchainRepository.swift in Sources */,
@@ -1264,7 +1265,6 @@
 				DB5F36CD24AF273D00DDCA7A /* CacheRepository.swift in Sources */,
 				DB19DC3C249A3B87008F7F79 /* PinCodeSheet.swift in Sources */,
 				DB2A131324AF8F820007197F /* AnimatingImage.swift in Sources */,
-				DBFDB75F24935B0E00A1DFAD /* Image+qrCode.swift in Sources */,
 				DBC5539124A78D6F0037763F /* AppStateStore.swift in Sources */,
 				DB00A6372482AF6A006FD5A0 /* WatchListSection.swift in Sources */,
 				DB19DC27249A0573008F7F79 /* WelcomeScreen+MultiChart.swift in Sources */,

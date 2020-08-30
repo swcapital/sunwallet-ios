@@ -4,6 +4,12 @@ import MobileCoreServices
 struct QRView: View {
     // MARK:- Properties
     let address: String
+    private let image: Image
+        
+    init(address: String) {
+        self.address = address
+        self.image = QRCodeStore().generateImage(for: address)
+    }
     
     // MARK:- Subviews
     private var cardView: some View {
@@ -12,8 +18,7 @@ struct QRView: View {
             .shadow(color: .lightGray, radius: 8)
     }
     private var qrImage: some View {
-        Image(qrCode: address)
-            .resizable()
+        image.resizable()
             .frame(width: 200, height: 200)
             .padding()
     }
