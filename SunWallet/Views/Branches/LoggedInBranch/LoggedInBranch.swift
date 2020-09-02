@@ -39,9 +39,10 @@ struct LoggedInBranch: View {
                 })
             )
         }
+        .edgesIgnoringSafeArea(.all) // It should be in `BottomSheetView` but there is some bug in SwiftUI 1
     }
     private var closeButton: some View {
-        Button(action: { self.actionView = nil }) {
+        Button(animationAction: { self.actionView = nil }) {
             Image(systemName: "multiply")
                 .resizable()
                 .frame(width: 20, height: 20)

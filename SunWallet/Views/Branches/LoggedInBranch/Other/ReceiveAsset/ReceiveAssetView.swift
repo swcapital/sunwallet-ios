@@ -12,63 +12,67 @@ struct ReceiveAssetView: View {
     private var accounts: [Account] {
         walletStore.wallets.map { $0.accounts }.reduce([], +)
     }
-    private var currentAccount: Account? {
-        selectedAccount ?? accounts.first
+    private var currentAccount: Account {
+        selectedAccount ?? accounts.first!
     }
     
     // MARK:- Subviews
     private var walletView: some View {
-        Group {
-            if showWalletView {
-                BottomSheetView(isOpen: $showWalletView) {
-                    ReceiveAssetSheet(
-                        accounts: accounts,
-                        selectedAccount: .init(
-                            get: { self.selectedAccount },
-                            set: { newValue in
-                                withAnimation {
-                                    self.showWalletView = false
-                                    self.selectedAccount = newValue
-                                }
-                            }
-                        )
-                    )
-                    .frame(height: 300)
-                }
-                .frame(maxWidth: .infinity)
-            }
+        BottomSheetView(isOpen: $showWalletView) {
+            ReceiveAssetSheet(
+                accounts: accounts,
+                selectedAccount: .init(
+                    get: { self.selectedAccount },
+                    set: { newValue in
+                        withAnimation {
+                            self.showWalletView = false
+                            self.selectedAccount = newValue
+                        }
+                    }
+                )
+            )
+            .frame(height: 300)
+            .frame(maxWidth: .infinity)
         }
     }
     private var roundedBorder: some View {
         RoundedRectangle(cornerRadius: 8)
             .stroke(Color.lightGray, lineWidth: 2)
     }
+    private var mainView: some View {
+        VStack {
+            Text("Receive \(currentAccount.asset.title)")
+                .font(.headline)
+                .padding(.top, 32)
+            
+            QRView(address: currentAccount.wallet.address)
+                .padding()
+            
+            Button(animationAction: { self.showWalletView = true }) {
+                ReceiveAssetCell(asset: currentAccount.asset)
+                    .padding(.horizontal)
+                    .overlay(roundedBorder)
+            }
+            .padding()
+            
+            Button("Share address") {
+                guard let address = self.selectedAccount?.wallet.address else { return }
+                self.share(items: [address])
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding(.horizontal)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .padding(.top)
+    }
     
     var body: some View {
-        currentAccount.map { account in
-            VStack {
-                Text("Receive \(account.asset.title)")
-                    .font(.headline)
-                    .padding(.top, 32)
-                
-                QRView(address: account.wallet.address)
-                    .padding()
-
-                Button(action: { self.showWalletView = true }) {
-                    ReceiveAssetCell(asset: account.asset)
-                        .overlay(roundedBorder)
-                }
-                .padding()
-                
-                Button("Share address") {
-                    guard let address = self.selectedAccount?.wallet.address else { return }
-                    self.share(items: [address])
-                }
-                .buttonStyle(PrimaryButtonStyle())
-                .padding(.horizontal)
+        ZStack {
+            mainView
+            
+            if showWalletView {
+                walletView
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .overlay(walletView)
         }
     }
 }

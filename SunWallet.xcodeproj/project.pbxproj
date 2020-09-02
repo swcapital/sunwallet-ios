@@ -119,6 +119,7 @@
 		DB9199CE247C24EB00D2B6A5 /* ExchangeDirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */; };
 		DB919D3424FBDE7C00876307 /* View+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3324FBDE7C00876307 /* View+share.swift */; };
 		DB919D3624FBE55600876307 /* QRCodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3524FBE55600876307 /* QRCodeStore.swift */; };
+		DB919D3824FCBE0400876307 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3724FCBE0400876307 /* Button.swift */; };
 		DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DC249F4D8900617590 /* LinearGradient.swift */; };
 		DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */; };
 		DBC272DF249F4DBB00617590 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DE249F4DBB00617590 /* LogoView.swift */; };
@@ -285,6 +286,7 @@
 		DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionButton.swift; sourceTree = "<group>"; };
 		DB919D3324FBDE7C00876307 /* View+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+share.swift"; sourceTree = "<group>"; };
 		DB919D3524FBE55600876307 /* QRCodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeStore.swift; sourceTree = "<group>"; };
+		DB919D3724FCBE0400876307 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
 		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Support/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
 		DBC272DE249F4DBB00617590 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				DB01234B24C4B6B4006E72FD /* View.swift */,
 				DB919D3324FBDE7C00876307 /* View+share.swift */,
 				DB3A7E9A24E6BC0A00E41FDB /* ArraySlice.swift */,
+				DB919D3724FCBE0400876307 /* Button.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				DB85FA8D247D45D400A43B3D /* CircleIcon.swift in Sources */,
 				DBF576D624975F5F00FB01E3 /* LinkCardView.swift in Sources */,
 				DB3A34852482672500C4D61F /* TopMoverCell.swift in Sources */,
+				DB919D3824FCBE0400876307 /* Button.swift in Sources */,
 				DB6D46C924CD856200BA61E6 /* BalanceHistory.swift in Sources */,
 				DBFDB7502492959500A1DFAD /* UserAssetsSection.swift in Sources */,
 				DB19DC3A249A3B87008F7F79 /* PinKeyboardView.swift in Sources */,

@@ -108,6 +108,12 @@ extension Asset: Equatable {
 extension Asset: Comparable {
     
     static func < (lhs: Asset, rhs: Asset) -> Bool {
-        lhs.code < rhs.code
+        switch (lhs, rhs) {
+        case (.btc, _): return true
+        case (_, .btc): return false
+        case (.eth, _): return true
+        case (_, .eth): return false
+        default: return lhs.code < rhs.code
+        }
     }
 }

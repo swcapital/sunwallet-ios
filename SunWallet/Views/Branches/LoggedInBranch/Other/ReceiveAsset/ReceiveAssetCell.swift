@@ -11,13 +11,13 @@ struct ReceiveAssetCell: View {
             VStack(alignment: .leading) {
                 Text(asset.title + " Wallet")
                     .foregroundColor(.black)
-                Text(asset.code)
+                Text(asset.code.uppercased())
                     .foregroundColor(.gray)
             }
             
             Spacer()
         }
-        .padding()
+        .padding(.vertical, 12)
         .contentShape(Rectangle())
     }
 }

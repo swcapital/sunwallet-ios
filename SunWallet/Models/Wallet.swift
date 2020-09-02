@@ -7,10 +7,20 @@ struct Wallet: Codable  {
     let masterKeyID: UUID
 }
 
-extension Wallet: Hashable, Identifiable {
+extension Wallet: Identifiable {
     var id: String { address }
+}
+
+extension Wallet: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(address)
+    }
+}
+
+extension Wallet: Comparable {
+    
+    static func < (lhs: Wallet, rhs: Wallet) -> Bool {
+        lhs.asset < rhs.asset
     }
 }

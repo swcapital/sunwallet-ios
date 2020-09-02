@@ -47,5 +47,6 @@ struct TradeSheet: View {
             }
         }
         .frame(maxWidth: .infinity)
+        .padding(.bottom)
     }
 }
