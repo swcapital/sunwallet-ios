@@ -9,7 +9,7 @@ struct WalletDetailsScreen: View {
     @State private var selectedValue: Double? = nil
     @State private var selectedValueChange: Double? = nil
     @State private var showingActionSheet = false
-    @State private var showRenamePopover = false
+    @State private var mnemonic: String?
     
     private var totalEquity: Double {
         walletHistory.totalEquity
@@ -110,8 +110,14 @@ struct WalletDetailsScreen: View {
             self.showRenameDialog()
         }
     }
+    private var showMnemonicButton: Alert.Button {
+        .default(Text("Show Recovery Phrase")) {
+            guard let masterkeys = self.walletStore.loadMasterKeys(hint: "Access for recovery phrase") else { return }
+            self.mnemonic = masterkeys.first(where: { $0.id == self.wallet.masterKeyID })?.mnemonic
+        }
+    }
     private var actionSheet: ActionSheet {
-        ActionSheet(title: Text("Wallet's actions"), message: Text(wallet.title), buttons: [renameButton, .cancel()])
+        ActionSheet(title: Text("Wallet's actions"), message: Text(wallet.title), buttons: [renameButton, showMnemonicButton, .cancel()])
     }
     
     var body: some View {
@@ -120,6 +126,14 @@ struct WalletDetailsScreen: View {
             .navigationBarItems(trailing: walletSettingsButton)
             .actionSheet(isPresented: $showingActionSheet) {
                 self.actionSheet
+            }
+            .alert(item: self.$mnemonic) { mnemonic in
+                Alert(
+                    title: Text("Recovery phrase"),
+                    message: Text(mnemonic),
+                    primaryButton: Alert.Button.default(Text("Copy"), action: { self.copy(mnemonic) }),
+                    secondaryButton: Alert.Button.cancel(Text("Close"))
+                )
             }
     }
     

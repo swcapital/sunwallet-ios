@@ -1,5 +1,4 @@
 import SwiftUI
-import MobileCoreServices
 
 struct QRView: View {
     // MARK:- Properties
@@ -36,7 +35,7 @@ struct QRView: View {
     }
     private var copyButton: some View {
         Button("Copy") {
-            UIPasteboard.general.setValue(self.address, forPasteboardType: kUTTypePlainText as String)
+            self.copy(self.address)
         }
         .foregroundColor(.primary)
     }

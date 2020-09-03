@@ -117,7 +117,7 @@
 		DB865AEB24B34E3E004303F3 /* MasterKeyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB865AEA24B34E3E004303F3 /* MasterKeyInfo.swift */; };
 		DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */; };
 		DB9199CE247C24EB00D2B6A5 /* ExchangeDirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */; };
-		DB919D3424FBDE7C00876307 /* View+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3324FBDE7C00876307 /* View+share.swift */; };
+		DB919D3424FBDE7C00876307 /* View+uiKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3324FBDE7C00876307 /* View+uiKit.swift */; };
 		DB919D3624FBE55600876307 /* QRCodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3524FBE55600876307 /* QRCodeStore.swift */; };
 		DB919D3824FCBE0400876307 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3724FCBE0400876307 /* Button.swift */; };
 		DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DC249F4D8900617590 /* LinearGradient.swift */; };
@@ -284,7 +284,7 @@
 		DB865AEA24B34E3E004303F3 /* MasterKeyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterKeyInfo.swift; sourceTree = "<group>"; };
 		DB9199CB247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		DB9199CD247C24EB00D2B6A5 /* ExchangeDirectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionButton.swift; sourceTree = "<group>"; };
-		DB919D3324FBDE7C00876307 /* View+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+share.swift"; sourceTree = "<group>"; };
+		DB919D3324FBDE7C00876307 /* View+uiKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+uiKit.swift"; sourceTree = "<group>"; };
 		DB919D3524FBE55600876307 /* QRCodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeStore.swift; sourceTree = "<group>"; };
 		DB919D3724FCBE0400876307 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
@@ -659,7 +659,7 @@
 				DBFDB74924925EE800A1DFAD /* View+imageBackButton.swift */,
 				DB5F36B624AE4DE900DDCA7A /* View+alert.swift */,
 				DB01234B24C4B6B4006E72FD /* View.swift */,
-				DB919D3324FBDE7C00876307 /* View+share.swift */,
+				DB919D3324FBDE7C00876307 /* View+uiKit.swift */,
 			);
 			path = ViewModifier;
 			sourceTree = "<group>";
@@ -1197,7 +1197,7 @@
 				DB65ACE424961A9400252A93 /* SecondaryButtonStyle.swift in Sources */,
 				DB9199CC247C1C8A00D2B6A5 /* PrimaryButtonStyle.swift in Sources */,
 				DB68BC38247C085D00377A72 /* Asset2.swift in Sources */,
-				DB919D3424FBDE7C00876307 /* View+share.swift in Sources */,
+				DB919D3424FBDE7C00876307 /* View+uiKit.swift in Sources */,
 				DB865AE924B34E25004303F3 /* MasterKey.swift in Sources */,
 				DB50249B24B1A159002E1547 /* TextView.swift in Sources */,
 				DB85FA8D247D45D400A43B3D /* CircleIcon.swift in Sources */,

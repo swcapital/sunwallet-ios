@@ -1,3 +1,4 @@
+import MobileCoreServices
 import SwiftUI
 
 extension View {
@@ -47,5 +48,9 @@ extension View {
         //viewController.popoverPresentationController?.sourceView = source.view
         
         return present(viewController)
+    }
+    
+    func copy(_ string: String) {
+        UIPasteboard.general.setValue(string, forPasteboardType: kUTTypePlainText as String)
     }
 }
