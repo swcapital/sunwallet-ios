@@ -492,8 +492,6 @@
 		DB19DC3E249A3CB4008F7F79 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				DBFDB7532492A43D00A1DFAD /* TradeSheet */,
-				DBFDB75B2493539D00A1DFAD /* ReceiveAsset */,
 				DB85FA8B247D361400A43B3D /* ConvertAssetsView */,
 				DB65ACD82495EE4D00252A93 /* WalletDetailView */,
 				DB65ACDD2496114F00252A93 /* NotificationsView */,
@@ -626,6 +624,7 @@
 				DB572504249206A000F283BF /* HomeTab */,
 				DB572505249206D500F283BF /* PortfolioTab */,
 				DB19DC3D249A3BF2008F7F79 /* PreferenceTab */,
+				DBFDB7532492A43D00A1DFAD /* TradeSheet */,
 				DB19DC3E249A3CB4008F7F79 /* Other */,
 			);
 			path = LoggedInBranch;
@@ -1050,6 +1049,7 @@
 			children = (
 				DBFDB7542492A45000A1DFAD /* TradeSheet.swift */,
 				DBFDB758249340F400A1DFAD /* TradeSheetCell.swift */,
+				DBFDB75B2493539D00A1DFAD /* ReceiveAsset */,
 			);
 			path = TradeSheet;
 			sourceTree = "<group>";
