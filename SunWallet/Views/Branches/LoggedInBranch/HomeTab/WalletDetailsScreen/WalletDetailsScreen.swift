@@ -10,6 +10,7 @@ struct WalletDetailsScreen: View {
     @State private var selectedValueChange: Double? = nil
     @State private var showingActionSheet = false
     @State private var mnemonic: String?
+    @State private var showRemoveDialog = false
     
     private var totalEquity: Double {
         walletHistory.totalEquity
@@ -116,8 +117,13 @@ struct WalletDetailsScreen: View {
             self.mnemonic = masterkeys.first(where: { $0.id == self.wallet.masterKeyID })?.mnemonic
         }
     }
+    private var deleteButton: Alert.Button {
+        .destructive(Text("Delete")) {
+            self.showRemoveDialog = true
+        }
+    }
     private var actionSheet: ActionSheet {
-        ActionSheet(title: Text("Wallet's actions"), message: Text(wallet.title), buttons: [renameButton, showMnemonicButton, .cancel()])
+        ActionSheet(title: Text("Wallet's actions"), message: Text(wallet.title), buttons: [renameButton, showMnemonicButton, deleteButton, .cancel()])
     }
     
     var body: some View {
@@ -133,6 +139,13 @@ struct WalletDetailsScreen: View {
                     message: Text(mnemonic),
                     primaryButton: Alert.Button.default(Text("Copy"), action: { self.copy(mnemonic) }),
                     secondaryButton: Alert.Button.cancel(Text("Close"))
+                )
+            }
+            .alert(isPresented: self.$showRemoveDialog) {
+                Alert(
+                    title: Text("Are you sure you want to delete this wallet"),
+                    primaryButton: Alert.Button.destructive(Text("Delete"), action: removeWallet),
+                    secondaryButton: Alert.Button.cancel()
                 )
             }
     }
@@ -161,5 +174,9 @@ struct WalletDetailsScreen: View {
         wallets[index].title = title
         wallet.title = title
         walletStore.save(wallets: wallets)
+    }
+    
+    private func removeWallet() {
+        walletStore.remove(wallet: wallet)
     }
 }

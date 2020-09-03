@@ -13,6 +13,7 @@ class WalletStore: ObservableObject {
         return keychain.loadValue(atKey: masterKeysKey, accessHint: hint)
     }
     
+    @discardableResult
     func save(masterKeys: [MasterKey]) -> Bool {
         let keychain = KeychainRepository()
         return keychain.saveValue(masterKeys, atKey: masterKeysKey)
@@ -24,5 +25,18 @@ class WalletStore: ObservableObject {
     
     func reset() {
         wallets = []
+    }
+    
+    func remove(wallet: Wallet) {
+        var wallets = self.wallets
+        wallets.removeAll(where: { $0.address == wallet.address })
+        
+        if wallets.contains(where: { $0.masterKeyID == wallet.masterKeyID }) {
+            guard var masterKeys = loadMasterKeys(hint: "Remove wallet") else { return }
+            masterKeys.removeAll(where: { $0.id == wallet.masterKeyID })
+            save(masterKeys: masterKeys)
+        }
+        
+        save(wallets: wallets)
     }
 }
