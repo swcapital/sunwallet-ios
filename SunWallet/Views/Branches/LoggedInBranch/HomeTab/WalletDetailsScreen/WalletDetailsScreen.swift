@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct WalletDetailsScreen: View {
-    let wallet: Wallet
     let walletHistory: WalletHistory
+    
+    @EnvironmentObject var walletStore: WalletStore
         
+    @State var wallet: Wallet
     @State private var selectedValue: Double? = nil
     @State private var selectedValueChange: Double? = nil
+    @State private var showingActionSheet = false
+    @State private var showRenamePopover = false
     
     private var totalEquity: Double {
         walletHistory.totalEquity
@@ -60,7 +64,6 @@ struct WalletDetailsScreen: View {
             HStack {
                 Text("History")
                     .font(.headline)
-                    
                 
                 Spacer()
                 
@@ -97,9 +100,52 @@ struct WalletDetailsScreen: View {
             }
         }
     }
+    private var walletSettingsButton: some View {
+        Button(action: { self.showingActionSheet = true }) {
+            Image(systemName: "ellipsis")
+        }
+    }
+    private var renameButton: Alert.Button {
+        .default(Text("Rename")) {
+            self.showRenameDialog()
+        }
+    }
+    private var actionSheet: ActionSheet {
+        ActionSheet(title: Text("Wallet's actions"), message: Text(wallet.title), buttons: [renameButton, .cancel()])
+    }
     
     var body: some View {
         scrollView
-            .navigationBarTitle(wallet.asset.title)
+            .navigationBarTitle(wallet.title)
+            .navigationBarItems(trailing: walletSettingsButton)
+            .actionSheet(isPresented: $showingActionSheet) {
+                self.actionSheet
+            }
+    }
+    
+    private func showRenameDialog() {
+        let alertController = UIAlertController(title: "Rename Wallet", message: wallet.title, preferredStyle: .alert)
+        
+        alertController.addTextField() {
+            $0.text = self.wallet.title
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Rename", style: .default) { _ in
+            let textField = alertController.textFields![0] as UITextField
+            let title = textField.text ?? "Wallet"
+            self.renameWallet(title)
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in })
+        
+        self.present(alertController)
+    }
+    
+    private func renameWallet(_ title: String) {
+        var wallets = walletStore.wallets
+        let index = wallets.firstIndex(of: wallet)!
+        wallets[index].title = title
+        wallet.title = title
+        walletStore.save(wallets: wallets)
     }
 }

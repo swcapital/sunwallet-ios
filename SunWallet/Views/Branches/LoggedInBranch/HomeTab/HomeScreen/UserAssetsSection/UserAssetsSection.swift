@@ -1,34 +1,35 @@
 import SwiftUI
 
 struct UserAssetsSection: View {
-    let walletsHistory: [Wallet: WalletHistory]
-    private let wallets: [Wallet]
+    let walletsHistory: WalletsHistory
+    
+    @EnvironmentObject var walletStore: WalletStore
         
-    init(walletsHistory: [Wallet: WalletHistory]) {
+    init(walletsHistory: WalletsHistory) {
         self.walletsHistory = walletsHistory
-        self.wallets = Array(walletsHistory.keys.sorted(by: { $0.address < $1.address}))
     }
-    
-    // MARK:- Calculated Variables
-    private func destination(for wallet: Wallet) -> some View {
-        WalletDetailsScreen(wallet: wallet, walletHistory: self.walletsHistory[wallet]!)
-    }
-    
+        
     var body: some View {
         VStack {
             Divider()
-            ForEach(wallets) { wallet in
-                NavigationLink(destination: self.destination(for: wallet)) {
+            
+            ForEach(walletStore.wallets.sorted()) { wallet in
+                self.history(for: wallet).map { walletHistory in
                     VStack {
-                        Cell(wallet: wallet, walletHistory: self.walletsHistory[wallet]!)
-                            .contentShape(Rectangle())
+                        NavigationLink(destination: WalletDetailsScreen(walletHistory: walletHistory, wallet: wallet)) {
+                            Cell(wallet: wallet, walletHistory: walletHistory)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Divider()
                     }
                 }
-                .buttonStyle(PlainButtonStyle())
-                
-                Divider()
             }
             .listStyle(GroupedListStyle())
         }
+    }
+    
+    func history(for wallet: Wallet) -> WalletHistory? {
+        walletsHistory.first(where: { $0.wallet.address == wallet.address })
     }
 }

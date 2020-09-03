@@ -2,22 +2,15 @@ import SwiftUI
 
 struct PortfolioScreen: View {    
     // MARK:- Environment
-    @EnvironmentObject
-    var portfolioStore: PortfolioStore
+    @EnvironmentObject var portfolioStore: PortfolioStore
     
     // MARK:- States
-    @State
-    private var selectedValue: Double? = nil
-    
-    @State
-    private var selectedValueChange: Double? = nil
-    
-    @State
-    private var walletsHistory: [Wallet: WalletHistory]?
+    @State private var selectedValue: Double? = nil
+    @State private var selectedValueChange: Double? = nil
+    @State private var walletsHistory: WalletsHistory?
     
     private var totalEquity: Double {
-        walletsHistory?.values
-            .map { $0.totalEquity }
+        walletsHistory?.map { $0.totalEquity }
             .reduce(0, +) ?? 0
     }
 
@@ -37,16 +30,7 @@ struct PortfolioScreen: View {
     }
     private var scrollView: some View {
         SWScrollView(title: title, subtitle: subtitle) {
-            VStack(alignment: .leading, spacing: 8) {
-//                HistoryChartSection(
-//                    exchangeHistory: ExchangeHistory(,
-//                    color: .primaryBlue,
-//                    selectedValue: self.$selectedValue,
-//                    selectedValueChange: self.$selectedValueChange
-//                )
-                Divider()
-                //UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
-            }
+            EmptyView()
         }
     }
     

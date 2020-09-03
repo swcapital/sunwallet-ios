@@ -23,7 +23,7 @@ struct WalletCurrencyPicker: View {
     private var error: String?
     
     @State
-    private var walletsHistory: [Wallet: WalletHistory]?
+    private var walletsHistory: WalletsHistory?
     
     @State
     private var selection: Set<Wallet> = []
@@ -99,7 +99,8 @@ struct WalletCurrencyPicker: View {
     
     private func balance(for wallet: Wallet) -> Double? {
         guard showBalances else { return nil }
-        return walletsHistory?[wallet]?.totalEquity ?? 0
+        let history = walletsHistory?.first(where: { $0.wallet == wallet })
+        return history?.totalEquity ?? 0
     }
     
     private func saveData() {

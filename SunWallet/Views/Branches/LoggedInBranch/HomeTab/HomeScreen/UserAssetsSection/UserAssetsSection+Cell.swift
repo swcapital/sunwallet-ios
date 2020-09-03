@@ -11,7 +11,7 @@ extension UserAssetsSection {
                 CircleIcon(radius: 40, imageName: wallet.asset.imageName)
                 
                 VStack(alignment: .leading) {
-                    Text(wallet.asset.title)
+                    Text(wallet.title)
                 }
                 
                 Spacer()
@@ -19,6 +19,7 @@ extension UserAssetsSection {
                 Text(walletHistory.totalEquity.dollarString)
             }
             .padding(.horizontal, 16)
+            .contentShape(Rectangle())
         }
     }
 }

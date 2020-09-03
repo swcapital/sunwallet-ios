@@ -1,9 +1,11 @@
 import Combine
 import Foundation
 
+typealias WalletsHistory = [WalletHistory]
+
 class PortfolioStore: ObservableObject {
-    private typealias WalletsHistorySubject = CurrentValueSubject<[Wallet: WalletHistory]?, Never>
-    typealias WalletsHistoryPublisher = AnyPublisher<[Wallet: WalletHistory]?, Never>
+    private typealias WalletsHistorySubject = CurrentValueSubject<WalletsHistory?, Never>
+    typealias WalletsHistoryPublisher = AnyPublisher<WalletsHistory?, Never>
     
     private var portfolioSubject: WalletsHistorySubject?
     private var portfolioSubscription: AnyCancellable?
@@ -34,14 +36,14 @@ class PortfolioStore: ObservableObject {
         let historyPublisher = historyStore.publisher(for: .all)
         
         return Publishers.CombineLatest(infoPublisher, historyPublisher)
-            .map { info, history -> [Wallet: WalletHistory]? in
+            .map { info, history -> WalletsHistory? in
                 guard let info = info, let history = history else { return nil }
                 return self.generateWalletsHistory(info: info, history: history)
             }
             .eraseToAnyPublisher()
     }
     
-    func walletsHistory(wallets: [Wallet], completion: @escaping ([Wallet: WalletHistory]?) -> Void) {
+    func walletsHistory(wallets: [Wallet], completion: @escaping (WalletsHistory?) -> Void) {
         var cancellable: AnyCancellable?
         cancellable = walletsHistoryPublisher(wallets: wallets)
             .receive(on: DispatchQueue.main)
@@ -54,20 +56,19 @@ class PortfolioStore: ObservableObject {
             )
     }
     
-    private func generateWalletsHistory(info: [Wallet : WalletBalance], history: [ExchangeHistory]) -> [Wallet: WalletHistory] {
-        var result: [Wallet: WalletHistory] = [:]
-        for (wallet, walletBalance) in info {
+    private func generateWalletsHistory(info: [Wallet : WalletBalance], history: [ExchangeHistory]) -> WalletsHistory {
+        info.map { wallet, walletBalance -> WalletHistory in
             let assetsHistory = walletBalance.assets.compactMap { assetBalance -> AssetHistory? in
                 guard let exchangeHistory = history.first(where: { $0.source == assetBalance.asset }) else { return nil }
                 return AssetHistory(assetBalance: assetBalance, historySet: exchangeHistory.historySet)
             }
-            result[wallet] = WalletHistory(assetsHistory: assetsHistory)
+            return WalletHistory(wallet: wallet, assetsHistory: assetsHistory)
         }
-        return result
     }
 }
 
 private extension AssetHistory {
+    
     init(assetBalance: AssetBalance, historySet: HistorySet) {
         let equity = historySet.lastValue * assetBalance.balance
         let balanceHistory = BalanceHistory(assetInfo: assetBalance)

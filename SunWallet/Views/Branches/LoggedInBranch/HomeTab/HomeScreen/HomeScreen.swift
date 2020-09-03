@@ -4,17 +4,16 @@ struct HomeScreen: View {
     // MARK:- Environment
     @EnvironmentObject var portfolioStore: PortfolioStore
     
-    @State private var walletsHistory: [Wallet: WalletHistory]?
+    @State private var walletsHistory: WalletsHistory?
     @State private var selectedValue: Double? = nil
     @State private var selectedValueChange: Double? = nil
     
     private var totalEquity: Double {
-        walletsHistory?.values
-            .map { $0.totalEquity }
+        walletsHistory?.map { $0.totalEquity }
             .reduce(0, +) ?? 0
     }
     private var chartValues: HistorySet? {
-        walletsHistory?.values.compactMap(\.historySet).total()
+        walletsHistory?.compactMap(\.historySet).total()
     }
     
     // MARK:- Subviews
@@ -37,7 +36,9 @@ struct HomeScreen: View {
                         selectedValueChange: self.$selectedValueChange
                     )
                 }
-                UserAssetsSection(walletsHistory: self.walletsHistory ?? [:])
+                
+                self.walletsHistory.map { UserAssetsSection(walletsHistory: $0) }
+                
                 TopMoversSection()
             }
         }

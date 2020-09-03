@@ -288,7 +288,7 @@
 		DB919D3524FBE55600876307 /* QRCodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeStore.swift; sourceTree = "<group>"; };
 		DB919D3724FCBE0400876307 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
-		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Support/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
+		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
 		DBC272DE249F4DBB00617590 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		DBC2E3812484F17A00C871E4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		DBC2E38324850C6800C871E4 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
@@ -431,8 +431,6 @@
 				DB77E171247E3C2100BF1A88 /* Double.swift */,
 				DB77E173247E3C5700BF1A88 /* NumberFormatter.swift */,
 				DB35615324B48D36006828ED /* String.swift */,
-				DB01234B24C4B6B4006E72FD /* View.swift */,
-				DB919D3324FBDE7C00876307 /* View+share.swift */,
 				DB3A7E9A24E6BC0A00E41FDB /* ArraySlice.swift */,
 				DB919D3724FCBE0400876307 /* Button.swift */,
 			);
@@ -660,6 +658,8 @@
 			children = (
 				DBFDB74924925EE800A1DFAD /* View+imageBackButton.swift */,
 				DB5F36B624AE4DE900DDCA7A /* View+alert.swift */,
+				DB01234B24C4B6B4006E72FD /* View.swift */,
+				DB919D3324FBDE7C00876307 /* View+share.swift */,
 			);
 			path = ViewModifier;
 			sourceTree = "<group>";
@@ -754,6 +754,7 @@
 				DB68BC3E247C161100377A72 /* Views */,
 				DBE7D95724B8B6F900E1E97E /* Publishers */,
 				DBA53B8424A9C623008E2BAF /* Repositories */,
+				DB0376CB247CFD17005ACB03 /* Extensions */,
 				DBFA1D9B248E5CBA002B109F /* Support */,
 				DB2A131424AFAC010007197F /* Resources */,
 				DB68BC25247BC5E500377A72 /* Assets.xcassets */,
@@ -1010,7 +1011,6 @@
 		DBFA1D9B248E5CBA002B109F /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				DB0376CB247CFD17005ACB03 /* Extensions */,
 				DB4ED06C249C8B3100D6A558 /* TestData.swift */,
 				DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */,
 				DB5F36BC24AF0C0200DDCA7A /* Cache.swift */,
