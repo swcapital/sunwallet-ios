@@ -1,31 +1,26 @@
 import SwiftUI
 
 struct BootstrapWalletsScreen: View {
-    @EnvironmentObject
-    var walletStore: WalletStore
+    @EnvironmentObject var walletStore: WalletStore
+    @EnvironmentObject var appStateStore: AppStateStore
     
-    @State
-    private var restoredMasterKeys: [MasterKey] = []
-    
-    @State
-    private var error: String?
-    
-    @State
-    private var useRestoredMasterKeys: Bool = false
+    @State private var restoredMasterKeys: [MasterKey] = []
+    @State private var error: String?
+    @State private var useRestoredMasterKeys: Bool = false
     
     private var importWalletsButton: some View {
-        return NavigationLink("Import Wallets", destination: ImportWalletScreen())
+        NavigationLink("Import Wallets", destination: ImportWalletScreen(completion: { self.appStateStore.logIn() }))
             .buttonStyle(PrimaryButtonStyle())
     }
     private var createWalletButton: some View {
         let destination = LazyView(
-            WalletCurrencyPicker(masterKeys: [MasterKey()], showBalances: false)
+            WalletCurrencyPicker(masterKeys: [MasterKey()], showBalances: false, completion: { self.appStateStore.logIn() })
         )
         return NavigationLink("Create Wallets", destination: destination)
             .buttonStyle(PrimaryButtonStyle())
     }
     private var restoreWalletsButton: some View {
-        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showBalances: true)
+        let destination = WalletCurrencyPicker(masterKeys: restoredMasterKeys, showBalances: true, completion: { self.appStateStore.logIn() })
         return VStack {
             NavigationLink(destination: destination, isActive: $useRestoredMasterKeys) {
                 EmptyView()

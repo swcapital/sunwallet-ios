@@ -1,15 +1,17 @@
 import SwiftUI
 
 struct ImportWalletScreen: View {
-    @State
-    private var text: String = ""
+    let completion: () -> Void
+        
+    @State private var text: String = ""
     
     private var importWalletButton: some View {
         NavigationLink(
             "Next",
             destination: WalletCurrencyPicker(
                 masterKeys: [MasterKey(mnemonic: text)],
-                showBalances: true
+                showBalances: true,
+                completion: completion
             )
         )
         .buttonStyle(PrimaryButtonStyle())
@@ -34,11 +36,5 @@ struct ImportWalletScreen: View {
         .padding(.horizontal)
         .padding(.bottom, 48)
         .navigationBarTitle("Add wallet")
-    }
-}
-
-struct AddWalletView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImportWalletScreen()
     }
 }

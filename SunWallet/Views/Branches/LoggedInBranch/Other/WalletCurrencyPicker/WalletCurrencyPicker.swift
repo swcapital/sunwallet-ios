@@ -3,37 +3,23 @@ import SwiftUI
 struct WalletCurrencyPicker: View {
     let masterKeys: [MasterKey]
     let showBalances: Bool
+    let completion: () -> Void
     
-    @EnvironmentObject
-    var appStateStore: AppStateStore
+    @EnvironmentObject var portfolioStore: PortfolioStore
+    @EnvironmentObject var walletStore: WalletStore
     
-    @EnvironmentObject
-    var portfolioStore: PortfolioStore
-    
-    @EnvironmentObject
-    var walletStore: WalletStore
-    
-    @State
-    private var wallets: [Wallet] = []
-    
-    @State
-    private var isLoading: Bool = false
-    
-    @State
-    private var error: String?
-    
-    @State
-    private var walletsHistory: WalletsHistory?
-    
-    @State
-    private var selection: Set<Wallet> = []
+    @State private var wallets: [Wallet] = []
+    @State private var isLoading: Bool = false
+    @State private var error: String?
+    @State private var walletsHistory: WalletsHistory?
+    @State private var selection: Set<Wallet> = []
     
     private var canContinue: Bool { !selection.isEmpty }
     
     private var continueButton: some View {
         Button("Continue") {
             self.saveData()
-            self.appStateStore.logIn()
+            self.completion()
         }
         .buttonStyle(PrimaryButtonStyle())
         .disabled(!canContinue)
@@ -42,6 +28,7 @@ struct WalletCurrencyPicker: View {
     private var walletList: some View {
         ScrollView {
             Divider()
+            
             ForEach(wallets) { wallet in
                 Cell(
                     wallet: wallet,
@@ -76,7 +63,7 @@ struct WalletCurrencyPicker: View {
         
         isLoading = true
         DispatchQueue.global(qos: .background).async {
-            let wallets = self.masterKeys.map { $0.wallets() }.reduce([], +).sorted(by: { $0.asset < $1.asset})
+            let wallets = self.availableWallets()
             DispatchQueue.main.async {
                 self.wallets = wallets
                 self.selection = Set(wallets)
@@ -109,10 +96,18 @@ struct WalletCurrencyPicker: View {
         let masterKeys = self.masterKeys.filter { masterKey in
             wallets.first(where: { $0.masterKeyID == masterKey.id }) != nil
         }
-        guard walletStore.save(masterKeys: masterKeys) else {
+        guard walletStore.add(masterKeys: masterKeys) else {
             self.error = "Couldn't save wallets"
             return
         }
-        walletStore.save(wallets: wallets)
+        walletStore.add(wallets: wallets)
+    }
+    
+    private func availableWallets() -> [Wallet] {
+        let addresses = walletStore.wallets.map(\.address)
+        return masterKeys.map { $0.wallets() }
+            .reduce([], +)
+            .filter { !addresses.contains($0.address) }
+            .sorted()
     }
 }

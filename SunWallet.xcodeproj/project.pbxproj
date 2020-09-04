@@ -45,6 +45,7 @@
 		DB19DC3B249A3B87008F7F79 /* DigitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19DC36249A3B87008F7F79 /* DigitButton.swift */; };
 		DB19DC3C249A3B87008F7F79 /* PinCodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB19DC37249A3B87008F7F79 /* PinCodeSheet.swift */; };
 		DB1AAAF224EE7CCF005A796E /* AssetTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AAAF124EE7CCF005A796E /* AssetTransaction.swift */; };
+		DB1C15E025023858007A80C3 /* AddWalletsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1C15DF25023858007A80C3 /* AddWalletsScreen.swift */; };
 		DB24C4E5247CF6BE0091FF44 /* ExchangeDirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24C4E4247CF6BE0091FF44 /* ExchangeDirectionView.swift */; };
 		DB24C4E8247CF8C40091FF44 /* AssetField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24C4E7247CF8C40091FF44 /* AssetField.swift */; };
 		DB2A131324AF8F820007197F /* AnimatingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A131224AF8F820007197F /* AnimatingImage.swift */; };
@@ -209,6 +210,7 @@
 		DB19DC36249A3B87008F7F79 /* DigitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitButton.swift; sourceTree = "<group>"; };
 		DB19DC37249A3B87008F7F79 /* PinCodeSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeSheet.swift; sourceTree = "<group>"; };
 		DB1AAAF124EE7CCF005A796E /* AssetTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTransaction.swift; sourceTree = "<group>"; };
+		DB1C15DF25023858007A80C3 /* AddWalletsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWalletsScreen.swift; sourceTree = "<group>"; };
 		DB24C4E4247CF6BE0091FF44 /* ExchangeDirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDirectionView.swift; sourceTree = "<group>"; };
 		DB24C4E7247CF8C40091FF44 /* AssetField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetField.swift; sourceTree = "<group>"; };
 		DB2A131224AF8F820007197F /* AnimatingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingImage.swift; sourceTree = "<group>"; };
@@ -453,8 +455,6 @@
 				DBC5538B24A786870037763F /* LoadingScreen */,
 				DB5F36AF24ADE23500DDCA7A /* WelcomeScreen */,
 				DB865AD124B1D868004303F3 /* BootstrapWalletsScreen */,
-				DB865AD424B1EEB7004303F3 /* ImportWalletScreen */,
-				DB35619724B706CA006828ED /* WalletCurrencyPicker */,
 			);
 			path = GuestBranch;
 			sourceTree = "<group>";
@@ -492,6 +492,8 @@
 		DB19DC3E249A3CB4008F7F79 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				DB865AD424B1EEB7004303F3 /* ImportWalletScreen */,
+				DB35619724B706CA006828ED /* WalletCurrencyPicker */,
 				DB85FA8B247D361400A43B3D /* ConvertAssetsView */,
 				DB65ACD82495EE4D00252A93 /* WalletDetailView */,
 				DB65ACDD2496114F00252A93 /* NotificationsView */,
@@ -502,6 +504,14 @@
 				DBFABEE7249CF77E00EDE526 /* BuyAssetView */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		DB1C15DE2502383B007A80C3 /* AddWalletsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DB1C15DF25023858007A80C3 /* AddWalletsScreen.swift */,
+			);
+			path = AddWalletsScreen;
 			sourceTree = "<group>";
 		};
 		DB24C4E6247CF8A50091FF44 /* ExchangeDirectionView */ = {
@@ -912,6 +922,7 @@
 				DBFDB74E2492956200A1DFAD /* UserAssetsSection */,
 				DB00A6382482AF7E006FD5A0 /* WatchListSection */,
 				DB00A6392482AF89006FD5A0 /* TopMoversSection */,
+				DB1C15DE2502383B007A80C3 /* AddWalletsScreen */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -1309,6 +1320,7 @@
 				DB4ED06D249C8B3100D6A558 /* TestData.swift in Sources */,
 				DBFDB748249257D600A1DFAD /* SWScrollView.swift in Sources */,
 				DB3A5C1F24867CBF007F19F2 /* AboutSection.swift in Sources */,
+				DB1C15E025023858007A80C3 /* AddWalletsScreen.swift in Sources */,
 				DBF576D424975F1600FB01E3 /* PaymentMethodCell.swift in Sources */,
 				DBF5D54F24836F25006AF99B /* CoinDetailsScreen.swift in Sources */,
 				DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */,
