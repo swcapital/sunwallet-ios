@@ -43,13 +43,20 @@ struct WalletCurrencyPicker: View {
     }
     
     var body: some View {
-        VStack(spacing: 16) {
-            walletList
-            
-            Spacer()
-            
-            continueButton
-                .padding(.horizontal)
+        Group {
+            if wallets.isEmpty {
+                Text("There is no new wallets")
+                    .font(.title)
+            } else {
+                VStack(spacing: 16) {
+                    walletList
+                    
+                    Spacer()
+                    
+                    continueButton
+                        .padding(.horizontal)
+                }
+            }
         }
         .padding(.bottom, 48)
         .showAlert(error: $error)
