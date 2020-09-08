@@ -886,6 +886,13 @@
 			path = ImportWalletScreen;
 			sourceTree = "<group>";
 		};
+		DB959385250787010093863E /* SendAsset */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SendAsset;
+			sourceTree = "<group>";
+		};
 		DBA53B8424A9C623008E2BAF /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1061,6 +1068,7 @@
 				DBFDB7542492A45000A1DFAD /* TradeSheet.swift */,
 				DBFDB758249340F400A1DFAD /* TradeSheetCell.swift */,
 				DBFDB75B2493539D00A1DFAD /* ReceiveAsset */,
+				DB959385250787010093863E /* SendAsset */,
 			);
 			path = TradeSheet;
 			sourceTree = "<group>";

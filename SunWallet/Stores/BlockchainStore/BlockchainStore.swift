@@ -1,9 +1,11 @@
 import Combine
 import Foundation
 
+typealias WalletsBalance = [WalletBalance]
+
 class BlockchainStore: ObservableObject {
-    private typealias WalletsBalanceSubject = CurrentValueSubject<[Wallet: WalletBalance]?, Never>
-    typealias WalletsBalancePublisher = AnyPublisher<[Wallet: WalletBalance]?, Never>
+    private typealias WalletsBalanceSubject = CurrentValueSubject<WalletsBalance?, Never>
+    typealias WalletsBalancePublisher = AnyPublisher<WalletsBalance?, Never>
     
     private var cancellables: Set<AnyCancellable> = []
     private var subjects: [[Wallet]: WalletsBalanceSubject] = [:]
@@ -11,7 +13,7 @@ class BlockchainStore: ObservableObject {
     private let blockchainRepository: BlockchainRepository = CryptoapisBlockchainRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
     
-    func walletsInfo(wallets: [Wallet], completion: @escaping ([Wallet: WalletBalance]?) -> Void) {
+    func walletsInfo(wallets: [Wallet], completion: @escaping (WalletsBalance?) -> Void) {
         var cancellable: AnyCancellable?
         cancellable = walletsInfoPublisher(wallets: wallets)
             .receive(on: DispatchQueue.main)
@@ -60,19 +62,15 @@ class BlockchainStore: ObservableObject {
 extension BlockchainStore {
     
     private func _walletsInfoPublisher(wallets: [Wallet]) -> WalletsBalancePublisher {
-        let publishers = wallets.map {
-            blockchainRepository.balance(for: $0)
+        let publishers = wallets.enumerated().map {
+            blockchainRepository.balance(for: $0.element)
+                .delay(for: .milliseconds(500 * $0.offset), scheduler: DispatchQueue.global())
         }
-        // TODO: Should be async.
-        // MergeMany doesn't fit here - we loose an order
-        return publishers.serialize()!
+        return Publishers.MergeMany(publishers)
             .collect()
             .map { walletsBalance in
-                let tuple = zip(wallets, walletsBalance)
-                for (wallet, walletBalance) in tuple {
-                    self.addCache(walletBalance, for: wallet)
-                }
-                return Dictionary(uniqueKeysWithValues: tuple)
+                walletsBalance.forEach { self.addCache($0) }
+                return walletsBalance
             }
             .replaceError(with: nil)
             .eraseToAnyPublisher()
@@ -82,30 +80,21 @@ extension BlockchainStore {
 // MARK: - Cache
 extension BlockchainStore {
     
-    private func anyCache(for wallets: [Wallet]) -> [Wallet: WalletBalance]? {
+    private func anyCache(for wallets: [Wallet]) -> WalletsBalance? {
         guard let cache = blockchainCache() else { return nil }
-        var result: [Wallet: WalletBalance] = [:]
-        for wallet in wallets {
-            guard let info = cache.get(for: wallet) else { continue }
-            result[wallet] = info
-        }
-        return result
+        return wallets.compactMap { cache.get(for: $0) }
     }
     
-    private func addCache(_ walletBalance: WalletBalance, for wallet: Wallet) {
+    private func addCache(_ walletBalance: WalletBalance) {
         var cache = blockchainCache() ?? .init()
-        cache.add(walletBalance, for: wallet)
+        cache.add(walletBalance, for: walletBalance.wallet)
         cacheRepository.save(cache, atKey: .blockchain)
     }
     
-    private func freshCache(for wallets: [Wallet]) -> [Wallet: WalletBalance]? {
+    private func freshCache(for wallets: [Wallet]) -> WalletsBalance? {
         guard let cache = blockchainCache() else { return nil }
-        var result: [Wallet: WalletBalance] = [:]
-        for wallet in wallets {
-            guard let info = cache.get(for: wallet, maxAge: 60 * 5) else { return nil }
-            result[wallet] = info
-        }
-        return result
+        let result = wallets.compactMap { cache.get(for: $0, maxAge: 60 * 5) }
+        return result.isEmpty ? nil : result
     }
     
     private func blockchainCache() -> BlockchainCache? {

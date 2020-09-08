@@ -14,7 +14,7 @@ struct BlockchyperBlockchainRepository: BlockchainRepository {
             .decode(type: BalanceResponse.self, decoder: JSONDecoder())
             .map {
                 let assetBalance = AssetBalance(asset: wallet.asset, balance: $0.balance, transactions: [])
-                return WalletBalance(assets: [assetBalance])
+                return WalletBalance(wallet: wallet, assets: [assetBalance])
             }
             .eraseToAnyPublisher()
     }

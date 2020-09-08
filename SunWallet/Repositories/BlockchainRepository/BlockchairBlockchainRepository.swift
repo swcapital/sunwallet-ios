@@ -19,9 +19,9 @@ struct BlockchairBlockchainRepository: BlockchainRepository {
     func balance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
         switch wallet.asset {
         case .btc:
-            return bitcoinBalance(address: wallet.address)
+            return bitcoinBalance(wallet: wallet)
         case .eth:
-            return etheriumBalance(address: wallet.address)
+            return etheriumBalance(wallet: wallet)
         default:
             fatalError("Not supported")
         }
@@ -33,8 +33,8 @@ private let satoshiRatio: Double = 100_000_000
 
 extension BlockchairBlockchainRepository {
     
-    private func bitcoinBalance(address: String) -> AnyPublisher<WalletBalance, Error> {
-        let address = "\(host)/bitcoin/dashboards/address/\(address)" + "?limit=1&transaction_details=true"
+    private func bitcoinBalance(wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
+        let address = "\(host)/bitcoin/dashboards/address/\(wallet.address)" + "?limit=1&transaction_details=true"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
             .extractData()
@@ -47,7 +47,7 @@ extension BlockchairBlockchainRepository {
                     .map { Transaction(date: $0.time, value: $0.balanceChange / satoshiRatio) }
                     .reversed()
                 let assetBalance = AssetBalance(asset: .btc, balance: balance, transactions: Array(transactions))
-                return .init(assets: [assetBalance])
+                return .init(wallet: wallet, assets: [assetBalance])
         }
         .eraseToAnyPublisher()
     }
@@ -83,8 +83,8 @@ private let weiRatio: Double = 1_000_000_000_000_000_000
 
 extension BlockchairBlockchainRepository {
     
-    private func etheriumBalance(address: String) -> AnyPublisher<WalletBalance, Error> {
-        let address = "\(host)/ethereum/dashboards/address/\(address)" + "?erc_20=true"
+    private func etheriumBalance(wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
+        let address = "\(host)/ethereum/dashboards/address/\(wallet.address)" + "?erc_20=true"
         let url = URL(string: address)!
         return URLSession.shared.dataTaskPublisher(for: url)
             .extractData()
@@ -103,7 +103,7 @@ extension BlockchairBlockchainRepository {
                     let balance = erc20.balance.doubleValue / weiRatio
                     return AssetBalance(asset: asset, balance: balance, transactions: [])
                 }
-                return .init(assets: [assetBalance] + (erc20 ?? []))
+                return .init(wallet: wallet, assets: [assetBalance] + (erc20 ?? []))
         }
         .eraseToAnyPublisher()
     }

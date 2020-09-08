@@ -16,9 +16,9 @@ struct CryptoapisBlockchainRepository: BlockchainRepository {
     func balance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
         switch wallet.asset {
         case .btc:
-            return bitcoinBalance(for: wallet.address)
+            return bitcoinBalance(for: wallet)
         case .eth:
-            return etheriumBalance(for: wallet.address)
+            return etheriumBalance(for: wallet)
         default:
             fatalError("Not supported")
         }
@@ -28,30 +28,32 @@ struct CryptoapisBlockchainRepository: BlockchainRepository {
 //MARK: - Bitcoin
 extension CryptoapisBlockchainRepository {
     
-    private func btcBalancePublisher(for address: String) -> AnyPublisher<Response<Balance>, Error> {
-        let endpoint = "/v1/bc/btc/mainnet/address/\(address)"
+    private func btcBalancePublisher(for wallet: Wallet) -> AnyPublisher<Response<Balance>, Error> {
+        let endpoint = "/v1/bc/btc/mainnet/address/\(wallet.address)"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<Balance>.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     
-    private func btcTransactionsPublisher(for address: String) -> AnyPublisher<Response<[BitcoinTransaction]>, Error> {
-        let endpoint = "/v1/bc/btc/mainnet/address/\(address)/transactions"
+    private func btcTransactionsPublisher(for wallet: Wallet) -> AnyPublisher<Response<[BitcoinTransaction]>, Error> {
+        let endpoint = "/v1/bc/btc/mainnet/address/\(wallet.address)/transactions"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[BitcoinTransaction]>.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     
-    private func bitcoinBalance(for address: String) -> AnyPublisher<WalletBalance, Error> {
-        let balancePublisher = btcBalancePublisher(for: address)
-        let transactionsPublisher = btcTransactionsPublisher(for: address)
+    private func bitcoinBalance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
+        let balancePublisher = btcBalancePublisher(for: wallet)
+        let transactionsPublisher = btcTransactionsPublisher(for: wallet)
         return Publishers.CombineLatest(balancePublisher, transactionsPublisher)
             .map { balanceResponse, transactionsResponse in
-                let transactions = transactionsResponse.payload.map { Transaction(date: $0.datetime, value: $0.amount(for: address)) }
+                let transactions = transactionsResponse.payload.map {
+                    Transaction(date: $0.datetime, value: $0.amount(for: wallet.address))
+                }
                 let assetBalance = AssetBalance(asset: .btc, balance: balanceResponse.payload.balance.doubleValue, transactions: transactions)
-                return .init(assets: [assetBalance])
+                return .init(wallet: wallet, assets: [assetBalance])
             }
             .eraseToAnyPublisher()
     }
@@ -78,32 +80,32 @@ extension CryptoapisBlockchainRepository {
 //MARK: - Etherium
 extension CryptoapisBlockchainRepository {
     
-    private func ethBalancePublisher(for address: String) -> AnyPublisher<Response<Balance>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/address/\(address)"
+    private func ethBalancePublisher(for wallet: Wallet) -> AnyPublisher<Response<Balance>, Error> {
+        let endpoint = "/v1/bc/eth/mainnet/address/\(wallet.address)"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<Balance>.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     
-    private func ethTransactionsPublisher(for address: String) -> AnyPublisher<Response<[EtheriumTransaction]>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/address/\(address)/basic/transactions"
+    private func ethTransactionsPublisher(for wallet: Wallet) -> AnyPublisher<Response<[EtheriumTransaction]>, Error> {
+        let endpoint = "/v1/bc/eth/mainnet/address/\(wallet.address)/basic/transactions"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[EtheriumTransaction]>.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     
-    private func etheriumBalance(for address: String) -> AnyPublisher<WalletBalance, Error> {
-        let balancePublisher = ethBalancePublisher(for: address)
-        let transactionsPublisher = ethTransactionsPublisher(for: address)
-        let erc20Publisher = erc20WalletBalancePublisher(for: address)
+    private func etheriumBalance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
+        let balancePublisher = ethBalancePublisher(for: wallet)
+        let transactionsPublisher = ethTransactionsPublisher(for: wallet)
+        let erc20Publisher = erc20WalletBalancePublisher(for: wallet)
         
         return Publishers.CombineLatest3(balancePublisher, transactionsPublisher, erc20Publisher)
             .map { balanceResponse, transactionsResponse, erc20 in
                 let transactions = transactionsResponse.payload.map { Transaction(date: $0.datetime, value: $0.amount.doubleValue) }
                 let assetBalance = AssetBalance(asset: .eth, balance: balanceResponse.payload.balance.doubleValue, transactions: transactions)
-                return .init(assets: [assetBalance] + erc20.assets)
+                return .init(wallet: wallet, assets: [assetBalance] + erc20.assets)
             }
             .eraseToAnyPublisher()
     }
@@ -117,25 +119,25 @@ extension CryptoapisBlockchainRepository {
 //MARK: - ERC-20
 extension CryptoapisBlockchainRepository {
     
-    private func erc20BalancePublisher(for address: String) -> AnyPublisher<Response<[TokenBalance]>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/tokens/address/\(address)"
+    private func erc20BalancePublisher(for wallet: Wallet) -> AnyPublisher<Response<[TokenBalance]>, Error> {
+        let endpoint = "/v1/bc/eth/mainnet/tokens/address/\(wallet.address)"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[TokenBalance]>.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     
-    private func erc20TransfersPublisher(for address: String) -> AnyPublisher<Response<[TokenTransfer]>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/tokens/address/\(address)/transfers"
+    private func erc20TransfersPublisher(for wallet: Wallet) -> AnyPublisher<Response<[TokenTransfer]>, Error> {
+        let endpoint = "/v1/bc/eth/mainnet/tokens/address/\(wallet.address)/transfers"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[TokenTransfer]>.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     
-    private func erc20WalletBalancePublisher(for address: String) -> AnyPublisher<WalletBalance, Error> {
-        let balancePublisher = erc20BalancePublisher(for: address)
-        let transfersPublisher = erc20TransfersPublisher(for: address)
+    private func erc20WalletBalancePublisher(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
+        let balancePublisher = erc20BalancePublisher(for: wallet)
+        let transfersPublisher = erc20TransfersPublisher(for: wallet)
         
         return Publishers.CombineLatest(balancePublisher, transfersPublisher)
             .map { balanceResponse, transfersResponse in
@@ -146,7 +148,7 @@ extension CryptoapisBlockchainRepository {
                         .map { Transaction(date: $0.datetime, value: $0.value.doubleValue) }
                     return AssetBalance(asset: balance.symbol, balance: balance.balance.doubleValue, transactions: transactions)
                 }
-                return .init(assets: assets)
+                return .init(wallet: wallet, assets: assets)
             }
             .eraseToAnyPublisher()
     }

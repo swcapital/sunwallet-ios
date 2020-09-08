@@ -56,13 +56,13 @@ class PortfolioStore: ObservableObject {
             )
     }
     
-    private func generateWalletsHistory(info: [Wallet : WalletBalance], history: [ExchangeHistory]) -> WalletsHistory {
-        info.map { wallet, walletBalance -> WalletHistory in
+    private func generateWalletsHistory(info: WalletsBalance, history: [ExchangeHistory]) -> WalletsHistory {
+        info.map { walletBalance -> WalletHistory in
             let assetsHistory = walletBalance.assets.compactMap { assetBalance -> AssetHistory? in
                 guard let exchangeHistory = history.first(where: { $0.source == assetBalance.asset }) else { return nil }
                 return AssetHistory(assetBalance: assetBalance, historySet: exchangeHistory.historySet)
             }
-            return WalletHistory(wallet: wallet, assetsHistory: assetsHistory)
+            return WalletHistory(wallet: walletBalance.wallet, assetsHistory: assetsHistory)
         }
     }
 }
