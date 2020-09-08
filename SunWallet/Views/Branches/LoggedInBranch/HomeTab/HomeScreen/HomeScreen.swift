@@ -63,11 +63,11 @@ struct HomeScreen: View {
     var body: some View {
         NavigationView {
             scrollView
+                .overlay(addWalletButton, alignment: .bottomTrailing)
         }
         .onReceive(portfolioStore.portfolioHistoryPublisher, perform: {
             self.walletsHistory = $0
         })
-        .overlay(addWalletButton, alignment: .bottomTrailing)
         .sheet(isPresented: $showAddingWalletSheet) {
             NavigationView {
                 AddWalletsScreen()
