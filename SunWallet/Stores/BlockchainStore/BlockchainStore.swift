@@ -94,7 +94,8 @@ extension BlockchainStore {
     private func freshCache(for wallets: [Wallet]) -> WalletsBalance? {
         guard let cache = blockchainCache() else { return nil }
         let result = wallets.compactMap { cache.get(for: $0, maxAge: 60 * 5) }
-        return result.isEmpty ? nil : result
+        guard result.count == wallets.count else { return nil }
+        return result
     }
     
     private func blockchainCache() -> BlockchainCache? {
