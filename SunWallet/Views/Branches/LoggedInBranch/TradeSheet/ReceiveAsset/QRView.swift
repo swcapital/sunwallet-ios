@@ -35,7 +35,7 @@ struct QRView: View {
     }
     private var copyButton: some View {
         Button("Copy") {
-            self.copy(self.address)
+            Pasteboard.copy(self.address)
         }
         .foregroundColor(.primary)
     }

@@ -1,5 +1,17 @@
 import SwiftUI
 
+private enum AlertType: Identifiable {
+    case mnemonic(String)
+    case removeWallet
+    
+    var id: Int {
+        switch self {
+        case .mnemonic: return 0
+        case .removeWallet: return 1
+        }
+    }
+}
+
 struct WalletDetailsScreen: View {
     let walletHistory: WalletHistory
     
@@ -9,8 +21,7 @@ struct WalletDetailsScreen: View {
     @State private var selectedValue: Double? = nil
     @State private var selectedValueChange: Double? = nil
     @State private var showingActionSheet = false
-    @State private var mnemonic: String?
-    @State private var showRemoveDialog = false
+    @State private var alertType: AlertType?
     
     private var totalEquity: Double {
         walletHistory.totalEquity
@@ -114,40 +125,48 @@ struct WalletDetailsScreen: View {
     private var showMnemonicButton: Alert.Button {
         .default(Text("Show Recovery Phrase")) {
             guard let masterkeys = self.walletStore.loadMasterKeys(hint: "Access for recovery phrase") else { return }
-            self.mnemonic = masterkeys.first(where: { $0.id == self.wallet.masterKeyID })?.mnemonic
+            guard let masterkey = masterkeys.first(where: { $0.id == self.wallet.masterKeyID }) else { return }
+            self.alertType = .mnemonic(masterkey.mnemonic)
         }
     }
     private var deleteButton: Alert.Button {
         .destructive(Text("Delete")) {
-            self.showRemoveDialog = true
+            self.alertType = .removeWallet
         }
     }
     private var actionSheet: ActionSheet {
         ActionSheet(title: Text("Wallet's actions"), message: Text(wallet.title), buttons: [renameButton, showMnemonicButton, deleteButton, .cancel()])
+    }
+    private var removeAlert: Alert {
+        Alert(
+            title: Text("Are you sure you want to delete this wallet"),
+            primaryButton: Alert.Button.destructive(Text("Delete"), action: removeWallet),
+            secondaryButton: Alert.Button.cancel()
+        )
     }
     
     var body: some View {
         scrollView
             .navigationBarTitle(wallet.title)
             .navigationBarItems(trailing: walletSettingsButton)
+            .alert(item: self.$alertType) { alertType in
+                switch alertType {
+                case .mnemonic(let phrase): return mnemonicAlert(phrase)
+                case .removeWallet: return removeAlert
+                }
+            }
             .actionSheet(isPresented: $showingActionSheet) {
                 self.actionSheet
             }
-            .alert(item: self.$mnemonic) { mnemonic in
-                Alert(
-                    title: Text("Recovery phrase"),
-                    message: Text(mnemonic),
-                    primaryButton: Alert.Button.default(Text("Copy"), action: { self.copy(mnemonic) }),
-                    secondaryButton: Alert.Button.cancel(Text("Close"))
-                )
-            }
-            .alert(isPresented: self.$showRemoveDialog) {
-                Alert(
-                    title: Text("Are you sure you want to delete this wallet"),
-                    primaryButton: Alert.Button.destructive(Text("Delete"), action: removeWallet),
-                    secondaryButton: Alert.Button.cancel()
-                )
-            }
+    }
+    
+    private func mnemonicAlert(_ mnemonic: String) -> Alert {
+        Alert(
+            title: Text("Recovery phrase"),
+            message: Text(mnemonic),
+            primaryButton: Alert.Button.default(Text("Copy"), action: { Pasteboard.copy(mnemonic) }),
+            secondaryButton: Alert.Button.cancel(Text("Close"))
+        )
     }
     
     private func showRenameDialog() {

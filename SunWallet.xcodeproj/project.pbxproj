@@ -121,6 +121,7 @@
 		DB919D3424FBDE7C00876307 /* View+uiKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3324FBDE7C00876307 /* View+uiKit.swift */; };
 		DB919D3624FBE55600876307 /* QRCodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3524FBE55600876307 /* QRCodeStore.swift */; };
 		DB919D3824FCBE0400876307 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB919D3724FCBE0400876307 /* Button.swift */; };
+		DB9593872508AB7C0093863E /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9593862508AB7C0093863E /* Pasteboard.swift */; };
 		DBA53B8A24A9CB70008E2BAF /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DC249F4D8900617590 /* LinearGradient.swift */; };
 		DBC272DB249F4D7500617590 /* ScalableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */; };
 		DBC272DF249F4DBB00617590 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC272DE249F4DBB00617590 /* LogoView.swift */; };
@@ -289,6 +290,7 @@
 		DB919D3324FBDE7C00876307 /* View+uiKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+uiKit.swift"; sourceTree = "<group>"; };
 		DB919D3524FBE55600876307 /* QRCodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeStore.swift; sourceTree = "<group>"; };
 		DB919D3724FCBE0400876307 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		DB9593862508AB7C0093863E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		DBC272DA249F4D7500617590 /* ScalableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalableButtonStyle.swift; sourceTree = "<group>"; };
 		DBC272DC249F4D8900617590 /* LinearGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearGradient.swift; path = SunWallet/Extensions/LinearGradient.swift; sourceTree = SOURCE_ROOT; };
 		DBC272DE249F4DBB00617590 /* LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -1031,6 +1033,7 @@
 				DB4ED06C249C8B3100D6A558 /* TestData.swift */,
 				DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */,
 				DB5F36BC24AF0C0200DDCA7A /* Cache.swift */,
+				DB9593862508AB7C0093863E /* Pasteboard.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1269,6 +1272,7 @@
 				DB00A6332482AE6F006FD5A0 /* WatchListSection+Cell.swift in Sources */,
 				DB68BC22247BC5E200377A72 /* SceneDelegate.swift in Sources */,
 				DBE7D95524B8AD3A00E1E97E /* BlockchyperBlockchainRepository.swift in Sources */,
+				DB9593872508AB7C0093863E /* Pasteboard.swift in Sources */,
 				DBC6A632247E311C00550115 /* User.swift in Sources */,
 				DB5725032491F9D400F283BF /* LoggedInBranch.swift in Sources */,
 				DBF5D5472482B4A4006AF99B /* Article.swift in Sources */,
