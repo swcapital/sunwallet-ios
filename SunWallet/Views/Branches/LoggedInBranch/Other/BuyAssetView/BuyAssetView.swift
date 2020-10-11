@@ -106,7 +106,7 @@ struct BuyAssetView: View {
                 
                 Divider()
                 
-                Keyboard(number: $assetExchange.value, label: $amountLabel)
+                //Keyboard(number: $assetExchange.value, label: $amountLabel)
                 
                 previewButton
             }

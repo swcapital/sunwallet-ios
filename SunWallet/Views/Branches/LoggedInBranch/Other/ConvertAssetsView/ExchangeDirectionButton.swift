@@ -13,13 +13,13 @@ struct ExchangeDirectionButton: View {
                 .foregroundColor(.lightGray)
 
             HStack(spacing: 2) {
-                CircleIcon(radius: 30, imageName: assetExchange.source.imageName)
+                Icon(radius: 30, imageName: assetExchange.source.imageName)
 
                 Image(systemName: "arrow.right")
                     .foregroundColor(.darkGray)
                     .font(.caption)
 
-                CircleIcon(radius: 30, imageName: assetExchange.destination.imageName)
+                Icon(radius: 30, imageName: assetExchange.destination.imageName)
             }
         }
     }

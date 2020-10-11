@@ -7,11 +7,8 @@ private enum KeyboardKey {
 }
 
 struct Keyboard: View {
-    @Binding var number: Double
-    @Binding var label: String
+    @Binding var keyboardNumber: KeyboardNumber
     
-    @State var keyboardNumber: KeyboardNumber = .init()
-
     var body: some View {
         VStack {
             HStack {
@@ -53,18 +50,12 @@ struct Keyboard: View {
             case .backspace:
                 keyboardNumber.removeLast()
         }
-        number = keyboardNumber.doubleValue
-        label = keyboardNumber.stringValue
+        //number = keyboardNumber.doubleValue
+        //label = keyboardNumber.stringValue
     }
     
     private func makeButton(title: String, action: @escaping () -> Void) -> some View {
         Button(title, action: action)
             .frame(maxWidth: .infinity, maxHeight: 50)
-    }
-}
-
-struct Keyboard_Previews: PreviewProvider {
-    static var previews: some View {
-        Keyboard(number: .constant(.init()), label: .constant(""))
     }
 }

@@ -6,7 +6,7 @@ extension AssetsView {
         
         var body: some View {
             HStack {
-                CircleIcon(radius: 40, imageName: assetHistory.asset.imageName)
+                Icon(radius: 40, imageName: assetHistory.asset.imageName)
                 
                 VStack(alignment: .leading) {
                     Text(assetHistory.asset.title)

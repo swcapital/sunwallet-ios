@@ -3,12 +3,12 @@ import Foundation
 
 typealias WalletsHistory = [WalletHistory]
 
-class PortfolioStore: ObservableObject {
+class WalletsHistoryStore: ObservableObject {
     private typealias WalletsHistorySubject = CurrentValueSubject<WalletsHistory?, Never>
     typealias WalletsHistoryPublisher = AnyPublisher<WalletsHistory?, Never>
     
-    private var portfolioSubject: WalletsHistorySubject?
-    private var portfolioSubscription: AnyCancellable?
+    private var walletsHistorySubject: WalletsHistorySubject?
+    private var walletsHistorySubscription: AnyCancellable?
     private var walletsSubscription: AnyCancellable?
     
     let historyStore: HistoryStore
@@ -23,11 +23,11 @@ class PortfolioStore: ObservableObject {
         subscribeOnWalletStore()
     }
     
-    var portfolioHistoryPublisher: WalletsHistoryPublisher {
-        if let subject = portfolioSubject {
+    var walletsHistoryPublisher: WalletsHistoryPublisher {
+        if let subject = walletsHistorySubject {
             return subject.eraseToAnyPublisher()
         } else {
-            return refreshPortfolioSubject().eraseToAnyPublisher()
+            return refreshWalletsHistorySubject().eraseToAnyPublisher()
         }
     }
     
@@ -94,17 +94,17 @@ private extension AssetHistory {
 
 
 // MARK: - Publishers
-extension PortfolioStore {
+extension WalletsHistoryStore {
     
     @discardableResult
-    private func refreshPortfolioSubject() -> WalletsHistorySubject {
+    private func refreshWalletsHistorySubject() -> WalletsHistorySubject {
         let subject = WalletsHistorySubject(nil)
-        portfolioSubject = subject
-        portfolioSubscription = walletsHistoryPublisher(wallets: walletStore.wallets).sink(receiveValue: { subject.send($0) })
+        walletsHistorySubject = subject
+        walletsHistorySubscription = walletsHistoryPublisher(wallets: walletStore.wallets).sink(receiveValue: { subject.send($0) })
         return subject
     }
     
     private func subscribeOnWalletStore() {
-        walletsSubscription = walletStore.objectWillChange.sink(receiveValue: { self.refreshPortfolioSubject() })
+        walletsSubscription = walletStore.objectWillChange.sink(receiveValue: { self.refreshWalletsHistorySubject() })
     }
 }

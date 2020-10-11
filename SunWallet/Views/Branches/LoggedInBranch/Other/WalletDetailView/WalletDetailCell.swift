@@ -16,7 +16,7 @@ struct WalletDetailCell: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            CircleIcon(radius: 40, imageName: "wallet-details-convert")
+            Icon(radius: 40, imageName: "wallet-details-convert")
                 .foregroundColor(.orange)
             
             VStack(alignment: .leading) {

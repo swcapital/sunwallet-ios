@@ -12,7 +12,7 @@ struct AssetField: View {
                 .frame(width: 50, alignment: .leading)
                 .font(.body)
 
-            CircleIcon(radius: 30, imageName: asset.imageName)
+            Icon(radius: 30, imageName: asset.imageName)
 
             Text(asset.title)
                 .foregroundColor(active ? .blue : .black)

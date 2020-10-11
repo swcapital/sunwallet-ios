@@ -5,7 +5,7 @@ struct WalletCurrencyPicker: View {
     let showBalances: Bool
     let completion: () -> Void
     
-    @EnvironmentObject var portfolioStore: PortfolioStore
+    @EnvironmentObject var portfolioStore: WalletsHistoryStore
     @EnvironmentObject var walletStore: WalletStore
     
     @State private var wallets: [Wallet] = []

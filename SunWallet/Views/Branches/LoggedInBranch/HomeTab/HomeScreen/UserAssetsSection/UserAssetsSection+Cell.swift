@@ -8,7 +8,7 @@ extension UserAssetsSection {
         
         var body: some View {
             HStack {
-                CircleIcon(radius: 40, imageName: wallet.asset.imageName)
+                Icon(radius: 40, imageName: wallet.asset.imageName)
                 
                 VStack(alignment: .leading) {
                     Text(wallet.title)

@@ -13,7 +13,7 @@ extension WatchListSection {
         var body: some View {
             VStack {
                 HStack {
-                    CircleIcon(radius: 40, imageName: asset.imageName)
+                    Icon(radius: 40, imageName: asset.imageName)
                     
                     VStack(alignment: .leading, spacing: 3) {
                         Text(asset.title)

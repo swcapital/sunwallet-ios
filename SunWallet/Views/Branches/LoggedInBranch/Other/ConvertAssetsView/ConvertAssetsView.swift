@@ -30,7 +30,7 @@ struct ConvertAssetsView: View {
 
             Text("\(self.amountLabel) US$")
                 .font(.system(size: 56))
-                .foregroundColor(Color.primary)
+                .foregroundColor(Color.secondary)
             
             convertAllButton
                 .padding(8)
@@ -79,7 +79,7 @@ struct ConvertAssetsView: View {
             
             Divider()
             
-            Keyboard(number: $assetExchange.value, label: $amountLabel)
+            //Keyboard(number: $assetExchange.value, label: $amountLabel)
             
             previewButton
         }

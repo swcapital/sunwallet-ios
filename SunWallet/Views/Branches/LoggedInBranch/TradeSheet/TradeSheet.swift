@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct TradeSheet: View {
+    let accounts: [Account]
+    
     @Binding var selectedView: AnyView?
 
     var body: some View {
@@ -34,6 +36,11 @@ struct TradeSheet: View {
                 title: "Send",
                 subtitle: "Send crypto to another wallet"
             )
+            .onTapGesture {
+                self.selectedView = AnyView(
+                    NavigationView { SendAssetScreen(accounts: self.accounts) }
+                )
+            }
             
             Divider()
             
@@ -43,7 +50,7 @@ struct TradeSheet: View {
                 subtitle: "Receive crypto from another wallet"
             )
             .onTapGesture {
-                self.selectedView = AnyView(ReceiveAssetView())
+                self.selectedView = AnyView(ReceiveAssetScreen(accounts: self.accounts))
             }
         }
         .frame(maxWidth: .infinity)

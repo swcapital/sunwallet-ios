@@ -25,6 +25,11 @@ struct MasterKey: Codable {
             return Wallet(address: address, title: asset.title, asset: asset, masterKeyID: self.id)
         }
     }
+    
+    func privateKey(for asset: Asset) -> Data {
+        let wallet = HDWallet(mnemonic: self.mnemonic, passphrase: passphrase)
+        return wallet.getKeyForCoin(coin: asset.coin).data
+    }
 }
 
 private extension Asset {

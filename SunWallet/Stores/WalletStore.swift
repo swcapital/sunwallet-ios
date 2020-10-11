@@ -42,6 +42,10 @@ class WalletStore: ObservableObject {
         save(wallets: wallets)
     }
     
+    func privateKey(for wallet: Wallet) -> Data? {
+        loadMasterKeys(hint: "Signing transaction")?.first(where: { $0.id == wallet.masterKeyID })?.privateKey(for: wallet.asset)
+    }
+    
     private func removeMasterKey(id: UUID) {
         guard var masterKeys = loadMasterKeys(hint: "Remove wallet") else { return }
         masterKeys.removeAll(where: { $0.id == id })

@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import TrustWalletCore
 
 typealias WalletsBalance = [WalletBalance]
 
@@ -12,6 +13,12 @@ class BlockchainStore: ObservableObject {
     
     private let blockchainRepository: BlockchainRepository = CryptoapisBlockchainRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
+    
+    let walletStore: WalletStore
+    
+    init(walletStore: WalletStore) {
+        self.walletStore = walletStore
+    }
     
     func walletsInfo(wallets: [Wallet], completion: @escaping (WalletsBalance?) -> Void) {
         var cancellable: AnyCancellable?
@@ -31,6 +38,13 @@ class BlockchainStore: ObservableObject {
         } else {
             return makeSubject(for: wallets).eraseToAnyPublisher()
         }
+    }
+    
+    func send(amount: Double, from account: Account, to destination: String) -> AnyPublisher<Void, Error>  {
+        let privateKey = walletStore.privateKey(for: account.wallet)!
+        return blockchainRepository.send(amount: amount, from: account, to: destination, privateKey: privateKey)
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
     }
     
     private func makeSubject(for wallets: [Wallet]) -> WalletsBalanceSubject {

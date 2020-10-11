@@ -27,7 +27,7 @@ struct TopMoverCell: View {
             Spacer()
             
             HStack {
-                CircleIcon(radius: 30, imageName: asset.imageName)
+                Icon(radius: 30, imageName: asset.imageName)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(asset.title)
                         .lineLimit(1)

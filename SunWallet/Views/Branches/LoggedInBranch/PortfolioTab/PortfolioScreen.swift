@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PortfolioScreen: View {    
     // MARK:- Environment
-    @EnvironmentObject var portfolioStore: PortfolioStore
+    @EnvironmentObject var portfolioStore: WalletsHistoryStore
     
     // MARK:- States
     @State private var selectedValue: Double? = nil
@@ -22,8 +22,6 @@ struct PortfolioScreen: View {
     // MARK:- Subviews
     private var title: Text {
         Text(currentValue.dollarString)
-            .font(.largeTitle)
-            .bold()
     }
     private var subtitle: Text {
         Text("Balance")
@@ -39,7 +37,7 @@ struct PortfolioScreen: View {
             scrollView
                 .navigationBarTitle(title)
         }
-        .onReceive(portfolioStore.portfolioHistoryPublisher, perform: { self.walletsHistory = $0 })
+        .onReceive(portfolioStore.walletsHistoryPublisher, perform: { self.walletsHistory = $0 })
     }
 }
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     // MARK:- Environment
-    @EnvironmentObject var portfolioStore: PortfolioStore
+    @EnvironmentObject var walletsHistoryStore: WalletsHistoryStore
     @EnvironmentObject var walletStore: WalletStore
     @EnvironmentObject var appStateStore: AppStateStore
     
@@ -65,14 +65,14 @@ struct HomeScreen: View {
             scrollView
                 .overlay(addWalletButton, alignment: .bottomTrailing)
         }
-        .onReceive(portfolioStore.portfolioHistoryPublisher, perform: {
+        .onReceive(walletsHistoryStore.walletsHistoryPublisher, perform: {
             self.walletsHistory = $0
         })
         .sheet(isPresented: $showAddingWalletSheet) {
             NavigationView {
                 AddWalletsScreen()
             }
-            .environmentObject(self.portfolioStore)
+            .environmentObject(self.walletsHistoryStore)
             .environmentObject(self.walletStore)
         }
     }

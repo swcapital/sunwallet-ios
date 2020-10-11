@@ -8,7 +8,7 @@ struct ConvertAssetCell: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                CircleIcon(radius: 40, imageName: asset.imageName)
+                Icon(radius: 40, imageName: asset.imageName)
 
                 Text(asset.title)
                     .foregroundColor(.black)

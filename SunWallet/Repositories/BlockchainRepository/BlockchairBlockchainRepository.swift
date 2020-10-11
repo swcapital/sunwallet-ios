@@ -26,6 +26,10 @@ struct BlockchairBlockchainRepository: BlockchainRepository {
             fatalError("Not supported")
         }
     }
+    
+    func send(amount: Double, from account: Account, to address: String, privateKey: Data) -> AnyPublisher<Void, Error> {
+        fatalError("Not implemented")
+    }
 }
 
 //MARK: - Bitcoin

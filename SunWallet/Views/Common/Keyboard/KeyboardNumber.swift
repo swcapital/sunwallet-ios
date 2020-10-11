@@ -23,9 +23,18 @@ struct KeyboardNumber {
     }
 
     var doubleValue: Double {
-        let decimalPart = decimalDigits.digitsToInt()
-        let fractionalPart = fractionalDigits.digitsToInt()
-        return Double(decimalPart) + Double(fractionalPart) / pow(10, Double(fractionalDigits.count))
+        get {
+            let decimalPart = decimalDigits.digitsToInt()
+            let fractionalPart = fractionalDigits.digitsToInt()
+            return Double(decimalPart) + Double(fractionalPart) / pow(10, Double(fractionalDigits.count))
+        }
+        set {
+            set(value: newValue)
+        }
+    }
+    
+    init(value: Double = 0) {
+        set(value: value)
     }
 
     mutating func append(digit: Int) {
@@ -52,6 +61,30 @@ struct KeyboardNumber {
     mutating func setFractional() {
         guard !hasFractionalPart else { return }
         hasFractionalPart = true
+    }
+    
+    mutating func reset() {
+        hasFractionalPart = false
+        decimalDigits = []
+        fractionalDigits = []
+    }
+    
+    mutating func set(value: Double) {
+        reset()
+        guard value != 0 else { return }
+        
+        let string = String(format: "%g", value)
+        for c in string {
+            if c == "." {
+                setFractional()
+            } else if let digit = Int(String(c)) {
+                if hasFractionalPart {
+                    fractionalDigits.append(digit)
+                } else {
+                    decimalDigits.append(digit)
+                }
+            }
+        }
     }
 }
 

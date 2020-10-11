@@ -17,7 +17,7 @@ extension TransactionsView {
         
         var body: some View {
             HStack {
-                CircleIcon(radius: 40, imageName: transaction.asset.imageName)
+                Icon(radius: 40, imageName: transaction.asset.imageName)
                 
                 VStack(alignment: .leading) {
                     Text(transaction.value.isPositive ? "Received" : "Sent")

@@ -11,7 +11,7 @@ struct BuyAssetSection: View {
     }
     private var assetCell: some View {
         HStack {
-            CircleIcon(radius: 40, imageName: asset.imageName)
+            Icon(radius: 40, imageName: asset.imageName)
             
             Text("\(self.asset.code) Wallet")
                 .font(.body)

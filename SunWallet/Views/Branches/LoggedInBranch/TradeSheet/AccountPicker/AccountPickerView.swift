@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct ReceiveAssetSheet: View {
+struct AccountPickerView: View {
     let accounts: [Account]
     
     // MARK:- Bindings
     @Binding var selectedAccount: Account?
     
     var grouppedAccounts: [Wallet: [Account]] {
-        Dictionary(grouping: accounts, by: { $0.wallet})
+        Dictionary(grouping: accounts, by: { $0.wallet })
     }
     
     var body: some View {
@@ -22,10 +22,10 @@ struct ReceiveAssetSheet: View {
                 ForEach(grouppedAccounts.keys.sorted(), id: \.self) { wallet in
                     Section(header: Text(wallet.title).font(.headline)) {
                         ForEach(self.grouppedAccounts[wallet]!) { account in
-                            ReceiveAssetCell(asset: account.asset)
+                            AccountCell(account: account)
                                 .onTapGesture {
                                     self.selectedAccount = account
-                            }
+                                }
                         }
                     }
                 }

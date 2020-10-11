@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct LoggedInBranch: View {
+    @EnvironmentObject var accountsStore: AccountsStore
+    
     // MARK:- States
     @State private var showTradeSheet = false
     @State private var actionView: AnyView?
+    @State private var accounts: [Account] = []
     
     // MARK:- Subviews
     private var tradeButton: some View {
@@ -17,27 +20,35 @@ struct LoggedInBranch: View {
         }
     }
     private var actionViewSheet: some View {
-        actionView.map {
-            $0.edgesIgnoringSafeArea(.all)
+        actionView.map { actionView in
+            actionView
+                .edgesIgnoringSafeArea(.all)
                 .zIndex(3)
                 .transition(.move(edge: .bottom))
                 .background(Color.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .overlay(closeButton, alignment: .topTrailing)
+        }
+        .onPreferenceChange(ResultPreferenceKey.self) { result in
+            guard result != nil else { return }
+            self.actionView = nil
         }
     }
     private var actionButtonsSheet: some View {
         BottomSheetView(isOpen: $showTradeSheet) {
-            TradeSheet(selectedView: .init(
-                get: { self.actionView },
-                set: { newValue in
-                    withAnimation(.easeIn(duration: 0.5)) {
-                        self.showTradeSheet = false
-                    }
-                    withAnimation(Animation.easeOut(duration: 0.5).delay(0.5)) {
-                        self.actionView = newValue
-                    }
-                })
-            )
+            TradeSheet(
+                accounts: accounts,
+                selectedView: .init(
+                    get: { self.actionView },
+                    set: { newValue in
+                        withAnimation(.easeIn(duration: 0.5)) {
+                            self.showTradeSheet = false
+                        }
+                        withAnimation(Animation.easeOut(duration: 0.5).delay(0.5)) {
+                            self.actionView = newValue
+                        }
+                    })
+                )
         }
         .edgesIgnoringSafeArea(.all) // It should be in `BottomSheetView` but there is some bug in SwiftUI 1
     }
@@ -77,12 +88,16 @@ struct LoggedInBranch: View {
             .overlay(tradeButton, alignment: .bottom)
             
             actionViewSheet
-                .overlay(closeButton, alignment: .topLeading)
             
             if showTradeSheet {
                 actionButtonsSheet
             }
         }
+        .onReceive(accountsStore.publisher, perform: { accounts in
+            if let accounts = accounts {
+                self.accounts = accounts
+            }
+        })
     }
     
     // MARK:- Methods
@@ -91,12 +106,5 @@ struct LoggedInBranch: View {
             Image(imageName)
             Text(title)
         }
-    }
-}
-
-struct HomeTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoggedInBranch()
-            .environmentObject(DataSource())
     }
 }
