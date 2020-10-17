@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AnimatableGradients",
+        "repositoryURL": "https://github.com/CypherPoet/AnimatableGradients",
+        "state": {
+          "branch": "master",
+          "revision": "4ad47d8cece980ebe437694aa502c2601365f5e7",
+          "version": null
+        }
+      },
+      {
+        "package": "BottomBar-SwiftUI",
+        "repositoryURL": "https://github.com/smartvipere75/bottombar-swiftui",
+        "state": {
+          "branch": "master",
+          "revision": "838ce6316f8282467ebd00cf4d9706dc58978633",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

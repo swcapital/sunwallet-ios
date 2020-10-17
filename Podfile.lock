@@ -1,0 +1,64 @@
+PODS:
+  - BigInt (4.0.0)
+  - CryptoSwift (1.3.2)
+  - MagicSDK (1.5.0):
+    - PromiseKit/CorePromise (~> 6.13)
+    - Rollbar (~> 1.12.8)
+    - Web3 (~> 0.4.2)
+    - Web3/ContractABI (~> 0.4.2)
+    - Web3/PromiseKit (~> 0.4.2)
+  - PromiseKit/CorePromise (6.13.1)
+  - Rollbar (1.12.10)
+  - secp256k1.swift (0.1.4)
+  - SwiftProtobuf (1.12.0)
+  - TrustWalletCore (2.2.14):
+    - TrustWalletCore/Core (= 2.2.14)
+  - TrustWalletCore/Core (2.2.14):
+    - TrustWalletCore/Types
+  - TrustWalletCore/Types (2.2.14):
+    - SwiftProtobuf
+  - Web3 (0.4.2):
+    - Web3/Core (= 0.4.2)
+    - Web3/HTTPExtension (= 0.4.2)
+  - Web3/ContractABI (0.4.2):
+    - Web3/Core
+  - Web3/Core (0.4.2):
+    - BigInt (~> 4.0)
+    - CryptoSwift (~> 1.0)
+    - secp256k1.swift (~> 0.1)
+  - Web3/HTTPExtension (0.4.2):
+    - Web3/Core
+  - Web3/PromiseKit (0.4.2):
+    - PromiseKit/CorePromise (~> 6.0)
+    - Web3/Core
+
+DEPENDENCIES:
+  - MagicSDK
+  - TrustWalletCore
+
+SPEC REPOS:
+  trunk:
+    - BigInt
+    - CryptoSwift
+    - MagicSDK
+    - PromiseKit
+    - Rollbar
+    - secp256k1.swift
+    - SwiftProtobuf
+    - TrustWalletCore
+    - Web3
+
+SPEC CHECKSUMS:
+  BigInt: 2aad1a9942dc932ec8b84290d2c564a3d76f97ab
+  CryptoSwift: 093499be1a94b0cae36e6c26b70870668cb56060
+  MagicSDK: 475d7eedce0a153c19e7660b286e9b0f992c9870
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
+  Rollbar: ec6afd053ca2b4afb9251865c1432749094b2aa0
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  SwiftProtobuf: 4ef85479c18ca85b5482b343df9c319c62bda699
+  TrustWalletCore: 23989fa28b86c06c50ad8818455e8799430e1f96
+  Web3: 7b2c30f98f24cc290bc671ab525d7a30a2afbc73
+
+PODFILE CHECKSUM: 9395e87f33e35713f84ff5b6cc94c566d30b91cf
+
+COCOAPODS: 1.9.3
