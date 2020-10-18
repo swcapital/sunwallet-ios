@@ -2,7 +2,9 @@ import Combine
 import Foundation
 import TrustWalletCore
 
-struct CryptoapisBlockchainRepository: BlockchainRepository {
+private let host = "https://web3api.io/api/v2/"
+
+struct AmberdataBlockchainRepository: BlockchainRepository {
     enum CryptoapisError: LocalizedError {
         case emptyUTXO
         
@@ -25,8 +27,6 @@ struct CryptoapisBlockchainRepository: BlockchainRepository {
     
     func balance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
         switch wallet.asset {
-        case .btc:
-            return bitcoinBalance(for: wallet)
         case .eth:
             return ethereumBalance(for: wallet)
         default:
@@ -37,8 +37,6 @@ struct CryptoapisBlockchainRepository: BlockchainRepository {
     func send(amount: Double, from account: Account, to destination: String, privateKey: Data) -> AnyPublisher<Void, Error> {
         let wallet = account.wallet
         switch account.asset {
-        case .btc:
-            return sendBTC(amount: amount, from: wallet, to: destination, privateKey: privateKey)
         case .eth:
             return sendETH(amount: amount, from: wallet, to: destination, privateKey: privateKey)
         default:
@@ -47,155 +45,11 @@ struct CryptoapisBlockchainRepository: BlockchainRepository {
     }
 }
 
-//MARK: - Bitcoin
-extension CryptoapisBlockchainRepository {
-    
-    private func btcBalancePublisher(for wallet: Wallet) -> AnyPublisher<Response<Balance>, Error> {
-        let endpoint = "/v1/bc/btc/mainnet/address/\(wallet.address)"
-        return dataTaskPublisher(for: endpoint)
-            .extractDataMappingError()
-            .decode(type: Response<Balance>.self, decoder: decoder)
-            .eraseToAnyPublisher()
-    }
-    
-    private func btcTransactionsPublisher(for wallet: Wallet) -> AnyPublisher<Response<[BitcoinTransaction]>, Error> {
-        let endpoint = "/v1/bc/btc/mainnet/address/\(wallet.address)/transactions"
-        return dataTaskPublisher(for: endpoint)
-            .extractDataMappingError()
-            .decode(type: Response<[BitcoinTransaction]>.self, decoder: decoder)
-            .eraseToAnyPublisher()
-    }
-    
-    private func bitcoinBalance(for wallet: Wallet) -> AnyPublisher<WalletBalance, Error> {
-        let balancePublisher = btcBalancePublisher(for: wallet)
-        let transactionsPublisher = btcTransactionsPublisher(for: wallet)
-        return Publishers.CombineLatest(balancePublisher, transactionsPublisher)
-            .map { balanceResponse, transactionsResponse in
-                let transactions = transactionsResponse.payload.map {
-                    Transaction(date: $0.datetime, value: $0.amount(for: wallet.address))
-                }
-                let assetBalance = AssetBalance(asset: .btc, balance: balanceResponse.payload.balance.doubleValue, transactions: transactions)
-                return .init(wallet: wallet, assets: [assetBalance])
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    private func sendBTC(amount: Double, from wallet: Wallet, to destination: String, privateKey: Data) -> AnyPublisher<Void, Error> {
-        unspentBitcoinTransactions(for: wallet)
-            .tryMap { utxo -> [UTXO] in
-                guard utxo.count > 0 else { throw CryptoapisError.emptyUTXO }
-                return utxo
-            }
-            .flatMap { utxo -> AnyPublisher<Void, Error> in
-                let hex = self.bitcoinOutput(utxo: utxo, amount: amount, from: wallet, to: destination, privateKey: privateKey)
-                return self.broadcastBitcoinTransaction(hex: hex.encoded.hexString, for: wallet)
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    private func bitcoinOutput(utxo: [UTXO], amount: Double, from wallet: Wallet, to destination: String, privateKey: Data) -> BitcoinSigningOutput {
-        let lockScript = BitcoinScript.lockScriptForAddress(address: wallet.address, coin: .bitcoin)
-        
-        let transactions = unspentTransactions(for: amount, wallet: wallet, utxo: utxo, lockScript: lockScript)
-        let satoshiAmount = Measurement(value: amount, unit: BitcoinUnit.bitcoin).converted(to: .satoshi).value
-        
-        let scriptHash = lockScript.matchPayToWitnessPublicKeyHash()!
-        
-        let input = BitcoinSigningInput.with {
-            $0.amount = Int64(satoshiAmount)
-            $0.hashType = BitcoinSigHashType.all.rawValue
-            $0.toAddress = destination
-            $0.changeAddress = wallet.address
-            $0.byteFee = 1
-            $0.privateKey = [privateKey]
-            $0.utxo = transactions
-            $0.scripts[scriptHash.hexString] = BitcoinScript.buildPayToPublicKeyHash(hash: scriptHash).data
-        }
-        
-        return AnySigner.sign(input: input, coin: .bitcoin)
-    }
-    
-    private func unspentTransactions(for amount: Double, wallet: Wallet, utxo: [UTXO], lockScript: BitcoinScript) -> [BitcoinUnspentTransaction] {
-        var result: [BitcoinUnspentTransaction] = []
-        var utxo = utxo.sorted(by: { $0.amount < $1.amount })
-        var amount = amount
-        if amount < utxo.first!.amount {
-            let output = utxo.last(where: { $0.amount > amount })!
-            let transaction = unspentTransaction(output: output, wallet: wallet, lockScript: lockScript)
-            result = [transaction]
-        } else {
-            while amount > 0 {
-                let index = utxo.firstIndex(where: { $0.amount < amount })!
-                let output = utxo[index]
-                utxo.remove(at: index)
-                let transaction = unspentTransaction(output: output, wallet: wallet, lockScript: lockScript)
-                result.append(transaction)
-                amount -= output.amount
-            }
-        }
-        return result
-    }
-    
-    private func unspentTransaction(output: UTXO, wallet: Wallet, lockScript: BitcoinScript) -> BitcoinUnspentTransaction {
-        let satoshiAmount = Measurement(value: output.amount, unit: BitcoinUnit.bitcoin).converted(to: .satoshi).value
-        let txID = Data(hexString: output.txid)!
-        return BitcoinUnspentTransaction.with {
-            $0.outPoint.hash = Data(txID.reversed())
-            $0.outPoint.index = UInt32(output.vout)
-            $0.outPoint.sequence = UINT32_MAX
-            
-            $0.amount = Int64(satoshiAmount)
-            $0.script = lockScript.data
-        }
-    }
-    
-    private func unspentBitcoinTransactions(for wallet: Wallet) -> AnyPublisher<[UTXO], Error> {
-        let endpoint = "/v1/bc/btc/mainnet/address/\(wallet.address)/unspent-transactions"
-        return dataTaskPublisher(for: endpoint)
-            .extractDataMappingError()
-            .decode(type: Response<[UTXO]>.self, decoder: decoder)
-            .map { $0.payload }
-            .eraseToAnyPublisher()
-    }
-    
-    private func broadcastBitcoinTransaction(hex: String, for wallet: Wallet) -> AnyPublisher<Void, Error> {
-        let endpoint = "/v1/bc/btc/mainnet/txs/send"
-        print(hex)
-        return dataTaskPublisher(for: endpoint, postParameters: ["hex": hex])
-            .extractDataMappingError()
-            .decode(type: Response<BitcoinTransactionResponse>.self, decoder: decoder)
-            .map { _ in  }
-            .eraseToAnyPublisher()
-    }
-    
-    private struct BitcoinTransaction: Codable {
-        let datetime: Date
-        let txins: [BitcoinTransactionDetails]
-        let txouts: [BitcoinTransactionDetails]
-        
-        func amount(for address: String) -> Double {
-            var balance = 0.0
-            balance -= txins.filter { $0.addresses.contains(address) }.map(\.amount.doubleValue).reduce(0, +)
-            balance += txouts.filter { $0.addresses.contains(address) }.map(\.amount.doubleValue).reduce(0, +)
-            return balance
-        }
-    }
-    
-    private struct BitcoinTransactionDetails: Codable {
-        let amount: String
-        let addresses: [String]
-    }
-    
-    private struct BitcoinTransactionResponse: Codable {
-        let txid: String
-    }
-}
-
 //MARK: - Ethereum
-extension CryptoapisBlockchainRepository {
+extension AmberdataBlockchainRepository {
     
     private func ethBalancePublisher(for wallet: Wallet) -> AnyPublisher<Response<Balance>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/address/\(wallet.address)"
+        let endpoint = "addresses/\(wallet.address)/account-balances/historical?page=0&size=1000"
         return dataTaskPublisher(for: endpoint)
             .extractDataMappingError()
             .decode(type: Response<Balance>.self, decoder: decoder)
@@ -203,7 +57,7 @@ extension CryptoapisBlockchainRepository {
     }
     
     private func ethTransactionsPublisher(for wallet: Wallet) -> AnyPublisher<Response<[EthereumTransaction]>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/address/\(wallet.address)/basic/transactions"
+        let endpoint = "addresses/\(wallet.address)/transactions?page=0&size=1000"
         return dataTaskPublisher(for: endpoint)
             .extractDataMappingError()
             .decode(type: Response<[EthereumTransaction]>.self, decoder: decoder)
@@ -281,10 +135,10 @@ extension CryptoapisBlockchainRepository {
 }
 
 //MARK: - ERC-20
-extension CryptoapisBlockchainRepository {
+extension AmberdataBlockchainRepository {
     
     private func erc20BalancePublisher(for wallet: Wallet) -> AnyPublisher<Response<[TokenBalance]>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/tokens/address/\(wallet.address)"
+        let endpoint = "addresses/\(wallet.address)/token-balances/historical?page=0&size=1000"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[TokenBalance]>.self, decoder: decoder)
@@ -292,7 +146,7 @@ extension CryptoapisBlockchainRepository {
     }
     
     private func erc20TransfersPublisher(for wallet: Wallet) -> AnyPublisher<Response<[TokenTransfer]>, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/tokens/address/\(wallet.address)/transfers"
+        let endpoint = "addresses/\(wallet.address)/token-transfers?page=0&size=1000"
         return dataTaskPublisher(for: endpoint)
             .extractData()
             .decode(type: Response<[TokenTransfer]>.self, decoder: decoder)
@@ -330,11 +184,11 @@ extension CryptoapisBlockchainRepository {
 }
 
 // MARK:- Common
-extension CryptoapisBlockchainRepository {
+extension AmberdataBlockchainRepository {
     
     private func dataTaskPublisher(for endpoint: String, postParameters: [String: Any]? = nil) -> URLSession.DataTaskPublisher {
-        let host = "https://api.cryptoapis.io"
-        let token = "22bfb126c375c756d0b85ae3d9ab6b398bd114b7"
+        let host = "https://web3api.io/api/v2/"
+        let token = Keys.amberdataKey
         let url = URL(string: "\(host)/\(endpoint)")!
         var request = URLRequest(url: url)
         
@@ -345,7 +199,7 @@ extension CryptoapisBlockchainRepository {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        request.addValue(token, forHTTPHeaderField: "X-API-Key")
+        request.addValue(token, forHTTPHeaderField: "x-api-key")
         return URLSession.shared.dataTaskPublisher(for: request)
     }
     

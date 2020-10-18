@@ -1,7 +1,23 @@
 import SwiftUI
+import BottomBar_SwiftUI
 
 struct LoggedInBranch: View {
     @EnvironmentObject var accountsStore: AccountsStore
+    
+    let items: [BottomBarItem] = [
+        BottomBarItem(icon: Image("tab-bar-home"), title: "Home", color: Color.blueColor),
+        BottomBarItem(icon: Image("tab-bar-search"), title: "Search", color: Color.greenColor),
+        BottomBarItem(icon: Image("tab-bar-discover"), title: "Discover", color: Color.yellowColor),
+        BottomBarItem(icon: Image("tab-bar-notifications"), title: "Notifications", color: Color.redColor)
+    ]
+    
+    let itemViews = [AnyView(HomeScreen()), AnyView(PortfolioScreen()), AnyView(PortfolioScreen()), AnyView(PreferenceView())]
+    
+    @State private var selectedIndex: Int = 0
+
+    var selectedItem: BottomBarItem {
+        items[selectedIndex]
+    }
     
     // MARK:- States
     @State private var showTradeSheet = false
@@ -62,6 +78,16 @@ struct LoggedInBranch: View {
     }
     
     var body: some View {
+        VStack {
+            itemViews[selectedIndex]
+            BottomBar(selectedIndex: $selectedIndex, items: items)
+        }
+        .onReceive(accountsStore.publisher, perform: { accounts in
+            if let accounts = accounts {
+                self.accounts = accounts
+            }
+        })
+        /*
         ZStack {
             TabView() {
                 HomeScreen()
@@ -93,11 +119,8 @@ struct LoggedInBranch: View {
                 actionButtonsSheet
             }
         }
-        .onReceive(accountsStore.publisher, perform: { accounts in
-            if let accounts = accounts {
-                self.accounts = accounts
-            }
-        })
+ */
+       
     }
     
     // MARK:- Methods

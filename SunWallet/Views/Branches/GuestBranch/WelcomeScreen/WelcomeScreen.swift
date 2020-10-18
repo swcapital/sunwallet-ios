@@ -4,7 +4,7 @@ struct WelcomeScreen: View {
     // MARK:- Properties
     // MARK:- Subviews
     private var registerButton: some View {
-        NavigationLink(destination: BottomBarDemo()) {
+        NavigationLink(destination: SignupView()) {
             Text("Get Started")
                 .padding()
                 .frame(maxWidth: .infinity)

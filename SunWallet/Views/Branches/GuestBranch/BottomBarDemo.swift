@@ -2,11 +2,12 @@ import SwiftUI
 import BottomBar_SwiftUI
 
 let items: [BottomBarItem] = [
-    BottomBarItem(icon: Image("tab-bar-home"), title: "Home", color: .purple),
-    BottomBarItem(icon: Image("tab-bar-search"), title: "Search", color: .pink),
-    BottomBarItem(icon: Image("tab-bar-discover"), title: "Discover", color: .orange),
-    BottomBarItem(icon: Image("tab-bar-notifications"), title: "Notifications", color: .blue)
+    BottomBarItem(icon: Image("tab-bar-home"), title: "Home", color: Color.blueColor),
+    BottomBarItem(icon: Image("tab-bar-search"), title: "Search", color: Color.greenColor),
+    BottomBarItem(icon: Image("tab-bar-discover"), title: "Discover", color: Color.yellowColor),
+    BottomBarItem(icon: Image("tab-bar-notifications"), title: "Notifications", color: Color.redColor)
 ]
+
 
 struct BasicView: View {
     let item: BottomBarItem

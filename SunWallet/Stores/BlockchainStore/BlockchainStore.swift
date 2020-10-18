@@ -11,7 +11,7 @@ class BlockchainStore: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private var subjects: [[Wallet]: WalletsBalanceSubject] = [:]
     
-    private let blockchainRepository: BlockchainRepository = CryptoapisBlockchainRepository()
+    private let blockchainRepository: BlockchainRepository = AmberdataBlockchainRepository()
     private let cacheRepository: CacheRepository = FileCacheRepository()
     
     let walletStore: WalletStore
