@@ -1,6 +1,6 @@
 import Combine
 import Foundation
-import TrustWalletCore
+import WalletCore
 
 typealias WalletsBalance = [WalletBalance]
 

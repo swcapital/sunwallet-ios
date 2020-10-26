@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "crypto-exchange--cryptocurrency-usage-DIGITAL-ASSET-CRYPTO-CURRENCY-bitcoins-exchange-money-dollar-2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "crypto-exchange--cryptocurrency-usage-DIGITAL-ASSET-CRYPTO-CURRENCY-bitcoins-exchange-money-dollar-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "crypto-exchange--cryptocurrency-usage-DIGITAL-ASSET-CRYPTO-CURRENCY-bitcoins-exchange-money-dollar.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

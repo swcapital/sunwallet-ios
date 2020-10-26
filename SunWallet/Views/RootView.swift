@@ -8,9 +8,9 @@ struct RootView: View {
     var body: some View {
         Group {
             if appStateStore.loggedIn {
-                LoggedInBranch()
+                MainView()
             } else {
-                GuestBranch()
+                OnboardingView()
             }
         }
         .accentColor(.primary)

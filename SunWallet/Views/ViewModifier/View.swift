@@ -12,10 +12,6 @@ extension View {
         }
     }
     
-    func showLoading(_ value: Bool) -> some View {
-        self.overlay(LoadingScreen(background: Color.white.opacity(0.05)), isVisible: value)
-    }
-    
     func showAlert(error: Binding<String?>) -> some View {
         self.alert(item: error) { error in
             Alert(title: Text(error))

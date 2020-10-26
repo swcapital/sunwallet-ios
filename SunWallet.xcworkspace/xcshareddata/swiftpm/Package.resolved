@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "SwiftUIPager",
+        "repositoryURL": "https://github.com/fermoya/SwiftUIPager.git",
+        "state": {
+          "branch": "master",
+          "revision": "6ccc32c01e421406d71097d99e2aa4609762dd5b",
+          "version": null
+        }
+      },
+      {
         "package": "Web3",
         "repositoryURL": "https://github.com/Boilertalk/Web3.swift.git",
         "state": {

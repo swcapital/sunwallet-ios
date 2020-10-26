@@ -1,11 +1,13 @@
 import Combine
 import Foundation
-import TrustWalletCore
+import WalletCore
+import Web3
 
-private let host = "https://web3api.io/api/v2/"
+private let host = "https://web3api.io/api/v2"
+let web3 = Web3(rpcURL: "https://mainnet.infura.io/" + Keys.infuraKey)
 
 struct AmberdataBlockchainRepository: BlockchainRepository {
-    enum CryptoapisError: LocalizedError {
+    enum AmberdataError: LocalizedError {
         case emptyUTXO
         
         var errorDescription: String? {
@@ -43,6 +45,7 @@ struct AmberdataBlockchainRepository: BlockchainRepository {
             fatalError()
         }
     }
+    
 }
 
 //MARK: - Ethereum
@@ -57,6 +60,7 @@ extension AmberdataBlockchainRepository {
     }
     
     private func ethTransactionsPublisher(for wallet: Wallet) -> AnyPublisher<Response<[EthereumTransaction]>, Error> {
+        print(wallet.address)
         let endpoint = "addresses/\(wallet.address)/transactions?page=0&size=1000"
         return dataTaskPublisher(for: endpoint)
             .extractDataMappingError()
@@ -78,47 +82,6 @@ extension AmberdataBlockchainRepository {
             .eraseToAnyPublisher()
     }
     
-    private func sendETH(amount: Double, from wallet: Wallet, to destination: String, privateKey: Data) -> AnyPublisher<Void, Error> {
-        ethereumNonce(for: wallet)
-            .flatMap { nonce -> AnyPublisher<Void, Error> in
-                let output = ethereumOutput(amount: amount, nonce: nonce + 1, to: destination, privateKey: privateKey)
-                return self.broadcastEthereumTransaction(hex: output.encoded.hexString)
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    private func ethereumNonce(for wallet: Wallet) -> AnyPublisher<Int, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/address/\(wallet.address)/nonce"
-        return dataTaskPublisher(for: endpoint)
-            .extractDataMappingError()
-            .decode(type: Response<NonceResponse>.self, decoder: decoder)
-            .map { $0.payload.nonce }
-            .eraseToAnyPublisher()
-    }
-    
-    private func ethereumOutput(amount: Double, nonce: Int, to destination: String, privateKey: Data) -> EthereumSigningOutput {
-        let weiAmount = Measurement(value: amount, unit: EthereumUnit.ethereum).converted(to: .wei).value
-        
-        let signerInput = EthereumSigningInput.with {
-            $0.chainID = 1.hexData
-            $0.nonce = nonce.hexData
-            $0.gasPrice = 3600000000.hexData
-            $0.gasLimit = 21000.hexData
-            $0.toAddress = destination
-            $0.amount = Int(weiAmount).hexData
-            $0.privateKey = privateKey
-        }
-        return AnySigner.sign(input: signerInput, coin: .ethereum)
-    }
-    
-    private func broadcastEthereumTransaction(hex: String) -> AnyPublisher<Void, Error> {
-        let endpoint = "/v1/bc/eth/mainnet/txs/push"
-        return dataTaskPublisher(for: endpoint, postParameters: ["hex": "0x" + hex])
-            .extractDataMappingError()
-            .decode(type: Response<EthereumTransactionResponse>.self, decoder: decoder)
-            .map { print($0.payload.hex)  }
-            .eraseToAnyPublisher()
-    }
     
     private struct EthereumTransaction: Codable {
         let amount: String
@@ -127,10 +90,6 @@ extension AmberdataBlockchainRepository {
     
     private struct EthereumTransactionResponse: Codable {
         let hex: String
-    }
-    
-    private struct NonceResponse: Codable {
-        let nonce: Int
     }
 }
 
@@ -183,11 +142,62 @@ extension AmberdataBlockchainRepository {
     }
 }
 
+//MARK: - Web3
+extension AmberdataBlockchainRepository {
+    private func sendETH(amount: Double, from wallet: Wallet, to destination: String, privateKey: Data) -> AnyPublisher<Void, Error> {
+            ethereumNonce(for: wallet)
+                .flatMap { nonce -> AnyPublisher<Void, Error> in
+                    let output = ethereumOutput(amount: amount, nonce: nonce + 1, to: destination, privateKey: privateKey)
+                    return self.broadcastEthereumTransaction(hex: output.encoded.hexString)
+                }
+                .eraseToAnyPublisher()
+        }
+    
+    private func broadcastEthereumTransaction(hex: String) -> AnyPublisher<Void, Error> {
+            let endpoint = "/v1/bc/eth/mainnet/txs/push"
+            return dataTaskPublisher(for: endpoint, postParameters: ["hex": "0x" + hex])
+                .extractDataMappingError()
+                .decode(type: Response<EthereumTransactionResponse>.self, decoder: decoder)
+                .map { print($0.payload.hex)  }
+                .eraseToAnyPublisher()
+        }
+    
+    private func ethereumNonce(for wallet: Wallet) -> AnyPublisher<Int, Error> {
+            let endpoint = "/v1/bc/eth/mainnet/address/\(wallet.address)/nonce"
+            return dataTaskPublisher(for: endpoint)
+                .extractDataMappingError()
+                .decode(type: Response<NonceResponse>.self, decoder: decoder)
+                .map { $0.payload.nonce }
+                .eraseToAnyPublisher()
+        }
+        
+    private func ethereumOutput(amount: Double, nonce: Int, to destination: String, privateKey: Data) -> EthereumSigningOutput {
+            let weiAmount = Measurement(value: amount, unit: EthereumUnit.ethereum).converted(to: .wei).value
+            
+            let signerInput = EthereumSigningInput.with {
+                $0.chainID = 1.hexData
+                $0.nonce = nonce.hexData
+                $0.gasPrice = 3600000000.hexData
+                $0.gasLimit = 21000.hexData
+                $0.toAddress = destination
+                $0.amount = Int(weiAmount).hexData
+                $0.privateKey = privateKey
+            }
+            return AnySigner.sign(input: signerInput, coin: .ethereum)
+    }
+    
+
+        
+        private struct NonceResponse: Codable {
+            let nonce: Int
+        }
+}
+
 // MARK:- Common
 extension AmberdataBlockchainRepository {
     
     private func dataTaskPublisher(for endpoint: String, postParameters: [String: Any]? = nil) -> URLSession.DataTaskPublisher {
-        let host = "https://web3api.io/api/v2/"
+        let host = "https://web3api.io/api/v2"
         let token = Keys.amberdataKey
         let url = URL(string: "\(host)/\(endpoint)")!
         var request = URLRequest(url: url)
@@ -199,7 +209,9 @@ extension AmberdataBlockchainRepository {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
+        
         request.addValue(token, forHTTPHeaderField: "x-api-key")
+        request.addValue("ethereum-mainnet", forHTTPHeaderField: "x-amberdata-blockchain-id")
         return URLSession.shared.dataTaskPublisher(for: request)
     }
     
@@ -212,11 +224,11 @@ extension AmberdataBlockchainRepository {
     }
 }
 
-private struct CryptoapisErrorResponse: Codable {
+private struct AmberdataErrorResponse: Codable {
     struct Meta: Codable {
-        let error: CryptoapisError
+        let error: AmberdataError
     }
-    struct CryptoapisError: LocalizedError, Codable {
+    struct AmberdataError: LocalizedError, Codable {
         let code: Int
         let message: String
         
@@ -232,7 +244,7 @@ private extension URLSession.DataTaskPublisher {
         extractData().mapError { error -> Error in
             guard let data = (error as? HTTPError)?.data else { return error }
             do {
-                let error = try JSONDecoder().decode(CryptoapisErrorResponse.self, from: data).meta.error
+                let error = try JSONDecoder().decode(AmberdataErrorResponse.self, from: data).meta.error
                 return error
             } catch {
                 return error

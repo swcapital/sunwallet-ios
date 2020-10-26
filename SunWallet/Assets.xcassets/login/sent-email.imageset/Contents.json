@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "email-rush--email-send-envelope-MESSAGE-MAIL-RUSH-DELIVERY.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "email-rush--email-send-envelope-MESSAGE-MAIL-RUSH-DELIVERY-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "email-rush--email-send-envelope-MESSAGE-MAIL-RUSH-DELIVERY-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

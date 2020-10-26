@@ -1,12 +1,12 @@
 import UIKit
-//import MagicSDK
+import MagicSDK
 import Web3
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //Magic.shared = Magic(apiKey: Keys.magicKey)
+        Magic.shared = Magic(apiKey: Keys.magicKey)
         return true
     }
 

@@ -1,5 +1,5 @@
 import Foundation
-import TrustWalletCore
+import WalletCore
 
 private let passphrase = ""
 
