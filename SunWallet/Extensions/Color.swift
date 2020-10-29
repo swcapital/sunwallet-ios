@@ -20,10 +20,10 @@ extension Color {
     static let darkGrayColor: Color = Color(red: 171.0/255.0, green: 171.0/255.0, blue: 171.0/255.0)
     static let lightGrayColor: Color = Color(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0)
     static let whiteColor: Color = Color(red: 245.0/255.0, green: 244.0/255.0, blue: 244.0/255.0)
- */
+ 
     
     static let redColor: Color = Color(red: 255.0/255.0, green: 69.0/255.0, blue: 60.0/255.0)
-    static let blueColor: Color = Color(red: 69.0/255.0, green: 60.0/255.0, blue: 255.0/255.0)
+    static let blueColor: Color = Color(red: 69.0/255.0, green: 60.0/255.0, blue: 255.0/255.0)*/
 
     
     
@@ -35,5 +35,11 @@ extension Color {
     static let darkGrayColor: Color = Color(red: 171.0/255.0, green: 171.0/255.0, blue: 171.0/255.0)
     static let lightGrayColor: Color = Color(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0)
     static let whiteColor: Color = Color(red: 245.0/255.0, green: 244.0/255.0, blue: 244.0/255.0)
+    
+    
+    static let redColor: Color = Color(red: 255.0/255.0, green: 123.0/255.0, blue: 137.0/255.0)
+    static let lightBlueColor: Color = Color(red: 196.0/255.0, green: 232.0/255.0, blue: 255.0/255.0)
+    static let blueColor: Color = Color(red: 111.0/255.0, green: 194.0/255.0, blue: 235.0/255.0)
+    static let darkBlueColor: Color = Color(red: 29.0/255.0, green: 174.0/255.0, blue: 226.0/255.0)
     
 }

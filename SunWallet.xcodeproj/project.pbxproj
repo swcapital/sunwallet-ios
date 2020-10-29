@@ -70,7 +70,6 @@
 		DB5725032491F9D400F283BF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5725022491F9D400F283BF /* MainView.swift */; };
 		DB5725072492070F00F283BF /* PortfolioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5725062492070F00F283BF /* PortfolioScreen.swift */; };
 		DB5F36A024A9D79800DDCA7A /* HistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F369F24A9D79800DDCA7A /* HistoryEntry.swift */; };
-		DB5F36B424ADF89100DDCA7A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36B324ADF89100DDCA7A /* OnboardingView.swift */; };
 		DB5F36BB24AEFDA000DDCA7A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */; };
 		DB5F36BD24AF0C0200DDCA7A /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36BC24AF0C0200DDCA7A /* Cache.swift */; };
 		DB5F36C624AF0CB900DDCA7A /* ExchangeHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5F36C124AF0C2900DDCA7A /* ExchangeHistory.swift */; };
@@ -198,6 +197,10 @@
 		FAB6615D25472B3F00F921AA /* DigitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6615A25472B3E00F921AA /* DigitButton.swift */; };
 		FAB6615E25472B3F00F921AA /* PinKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6615B25472B3F00F921AA /* PinKeyboardView.swift */; };
 		FAB6616425472F5500F921AA /* Onboarding+LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6616325472F5500F921AA /* Onboarding+LogoView.swift */; };
+		FABC7DE1254A00560055702F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABC7DE0254A00560055702F /* PassKit.framework */; };
+		FAC2AF4A254ACB8100E5EB14 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2AF47254ACB8100E5EB14 /* OnboardingView.swift */; };
+		FAC2AF4B254ACB8100E5EB14 /* Onboarding+Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2AF48254ACB8100E5EB14 /* Onboarding+Blob.swift */; };
+		FAC2AF4C254ACB8100E5EB14 /* Onboarding+PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2AF49254ACB8100E5EB14 /* Onboarding+PageControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,7 +270,7 @@
 		DB5725022491F9D400F283BF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DB5725062492070F00F283BF /* PortfolioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioScreen.swift; sourceTree = "<group>"; };
 		DB5F369F24A9D79800DDCA7A /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
-		DB5F36B324ADF89100DDCA7A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		DB5F36B324ADF89100DDCA7A /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
 		DB5F36B624AE4DE900DDCA7A /* View+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+alert.swift"; sourceTree = "<group>"; };
 		DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		DB5F36BC24AF0C0200DDCA7A /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -377,6 +380,7 @@
 		FA22BF5D253B436200E422C5 /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
 		FA22BF5E253B436200E422C5 /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		FA22BF5F253B436200E422C5 /* BarBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarBuilder.swift; sourceTree = "<group>"; };
+		FA46EA8A2549D6FE00B51251 /* SunWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunWallet.entitlements; sourceTree = "<group>"; };
 		FA931292253C7EDD0083787C /* AmberdataBlockchainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmberdataBlockchainRepository.swift; sourceTree = "<group>"; };
 		FAAE2D9E2539955E002CA452 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		FAB661062546F51300F921AA /* InformationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDetailView.swift; sourceTree = "<group>"; };
@@ -391,6 +395,10 @@
 		FAB6615A25472B3E00F921AA /* DigitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitButton.swift; sourceTree = "<group>"; };
 		FAB6615B25472B3F00F921AA /* PinKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinKeyboardView.swift; sourceTree = "<group>"; };
 		FAB6616325472F5500F921AA /* Onboarding+LogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Onboarding+LogoView.swift"; path = "SunWallet/Views/Onboarding/Onboarding/Onboarding+LogoView.swift"; sourceTree = SOURCE_ROOT; };
+		FABC7DE0254A00560055702F /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		FAC2AF47254ACB8100E5EB14 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		FAC2AF48254ACB8100E5EB14 /* Onboarding+Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Onboarding+Blob.swift"; sourceTree = "<group>"; };
+		FAC2AF49254ACB8100E5EB14 /* Onboarding+PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Onboarding+PageControl.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +410,7 @@
 				FA22BF53253B3A2400E422C5 /* AnimatableGradients in Frameworks */,
 				FA931298253C89AC0083787C /* Web3PromiseKit in Frameworks */,
 				FA9BC14D254588E10092EB60 /* SwiftUIPager in Frameworks */,
+				FABC7DE1254A00560055702F /* PassKit.framework in Frameworks */,
 				FA93129C253C89AC0083787C /* Web3 in Frameworks */,
 				FA22BF4C253B251D00E422C5 /* BottomBar-SwiftUI in Frameworks */,
 				FA93129A253C89AC0083787C /* Web3ContractABI in Frameworks */,
@@ -414,6 +423,7 @@
 		55FAFD01B2FF84607A632926 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FABC7DE0254A00560055702F /* PassKit.framework */,
 				B5EA05D231FFBDCCC1C775F6 /* Pods_SunWallet.framework */,
 			);
 			name = Frameworks;
@@ -514,7 +524,8 @@
 		DB0CCA672498BBE00060E884 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				DB5F36B324ADF89100DDCA7A /* OnboardingView.swift */,
+				FAC2AF47254ACB8100E5EB14 /* OnboardingView.swift */,
+				DB5F36B324ADF89100DDCA7A /* OnboardingView2.swift */,
 				DB5F36AF24ADE23500DDCA7A /* Onboarding */,
 				DB865AD124B1D868004303F3 /* Login */,
 			);
@@ -724,6 +735,8 @@
 		DB5F36AF24ADE23500DDCA7A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				FAC2AF48254ACB8100E5EB14 /* Onboarding+Blob.swift */,
+				FAC2AF49254ACB8100E5EB14 /* Onboarding+PageControl.swift */,
 				FAB6616325472F5500F921AA /* Onboarding+LogoView.swift */,
 				FAB6610C2546F53C00F921AA /* Onboarding+TitleView.swift */,
 				FAB661062546F51300F921AA /* InformationDetailView.swift */,
@@ -806,6 +819,7 @@
 		DB68BC1E247BC5E200377A72 /* SunWallet */ = {
 			isa = PBXGroup;
 			children = (
+				FA46EA8A2549D6FE00B51251 /* SunWallet.entitlements */,
 				DB68BC1F247BC5E200377A72 /* AppDelegate.swift */,
 				DB68BC21247BC5E200377A72 /* SceneDelegate.swift */,
 				DB35619224B6F8CC006828ED /* Stores */,
@@ -1393,6 +1407,7 @@
 				DBFDB7612493635C00A1DFAD /* AccountCell.swift in Sources */,
 				DB00A6332482AE6F006FD5A0 /* WatchListSection+Cell.swift in Sources */,
 				DB68BC22247BC5E200377A72 /* SceneDelegate.swift in Sources */,
+				FAC2AF4A254ACB8100E5EB14 /* OnboardingView.swift in Sources */,
 				FAB6615C25472B3F00F921AA /* ControlButton.swift in Sources */,
 				FA22BF48253AFA4400E422C5 /* AnimatedGradient.swift in Sources */,
 				FAB6610A2546F52C00F921AA /* InformationContainerView.swift in Sources */,
@@ -1419,7 +1434,6 @@
 				DBF576DC2497851600FB01E3 /* Language.swift in Sources */,
 				DBE7D95B24B8B8CF00E1E97E /* BlockchainStore.swift in Sources */,
 				FA22BF62253B436200E422C5 /* BottomBarItemView.swift in Sources */,
-				DB5F36B424ADF89100DDCA7A /* OnboardingView.swift in Sources */,
 				DB68BC34247BEA1900377A72 /* Keyboard.swift in Sources */,
 				DB5F36CD24AF273D00DDCA7A /* CacheRepository.swift in Sources */,
 				DB9B25912517AFF800956602 /* ScanAddressScreen.swift in Sources */,
@@ -1463,6 +1477,7 @@
 				DB01234424C316AB006E72FD /* NativeCurrencyView+Currency.swift in Sources */,
 				DBE7D96124B9BA1D00E1E97E /* HistoryCache.swift in Sources */,
 				DB5F36BD24AF0C0200DDCA7A /* Cache.swift in Sources */,
+				FAC2AF4C254ACB8100E5EB14 /* Onboarding+PageControl.swift in Sources */,
 				DB0376CF247D2B60005ACB03 /* Thumb.swift in Sources */,
 				DB77E174247E3C5700BF1A88 /* NumberFormatter.swift in Sources */,
 				DB4ED06D249C8B3100D6A558 /* TestData.swift in Sources */,
@@ -1490,6 +1505,7 @@
 				DB65BFEC24EEA6F1000DF3FC /* TransactionsView.swift in Sources */,
 				DBFDB75D249353B200A1DFAD /* ReceiveAssetScreen.swift in Sources */,
 				DB343FAE24936BAD003DDA0B /* AccountPickerView.swift in Sources */,
+				FAC2AF4B254ACB8100E5EB14 /* Onboarding+Blob.swift in Sources */,
 				DBC5539324A790550037763F /* Asset.swift in Sources */,
 				DB9B2586251784E100956602 /* SendingConfirmationScreen.swift in Sources */,
 				DB865AE224B218A7004303F3 /* WalletCurrencyPicker+Cell.swift in Sources */,
@@ -1639,6 +1655,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
+				CODE_SIGN_ENTITLEMENTS = SunWallet/SunWallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SunWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = MUPMJFY9D3;
@@ -1649,7 +1666,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sunwallet.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = sw.capital.sunwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1662,6 +1679,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
+				CODE_SIGN_ENTITLEMENTS = SunWallet/SunWallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SunWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = MUPMJFY9D3;
@@ -1673,7 +1691,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sunwallet.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = sw.capital.sunwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

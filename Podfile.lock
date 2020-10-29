@@ -1,6 +1,8 @@
 PODS:
   - BigInt (4.0.0)
   - CryptoSwift (1.3.1)
+  - MagicExt-OAuth (0.2.0):
+    - MagicSDK (~> 2.0.0)
   - MagicSDK (2.0.0):
     - MagicSDK-Web3 (~> 0.4.4)
     - MagicSDK-Web3/ContractABI (~> 0.4.4)
@@ -33,6 +35,7 @@ PODS:
     - SwiftProtobuf
 
 DEPENDENCIES:
+  - MagicExt-OAuth
   - MagicSDK
   - TrustWalletCore
 
@@ -40,6 +43,7 @@ SPEC REPOS:
   trunk:
     - BigInt
     - CryptoSwift
+    - MagicExt-OAuth
     - MagicSDK
     - MagicSDK-Web3
     - PromiseKit
@@ -51,6 +55,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BigInt: 2aad1a9942dc932ec8b84290d2c564a3d76f97ab
   CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
+  MagicExt-OAuth: bec9b0409cf299f07a5c340d1642ff639635f7ec
   MagicSDK: 676bf81a292691f4add461a514cd2615b1faad43
   MagicSDK-Web3: e3b4dcdb9aceaa2a0ae1cbb10410fecc2be763d1
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
@@ -59,6 +64,6 @@ SPEC CHECKSUMS:
   SwiftProtobuf: fd4693388a96c8c2df35d3b063272b0e7c499d00
   TrustWalletCore: 84a87886e55b4efa875b452926d3ba58a32359c8
 
-PODFILE CHECKSUM: 8ff584613f5b323e13fc0f8cc8547535fc68e811
+PODFILE CHECKSUM: 3f951c0a212f85e3fc1c8a05e3cf907b82961332
 
 COCOAPODS: 1.9.3

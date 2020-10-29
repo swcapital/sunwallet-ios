@@ -2,7 +2,8 @@ platform :ios, '14.0'
 use_frameworks!
 target 'SunWallet' do 
 	pod 'TrustWalletCore'
-	pod 'MagicSDK' 
+	pod 'MagicSDK'
+	pod 'MagicExt-OAuth'
 end
 
 post_install do |installer|

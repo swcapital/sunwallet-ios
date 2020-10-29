@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject
     var appStateStore: AppStateStore
+    @State var onboardingComplete: Bool = false
     
     @ViewBuilder
     var body: some View {
@@ -10,10 +11,11 @@ struct RootView: View {
             if appStateStore.loggedIn {
                 MainView()
             } else {
-                OnboardingView()
+                OnboardingView(finished: $onboardingComplete)
             }
         }
         .accentColor(.primary)
+        
     }
 }
 

@@ -8,7 +8,7 @@ struct ButtonModifier: ViewModifier {
             .padding()
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(Color.primary))
+                .fill(Color.redColor))
             .padding(.bottom)
     }
 }
