@@ -270,7 +270,6 @@
 		DB5725022491F9D400F283BF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DB5725062492070F00F283BF /* PortfolioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioScreen.swift; sourceTree = "<group>"; };
 		DB5F369F24A9D79800DDCA7A /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
-		DB5F36B324ADF89100DDCA7A /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
 		DB5F36B624AE4DE900DDCA7A /* View+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+alert.swift"; sourceTree = "<group>"; };
 		DB5F36BA24AEFDA000DDCA7A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		DB5F36BC24AF0C0200DDCA7A /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -525,7 +524,6 @@
 			isa = PBXGroup;
 			children = (
 				FAC2AF47254ACB8100E5EB14 /* OnboardingView.swift */,
-				DB5F36B324ADF89100DDCA7A /* OnboardingView2.swift */,
 				DB5F36AF24ADE23500DDCA7A /* Onboarding */,
 				DB865AD124B1D868004303F3 /* Login */,
 			);

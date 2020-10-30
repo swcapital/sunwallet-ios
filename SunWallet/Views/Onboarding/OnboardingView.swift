@@ -5,22 +5,21 @@ import MagicExt_OAuth
 struct OnboardingView: View {
     
     @Binding var finished: Bool
-    
     @State var index: Int = 0
     @State var count: Int = 3
+    @State var position: CGFloat = 0
     
-    // MODIFY THESE VARIABLES TO CHANGE THE ONBOARDING SCREEN
     var imageNames: [String] = ["38", "40", "51"]
-    var titles: [String] = ["Get started with Bitcoin", "Loem Ipsum", "Loem Ipsum"]
-    var descriptions: [String] = ["Sun Wallet is your easy start into the world of cryptocurrencies.", "Lorem ipsum dolor sit amet. Consecteteuer adipiscing elit.", "Lorem ipsum dolor sit amet. Consecteteuer adipiscing elit."]
+    var titles: [LocalizedStringKey] = ["Get started with Crypto", "Be your own Bank", "Earn Interest & Invest"]
+    var descriptions: [LocalizedStringKey] = ["Sun Wallet is your easy start into the world of cryptocurrencies.", "Instantly buy & sell cryptocurrencies and store them securely on your phone.", "Earn high interest rates on your crypto holdings and discover the world of decentralized finance."]
     
-    var blobStartColor: Color = Color(red: 202/255.0, green: 254/255.0, blue: 255/255.0)
-    var blobEndColor: Color = Color.blueColor
+    var blobStartColor: Color = Color(red: 20.0/255.0, green: 18.0/255.0, blue: 89.0/255.0)
+    var blobEndColor: Color = Color(red: 45.0/255.0, green: 40.0/255.0, blue: 198.0/255.0)
     
-    var pageControlColor: Color = Color.blueColor
+    var pageControlColor: Color = Color(red: 3.0/255.0, green: 53.0/255.0, blue: 151.0/255.0)
     
-    var titleColor: Color = Color.blueColor
-    var detailColor: Color = Color.lightBlueColor
+    var titleColor: Color = Color(red: 3.0/255.0, green: 53.0/255.0, blue: 151.0/255.0)
+    var detailColor: Color = Color(red: 36.0/255.0, green: 53.0/255.0, blue: 87.0/255.0)
         
     @State private var dragOffset: CGFloat = 0
     
@@ -31,12 +30,12 @@ struct OnboardingView: View {
                     Blob()
                         .fill(LinearGradient(gradient: Gradient(colors: [self.blobStartColor, self.blobEndColor]), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
                         .frame(width: geometry.size.width, height: geometry.size.height/3.0, alignment: .center)
-                        .offset(x: getBlobXOffset(pageIndex: self.index, proxy: geometry), y: -70)
+                        .offset(x: getBlobXOffset(pageIndex: self.index, proxy: geometry), y: -100)
                     Spacer()
                     Blob()
                         .fill(LinearGradient(gradient: Gradient(colors: [self.blobStartColor, self.blobEndColor]), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
                         .frame(width: geometry.size.width, height: geometry.size.height/3.0, alignment: .center)
-                        .offset(x: getBlobXOffset(pageIndex: self.index, proxy: geometry), y: -70)
+                        .offset(x: getBlobXOffset(pageIndex: self.index, proxy: geometry), y: -100)
                         .rotationEffect(Angle(degrees: 180))
                 }
                 .offset(x: getBlobStackOffset(proxy: geometry))
@@ -46,43 +45,46 @@ struct OnboardingView: View {
                 VStack {
                     HStack(alignment: .center, spacing: 0){
                             ForEach(0..<self.count) { i in
-                            VStack(alignment: .center, spacing: 0) {
+                            VStack(alignment: .center, spacing: 16) {
                                 Image(self.imageNames[i])
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 280, height: 320, alignment: .center)
+                                    .scaledToFit()
+                                    .padding(.horizontal, 32)
+                                                                    
                                 Text(self.titles[i])
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .foregroundColor(self.titleColor)
-                                    .padding(.horizontal, 20)
+                                    .padding(.horizontal, 16)
+                                
                                 Text(self.descriptions[i])
                                     .font(.body)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(Color(red: 18/255, green: 31/255, blue: 71/255).opacity(0.4))
-                                    .padding(.top, 20)
-                                    .padding(.horizontal, 20)
+                                    .padding(.horizontal, 16)
                             }.frame(width: geometry.size.width, height: nil, alignment: .center)
                              
                             }
-                    }.offset(x: getItemOffset(pageIndex: self.index, proxy: geometry), y: -20)
+                    }.offset(x: getItemOffset(pageIndex: self.index, proxy: geometry), y: -10)
                     
                     
                     PageControl(index: self.index, count: self.count, color: self.pageControlColor)
-                        .frame(width: nil, height: 20, alignment: .center)
-                        .padding(.bottom, 20)
+                        .frame(width: nil, height: 10, alignment: .center)
                         .offset(x: getBlobStackOffset(proxy: geometry))
+                        .padding(.vertical, 16)
+                    
                     
                     Button(action: {
                         showAppleLogin()
                     }) {
                         HStack {
-                            Image("bookmark.fill")
+                            //Image("bookmark.fill")
                             Text("Login with Apple")
                         }
                         .customButton()
                     }.frame(width: 280, height: 40, alignment: .center)
+                    //.padding(.bottom, 16)
                     .offset(x: getBlobStackOffset(proxy: geometry))
                     
                 }
@@ -98,7 +100,12 @@ struct OnboardingView: View {
                     
                     let finalPosition = (fullWidth / 2.0) - rawPosition
                     
-                    var newIndex = Int(finalPosition / (fullWidth / CGFloat(self.count) ) )
+                    var newIndex = Int(finalPosition / (fullWidth / CGFloat(self.count) * 0.7 ))
+                    
+                    if self.dragOffset > 0 { //Scroll to left
+                        newIndex = Int(finalPosition / (fullWidth / CGFloat(self.count) * 1.3 ))
+                    }
+                    
                     
                     if newIndex >= self.count {
                         newIndex = self.count - 1
@@ -106,13 +113,13 @@ struct OnboardingView: View {
                     if newIndex < 0 {
                         newIndex = 0
                     }
-                    
+
                     withAnimation {
                         self.dragOffset = 0
                         self.index = newIndex
                     }
                     
-                    print(rawPosition, fullWidth, newIndex)
+                    print(finalPosition, self.dragOffset, newIndex)
                 })
             )
         }
@@ -120,13 +127,9 @@ struct OnboardingView: View {
         
     }
     
-    // Must account for changes in iOS 14.0 GeometryReader alignment changes
+
     func getItemOffset(pageIndex: Int, proxy: GeometryProxy) -> CGFloat {
-        if #available(iOS 14.0, *) {
-            return (proxy.size.width * CGFloat(self.index) * -1) +  self.dragOffset
-        } else {
-            return (proxy.size.width * CGFloat(self.index - 1) * -1) +  self.dragOffset
-        }
+        return (proxy.size.width * CGFloat(self.index) * -1) +  self.dragOffset
     }
     
     func getBlobXOffset(pageIndex: Int, proxy: GeometryProxy) -> CGFloat {
@@ -134,11 +137,7 @@ struct OnboardingView: View {
     }
     
     func getBlobStackOffset(proxy: GeometryProxy) -> CGFloat {
-        if #available(iOS 14.0, *) {
-            return -1 * proxy.size.width
-        } else {
-            return 0
-        }
+        return -1 * proxy.size.width
     }
 }
 
