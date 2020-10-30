@@ -1,11 +1,3 @@
-//
-//  PageControl.swift
-//  TCOnboardingTemplate
-//
-//  Created by Jean-Marc Boullianne on 6/12/20.
-//  Copyright © 2020 TrailingClosure. All rights reserved.
-//
-
 import SwiftUI
 
 struct PageControl: View {
@@ -15,11 +7,11 @@ struct PageControl: View {
     var color: Color
     
     var body: some View {
-        HStack(alignment: .center, spacing: 25) {
+        HStack(alignment: .center, spacing: 16) {
             ForEach(0..<self.count) { i in
                 self.color
                     .opacity(self.index == i ? 1.0 : 0.2)
-                    .frame(width: 10, height: 10, alignment: .center)
+                    .frame(width: 8, height: 8, alignment: .center)
                     .cornerRadius(5)
             }
         }

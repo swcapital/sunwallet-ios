@@ -45,17 +45,19 @@ struct OnboardingView: View {
                 VStack {
                     HStack(alignment: .center, spacing: 0){
                             ForEach(0..<self.count) { i in
-                            VStack(alignment: .center, spacing: 16) {
+                            VStack(alignment: .center, spacing: 0) {
                                 Image(self.imageNames[i])
                                     .resizable()
                                     .scaledToFit()
-                                    .padding(.horizontal, 32)
+                                    .padding(.horizontal, 48)
+                                    .padding(.bottom, 16)
                                                                     
                                 Text(self.titles[i])
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .foregroundColor(self.titleColor)
                                     .padding(.horizontal, 16)
+                                    .padding(.bottom, 16)
                                 
                                 Text(self.descriptions[i])
                                     .font(.body)
@@ -63,16 +65,16 @@ struct OnboardingView: View {
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(Color(red: 18/255, green: 31/255, blue: 71/255).opacity(0.4))
                                     .padding(.horizontal, 16)
+                                                                
                             }.frame(width: geometry.size.width, height: nil, alignment: .center)
-                             
                             }
-                    }.offset(x: getItemOffset(pageIndex: self.index, proxy: geometry), y: -10)
+                    }.offset(x: getItemOffset(pageIndex: self.index, proxy: geometry), y: -32)
                     
                     
                     PageControl(index: self.index, count: self.count, color: self.pageControlColor)
                         .frame(width: nil, height: 10, alignment: .center)
-                        .offset(x: getBlobStackOffset(proxy: geometry))
-                        .padding(.vertical, 16)
+                        .offset(x: getBlobStackOffset(proxy: geometry), y: -32)
+                        .padding(.bottom, 16)
                     
                     
                     Button(action: {
@@ -83,8 +85,9 @@ struct OnboardingView: View {
                             Text("Login with Apple")
                         }
                         .customButton()
-                    }.frame(width: 280, height: 40, alignment: .center)
-                    //.padding(.bottom, 16)
+                    }
+                    .frame(width: 300, height: 40, alignment: .center)
+                    .padding(.horizontal, 40)
                     .offset(x: getBlobStackOffset(proxy: geometry))
                     
                 }
@@ -119,7 +122,6 @@ struct OnboardingView: View {
                         self.index = newIndex
                     }
                     
-                    print(finalPosition, self.dragOffset, newIndex)
                 })
             )
         }
