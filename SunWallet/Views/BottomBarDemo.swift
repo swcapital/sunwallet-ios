@@ -2,10 +2,10 @@ import SwiftUI
 import BottomBar_SwiftUI
 
 let items: [BottomBarItem] = [
-    BottomBarItem(icon: Image("tab-bar-home"), title: "Home", color: Color.blueColor),
-    BottomBarItem(icon: Image("tab-bar-search"), title: "Search", color: Color.greenColor),
-    BottomBarItem(icon: Image("tab-bar-discover"), title: "Discover", color: Color.yellowColor),
-    BottomBarItem(icon: Image("tab-bar-notifications"), title: "Notifications", color: Color.redColor)
+    BottomBarItem(icon: Image("tab-bar-home"), title: "tab-bar-home", color: Color.lightBlueColor),
+    BottomBarItem(icon: Image("tab-bar-search"), title: "tab-bar-search", color: Color.lightBlueColor),
+    BottomBarItem(icon: Image("tab-bar-discover"), title: "tab-bar-discover", color: Color.lightBlueColor),
+    BottomBarItem(icon: Image("tab-bar-settings"), title: "tab-bar-settings", color: Color.lightBlueColor)
 ]
 
 

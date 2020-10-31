@@ -1,0 +1,23 @@
+// Onboarding - 1st Page
+"onboarding-title-1" = "Get started with Crypto";
+"onboarding-subtitle-1" = "Sun Wallet is your easy start into the world of cryptocurrencies.";
+
+// Onboarding - 2nd Page
+"onboarding-title-2" = "Be your own Bank";
+"onboarding-subtitle-2" = "Instantly buy & sell cryptocurrencies and store them securely.";
+
+// Onboarding - 3rd Page
+"onboarding-title-3" = "Earn Interest & Invest";
+"onboarding-subtitle-3" = "Earn high interest rates and discover the world of decentralized finance.";
+
+// Onboarding - Sign in Button
+"apple-sign-in-button-title" = "Sign in with Apple";
+
+// Tab Bar
+"tab-bar-home" = "Home";
+"tab-bar-search" = "Search";
+"tab-bar-discover" = "Discover";
+"tab-bar-alerts" = "Alerts";
+"tab-bar-settings" = "Settings";
+
+// Home

@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Compass-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Compass.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Compass-2.png",
+      "filename" : "tab-bar-discover@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

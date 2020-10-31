@@ -3,36 +3,39 @@ import MagicSDK
 import MagicExt_OAuth
 
 struct OnboardingView: View {
-    
+    // MARK:- State
     @Binding var finished: Bool
     @State var index: Int = 0
     @State var count: Int = 3
     @State var position: CGFloat = 0
-    
-    var imageNames: [String] = ["38", "40", "51"]
-    var titles: [LocalizedStringKey] = ["Get started with Crypto", "Be your own Bank", "Earn Interest & Invest"]
-    var descriptions: [LocalizedStringKey] = ["Sun Wallet is your easy start into the world of cryptocurrencies.", "Instantly buy & sell cryptocurrencies and store them securely on your phone.", "Earn high interest rates on your crypto holdings and discover the world of decentralized finance."]
-    
-    var blobStartColor: Color = Color(red: 20.0/255.0, green: 18.0/255.0, blue: 89.0/255.0)
-    var blobEndColor: Color = Color(red: 45.0/255.0, green: 40.0/255.0, blue: 198.0/255.0)
-    
-    var pageControlColor: Color = Color(red: 3.0/255.0, green: 53.0/255.0, blue: 151.0/255.0)
-    
-    var titleColor: Color = Color(red: 3.0/255.0, green: 53.0/255.0, blue: 151.0/255.0)
-    var detailColor: Color = Color(red: 36.0/255.0, green: 53.0/255.0, blue: 87.0/255.0)
-        
     @State private var dragOffset: CGFloat = 0
+    
+    @EnvironmentObject var appStateStore: AppStateStore
+        
+    // MARK:- Content
+    var imageNames: [String] = ["onboarding-image-1", "onboarding-image-2", "onboarding-image-3"]
+    var titles: [LocalizedStringKey] = ["onboarding-title-1", "onboarding-title-2", "onboarding-title-3"]
+    var descriptions: [LocalizedStringKey] = ["onboarding-subtitle-1", "onboarding-subtitle-2", "onboarding-subtitle-3"]
+    
+    var blobStartColor: Color = Color.darkBlueColor
+    var blobEndColor: Color = Color.lightBlueColor
+    
+    var pageControlColor: Color = Color.darkBlueColor
+    
+    var titleColor: Color = Color.darkBlueColor
+    var detailColor: Color = Color.lightGrayColor
+    
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    Blob()
+                    OnboardingView_Blob()
                         .fill(LinearGradient(gradient: Gradient(colors: [self.blobStartColor, self.blobEndColor]), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
                         .frame(width: geometry.size.width, height: geometry.size.height/3.0, alignment: .center)
                         .offset(x: getBlobXOffset(pageIndex: self.index, proxy: geometry), y: -100)
                     Spacer()
-                    Blob()
+                    OnboardingView_Blob()
                         .fill(LinearGradient(gradient: Gradient(colors: [self.blobStartColor, self.blobEndColor]), startPoint: UnitPoint(x: 0, y: 0), endPoint: UnitPoint(x: 1, y: 1)))
                         .frame(width: geometry.size.width, height: geometry.size.height/3.0, alignment: .center)
                         .offset(x: getBlobXOffset(pageIndex: self.index, proxy: geometry), y: -100)
@@ -48,9 +51,10 @@ struct OnboardingView: View {
                             VStack(alignment: .center, spacing: 0) {
                                 Image(self.imageNames[i])
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
+                                    .frame(maxWidth: 280, maxHeight: 320, alignment: .center)
                                     .padding(.horizontal, 48)
-                                    .padding(.bottom, 16)
+                                    //.padding(.bottom, 16)
                                                                     
                                 Text(self.titles[i])
                                     .font(.title)
@@ -63,7 +67,7 @@ struct OnboardingView: View {
                                     .font(.body)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .multilineTextAlignment(.center)
-                                    .foregroundColor(Color(red: 18/255, green: 31/255, blue: 71/255).opacity(0.4))
+                                    .foregroundColor(self.detailColor).opacity(0.4)
                                     .padding(.horizontal, 16)
                                                                 
                             }.frame(width: geometry.size.width, height: nil, alignment: .center)
@@ -71,7 +75,7 @@ struct OnboardingView: View {
                     }.offset(x: getItemOffset(pageIndex: self.index, proxy: geometry), y: -32)
                     
                     
-                    PageControl(index: self.index, count: self.count, color: self.pageControlColor)
+                    OnboardingView_PageControl(index: self.index, count: self.count, color: self.pageControlColor)
                         .frame(width: nil, height: 10, alignment: .center)
                         .offset(x: getBlobStackOffset(proxy: geometry), y: -32)
                         .padding(.bottom, 16)
@@ -82,11 +86,11 @@ struct OnboardingView: View {
                     }) {
                         HStack {
                             //Image("bookmark.fill")
-                            Text("Login with Apple")
+                            Text("apple-sign-in-button-title")
                         }
                         .customButton()
                     }
-                    .frame(width: 300, height: 40, alignment: .center)
+                    .frame(width: 300, height: 44, alignment: .center)
                     .padding(.horizontal, 40)
                     .offset(x: getBlobStackOffset(proxy: geometry))
                     
@@ -153,6 +157,7 @@ extension OnboardingView {
         
         Magic.shared.oauth.loginWithPopup(configuration, response: {response in
             self.finished = true
+            appStateStore.logIn()
             guard let result = response.result else { return print("Error:", response.error.debugDescription) }
             print("DIDToken", result.magic.idToken)
         })

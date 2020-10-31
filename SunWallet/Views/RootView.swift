@@ -9,13 +9,12 @@ struct RootView: View {
     var body: some View {
         Group {
             if appStateStore.loggedIn {
-                MainView()
+                BottomBarDemo()
             } else {
                 OnboardingView(finished: $onboardingComplete)
             }
         }
         .accentColor(.primary)
-        
     }
 }
 

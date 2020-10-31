@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Search-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Search.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Search-2.png",
+      "filename" : "tab.bar-search@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
