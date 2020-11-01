@@ -8,7 +8,7 @@ class AssetInfoStore: ObservableObject {
     }
     
     private func bundleData() -> [AssetInfo] {
-        let url = Bundle.main.url(forResource: "about", withExtension: "json")!
+        let url = Bundle.main.url(forResource: "assets", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         return (try? JSONDecoder().decode([AssetInfo].self, from: data)) ?? []
     }

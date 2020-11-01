@@ -156,10 +156,15 @@ extension OnboardingView {
         let configuration = OAuthConfiguration(provider: .APPLE, redirectURI: "sunwallet://")
         
         Magic.shared.oauth.loginWithPopup(configuration, response: {response in
-            self.finished = true
             appStateStore.logIn()
             guard let result = response.result else { return print("Error:", response.error.debugDescription) }
             print("DIDToken", result.magic.idToken)
+            
+            Magic.shared.user.getMetadata(response: { response in
+                        guard let metadata = response.result
+                            else { return print("Error:", response.error.debugDescription) }
+                        print("Result", metadata)
+            })
         })
     }
 }

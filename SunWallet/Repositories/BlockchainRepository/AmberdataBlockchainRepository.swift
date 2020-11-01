@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 import WalletCore
-import Web3
+import MagicSDK_Web3
 
 private let host = "https://web3api.io/api/v2"
 let web3 = Web3(rpcURL: "https://mainnet.infura.io/" + Keys.infuraKey)

@@ -64,7 +64,7 @@
 		DB50249724B0B70A002E1547 /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50249624B0B70A002E1547 /* KeychainRepository.swift */; };
 		DB50249B24B1A159002E1547 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50249A24B1A159002E1547 /* TextView.swift */; };
 		DB551DFE24EAB32E007E17DA /* TransactionsView+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB551DFD24EAB32E007E17DA /* TransactionsView+Cell.swift */; };
-		DB551E0024EAFA35007E17DA /* about.json in Resources */ = {isa = PBXBuildFile; fileRef = DB551DFF24EAFA35007E17DA /* about.json */; };
+		DB551E0024EAFA35007E17DA /* assets.json in Resources */ = {isa = PBXBuildFile; fileRef = DB551DFF24EAFA35007E17DA /* assets.json */; };
 		DB551E0524EAFF19007E17DA /* AssetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB551E0424EAFF19007E17DA /* AssetInfo.swift */; };
 		DB551E0724EB0018007E17DA /* AssetInfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB551E0624EB0018007E17DA /* AssetInfoStore.swift */; };
 		DB5725032491F9D400F283BF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5725022491F9D400F283BF /* MainView.swift */; };
@@ -168,9 +168,7 @@
 		DBFDB7612493635C00A1DFAD /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7602493635C00A1DFAD /* AccountCell.swift */; };
 		DBFDB7632493685D00A1DFAD /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDB7622493685D00A1DFAD /* QRView.swift */; };
 		FA22BF48253AFA4400E422C5 /* AnimatedGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22BF47253AFA4400E422C5 /* AnimatedGradient.swift */; };
-		FA22BF4C253B251D00E422C5 /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA22BF4B253B251D00E422C5 /* BottomBar-SwiftUI */; };
 		FA22BF4F253B31A300E422C5 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22BF4E253B31A300E422C5 /* GradientButton.swift */; };
-		FA22BF53253B3A2400E422C5 /* AnimatableGradients in Frameworks */ = {isa = PBXBuildFile; productRef = FA22BF52253B3A2400E422C5 /* AnimatableGradients */; };
 		FA22BF66253B442F00E422C5 /* BottomBarDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22BF58253B41F200E422C5 /* BottomBarDemo.swift */; };
 		FA67E2F6254D822A00F0D99A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA67E2F5254D822A00F0D99A /* Localizable.strings */; };
 		FA67E2F9254D824500F0D99A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FA67E2F8254D824500F0D99A /* Localizable.stringsdict */; };
@@ -180,10 +178,6 @@
 		FA67E30A254DA90B00F0D99A /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67E306254DA90B00F0D99A /* BottomBarItem.swift */; };
 		FA67E30B254DA90B00F0D99A /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67E307254DA90B00F0D99A /* BottomBar.swift */; };
 		FA931293253C7EDD0083787C /* AmberdataBlockchainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA931292253C7EDD0083787C /* AmberdataBlockchainRepository.swift */; };
-		FA931298253C89AC0083787C /* Web3PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA931297253C89AC0083787C /* Web3PromiseKit */; };
-		FA93129A253C89AC0083787C /* Web3ContractABI in Frameworks */ = {isa = PBXBuildFile; productRef = FA931299253C89AC0083787C /* Web3ContractABI */; };
-		FA93129C253C89AC0083787C /* Web3 in Frameworks */ = {isa = PBXBuildFile; productRef = FA93129B253C89AC0083787C /* Web3 */; };
-		FA9BC14D254588E10092EB60 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = FA9BC14C254588E10092EB60 /* SwiftUIPager */; };
 		FAAE2D9F2539955E002CA452 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE2D9E2539955E002CA452 /* Keys.swift */; };
 		FAB661002546F25800F921AA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0376C9247CFD13005ACB03 /* Color.swift */; };
 		FAB661132546F56300F921AA /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB661122546F56300F921AA /* Modifiers.swift */; };
@@ -199,6 +193,10 @@
 		FAC2AF4A254ACB8100E5EB14 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2AF47254ACB8100E5EB14 /* OnboardingView.swift */; };
 		FAC2AF4B254ACB8100E5EB14 /* OnboardingView+Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2AF48254ACB8100E5EB14 /* OnboardingView+Blob.swift */; };
 		FAC2AF4C254ACB8100E5EB14 /* OnboardingView +PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2AF49254ACB8100E5EB14 /* OnboardingView +PageControl.swift */; };
+		FAE596FE254ECDC900613CC8 /* Web3PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FAE596FD254ECDC900613CC8 /* Web3PromiseKit */; };
+		FAE59700254ECDC900613CC8 /* Web3ContractABI in Frameworks */ = {isa = PBXBuildFile; productRef = FAE596FF254ECDC900613CC8 /* Web3ContractABI */; };
+		FAE59702254ECDC900613CC8 /* Web3 in Frameworks */ = {isa = PBXBuildFile; productRef = FAE59701254ECDC900613CC8 /* Web3 */; };
+		FAE59705254F212600613CC8 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE59704254F212600613CC8 /* FloatingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -262,7 +260,7 @@
 		DB50249624B0B70A002E1547 /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
 		DB50249A24B1A159002E1547 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		DB551DFD24EAB32E007E17DA /* TransactionsView+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsView+Cell.swift"; sourceTree = "<group>"; };
-		DB551DFF24EAFA35007E17DA /* about.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = about.json; sourceTree = "<group>"; };
+		DB551DFF24EAFA35007E17DA /* assets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = assets.json; sourceTree = "<group>"; };
 		DB551E0424EAFF19007E17DA /* AssetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetInfo.swift; sourceTree = "<group>"; };
 		DB551E0624EB0018007E17DA /* AssetInfoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetInfoStore.swift; sourceTree = "<group>"; };
 		DB5725022491F9D400F283BF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -394,6 +392,7 @@
 		FAC2AF47254ACB8100E5EB14 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FAC2AF48254ACB8100E5EB14 /* OnboardingView+Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnboardingView+Blob.swift"; sourceTree = "<group>"; };
 		FAC2AF49254ACB8100E5EB14 /* OnboardingView +PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnboardingView +PageControl.swift"; sourceTree = "<group>"; };
+		FAE59704254F212600613CC8 /* FloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,13 +401,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				458C2F4EBBC06E18CE31F2AC /* Pods_SunWallet.framework in Frameworks */,
-				FA22BF53253B3A2400E422C5 /* AnimatableGradients in Frameworks */,
-				FA931298253C89AC0083787C /* Web3PromiseKit in Frameworks */,
-				FA9BC14D254588E10092EB60 /* SwiftUIPager in Frameworks */,
+				FAE596FE254ECDC900613CC8 /* Web3PromiseKit in Frameworks */,
+				FAE59700254ECDC900613CC8 /* Web3ContractABI in Frameworks */,
 				FABC7DE1254A00560055702F /* PassKit.framework in Frameworks */,
-				FA93129C253C89AC0083787C /* Web3 in Frameworks */,
-				FA22BF4C253B251D00E422C5 /* BottomBar-SwiftUI in Frameworks */,
-				FA93129A253C89AC0083787C /* Web3ContractABI in Frameworks */,
+				FAE59702254ECDC900613CC8 /* Web3 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +488,7 @@
 		DB0376CB247CFD17005ACB03 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FAE59704254F212600613CC8 /* FloatingButton.swift */,
 				FAB661122546F56300F921AA /* Modifiers.swift */,
 				FA67E2FB254D892E00F0D99A /* Onboarding+LogoView.swift */,
 				FAB66124254708B500F921AA /* AnimatedText */,
@@ -585,7 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				DB2A131524AFAC350007197F /* bootstrap.json */,
-				DB551DFF24EAFA35007E17DA /* about.json */,
+				DB551DFF24EAFA35007E17DA /* assets.json */,
 				FA67E2F5254D822A00F0D99A /* Localizable.strings */,
 				FA67E2F8254D824500F0D99A /* Localizable.stringsdict */,
 			);
@@ -1208,12 +1205,9 @@
 			);
 			name = SunWallet;
 			packageProductDependencies = (
-				FA22BF4B253B251D00E422C5 /* BottomBar-SwiftUI */,
-				FA22BF52253B3A2400E422C5 /* AnimatableGradients */,
-				FA931297253C89AC0083787C /* Web3PromiseKit */,
-				FA931299253C89AC0083787C /* Web3ContractABI */,
-				FA93129B253C89AC0083787C /* Web3 */,
-				FA9BC14C254588E10092EB60 /* SwiftUIPager */,
+				FAE596FD254ECDC900613CC8 /* Web3PromiseKit */,
+				FAE596FF254ECDC900613CC8 /* Web3ContractABI */,
+				FAE59701254ECDC900613CC8 /* Web3 */,
 			);
 			productName = SunWallet;
 			productReference = DB68BC1C247BC5E200377A72 /* SunWallet.app */;
@@ -1244,10 +1238,7 @@
 			);
 			mainGroup = DB68BC13247BC5E200377A72;
 			packageReferences = (
-				FA22BF4A253B251D00E422C5 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
-				FA22BF51253B3A2400E422C5 /* XCRemoteSwiftPackageReference "AnimatableGradients" */,
-				FA931296253C89AC0083787C /* XCRemoteSwiftPackageReference "Web3.swift" */,
-				FA9BC14B254588E10092EB60 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				FAE596FC254ECDC900613CC8 /* XCRemoteSwiftPackageReference "Web3.swift" */,
 			);
 			productRefGroup = DB68BC1D247BC5E200377A72 /* Products */;
 			projectDirPath = "";
@@ -1267,7 +1258,7 @@
 				DB68BC2C247BC5E500377A72 /* LaunchScreen.storyboard in Resources */,
 				FA67E2F6254D822A00F0D99A /* Localizable.strings in Resources */,
 				DB68BC29247BC5E500377A72 /* Preview Assets.xcassets in Resources */,
-				DB551E0024EAFA35007E17DA /* about.json in Resources */,
+				DB551E0024EAFA35007E17DA /* assets.json in Resources */,
 				DB68BC26247BC5E500377A72 /* Assets.xcassets in Resources */,
 				FA67E2F9254D824500F0D99A /* Localizable.stringsdict in Resources */,
 			);
@@ -1385,6 +1376,7 @@
 				DB1759FC24E5538000066284 /* WalletHistory.swift in Sources */,
 				DBFDB7572492A80A00A1DFAD /* BottomSheetView.swift in Sources */,
 				FAB6615E25472B3F00F921AA /* PinKeyboardView.swift in Sources */,
+				FAE59705254F212600613CC8 /* FloatingButton.swift in Sources */,
 				DB919D3624FBE55600876307 /* QRCodeStore.swift in Sources */,
 				DB5F36A024A9D79800DDCA7A /* HistoryEntry.swift in Sources */,
 				DB3A5C1124862705007F19F2 /* HistoryChartSection.swift in Sources */,
@@ -1704,33 +1696,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA22BF4A253B251D00E422C5 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		FA22BF51253B3A2400E422C5 /* XCRemoteSwiftPackageReference "AnimatableGradients" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CypherPoet/AnimatableGradients";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		FA931296253C89AC0083787C /* XCRemoteSwiftPackageReference "Web3.swift" */ = {
+		FAE596FC254ECDC900613CC8 /* XCRemoteSwiftPackageReference "Web3.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Boilertalk/Web3.swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		FA9BC14B254588E10092EB60 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1739,35 +1707,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FA22BF4B253B251D00E422C5 /* BottomBar-SwiftUI */ = {
+		FAE596FD254ECDC900613CC8 /* Web3PromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA22BF4A253B251D00E422C5 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
-			productName = "BottomBar-SwiftUI";
-		};
-		FA22BF52253B3A2400E422C5 /* AnimatableGradients */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA22BF51253B3A2400E422C5 /* XCRemoteSwiftPackageReference "AnimatableGradients" */;
-			productName = AnimatableGradients;
-		};
-		FA931297253C89AC0083787C /* Web3PromiseKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA931296253C89AC0083787C /* XCRemoteSwiftPackageReference "Web3.swift" */;
+			package = FAE596FC254ECDC900613CC8 /* XCRemoteSwiftPackageReference "Web3.swift" */;
 			productName = Web3PromiseKit;
 		};
-		FA931299253C89AC0083787C /* Web3ContractABI */ = {
+		FAE596FF254ECDC900613CC8 /* Web3ContractABI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA931296253C89AC0083787C /* XCRemoteSwiftPackageReference "Web3.swift" */;
+			package = FAE596FC254ECDC900613CC8 /* XCRemoteSwiftPackageReference "Web3.swift" */;
 			productName = Web3ContractABI;
 		};
-		FA93129B253C89AC0083787C /* Web3 */ = {
+		FAE59701254ECDC900613CC8 /* Web3 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA931296253C89AC0083787C /* XCRemoteSwiftPackageReference "Web3.swift" */;
+			package = FAE596FC254ECDC900613CC8 /* XCRemoteSwiftPackageReference "Web3.swift" */;
 			productName = Web3;
-		};
-		FA9BC14C254588E10092EB60 /* SwiftUIPager */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA9BC14B254588E10092EB60 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
-			productName = SwiftUIPager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

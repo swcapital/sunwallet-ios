@@ -2,30 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "AnimatableGradients",
-        "repositoryURL": "https://github.com/CypherPoet/AnimatableGradients",
-        "state": {
-          "branch": "master",
-          "revision": "4ad47d8cece980ebe437694aa502c2601365f5e7",
-          "version": null
-        }
-      },
-      {
         "package": "BigInt",
         "repositoryURL": "https://github.com/attaswift/BigInt.git",
         "state": {
           "branch": null,
           "revision": "e1f28276687d7661cbb2754771bd9fc281784e32",
           "version": "5.2.0"
-        }
-      },
-      {
-        "package": "BottomBar-SwiftUI",
-        "repositoryURL": "https://github.com/smartvipere75/bottombar-swiftui",
-        "state": {
-          "branch": "master",
-          "revision": "838ce6316f8282467ebd00cf4d9706dc58978633",
-          "version": null
         }
       },
       {
@@ -56,20 +38,11 @@
         }
       },
       {
-        "package": "SwiftUIPager",
-        "repositoryURL": "https://github.com/fermoya/SwiftUIPager.git",
-        "state": {
-          "branch": "master",
-          "revision": "6ccc32c01e421406d71097d99e2aa4609762dd5b",
-          "version": null
-        }
-      },
-      {
         "package": "Web3",
         "repositoryURL": "https://github.com/Boilertalk/Web3.swift.git",
         "state": {
           "branch": "master",
-          "revision": "2440357334b8250452b6489488c0eb7942bb3d10",
+          "revision": "7e5df138e288cb090636a21a85ae8c6681c89480",
           "version": null
         }
       }
