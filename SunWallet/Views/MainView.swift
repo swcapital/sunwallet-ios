@@ -5,10 +5,10 @@ struct MainView: View {
     @EnvironmentObject var accountsStore: AccountsStore
     
     let items: [BottomBarItem] = [
-        BottomBarItem(icon: Image("tab-bar-home"), title: String("Home"), color: Color.blueColor),
-        BottomBarItem(icon: Image("tab-bar-search"), title: "Search", color: Color.greenColor),
-        BottomBarItem(icon: Image("tab-bar-discover"), title: "Discover", color: Color.yellowColor),
-        BottomBarItem(icon: Image("tab-bar-alerts"), title: "Alerts", color: Color.redColor)
+        BottomBarItem(icon: Image("tab-bar-home"), title: "tab-bar-home", color: Color.lightBlueColor),
+        BottomBarItem(icon: Image("tab-bar-search"), title: "tab-bar-search", color: Color.lightBlueColor),
+        BottomBarItem(icon: Image("tab-bar-discover"), title: "tab-bar-discover", color: Color.lightBlueColor),
+        BottomBarItem(icon: Image("tab-bar-settings"), title: "tab-bar-settings", color: Color.lightBlueColor)
     ]
     
     let itemViews = [AnyView(HomeScreen()), AnyView(PortfolioScreen()), AnyView(PortfolioScreen()), AnyView(PreferenceView())]

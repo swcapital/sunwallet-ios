@@ -24,7 +24,6 @@ struct ValueHistory {
 }
 
 extension Array where Element == Double {
-    
     init(initial: Double, range: Range<Double>, count: Int) {
         var result = [initial]
         for _ in 0..<count {

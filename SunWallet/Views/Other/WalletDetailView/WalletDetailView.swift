@@ -2,7 +2,7 @@ import SwiftUI
 
 struct WalletDetailView: View {
     // MARK:- Properties
-    let asset: Asset2
+    let asset: Asset
     
     // MARK:- Environment
     @EnvironmentObject var dataSource: DataSource
@@ -16,7 +16,7 @@ struct WalletDetailView: View {
     @State var showReceiveAssetPopover = false
     
     // MARK:- Calculated Variables
-    private var assets: [Asset2] {
+    private var assets: [Asset] {
         return dataSource.assets
     }
     

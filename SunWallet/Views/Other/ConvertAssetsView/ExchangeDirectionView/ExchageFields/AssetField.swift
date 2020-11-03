@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AssetField: View {
-    let asset: Asset2
+    let asset: Asset
     let title: String
     let active: Bool
 

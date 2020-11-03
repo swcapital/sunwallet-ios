@@ -14,7 +14,7 @@ struct ExchangeDirectionView: View {
     @State private var activeField: ExchangeFieldType = .source
 
     // MARK:- Calculated Variables
-    private var assets: [Asset2] {
+    private var assets: [Asset] {
         let excluded = activeField.isSource ? exchange.destination : exchange.source
         return dataSource.assets.filter { $0 != excluded }
     }
@@ -56,7 +56,7 @@ struct ExchangeDirectionView: View {
     }
 
     // MARK:- Methods
-    private func updateCurrentField(asset: Asset2) {
+    private func updateCurrentField(asset: Asset) {
         switch activeField {
             case .source: self.exchange.source = asset
             case .destination: self.exchange.destination = asset

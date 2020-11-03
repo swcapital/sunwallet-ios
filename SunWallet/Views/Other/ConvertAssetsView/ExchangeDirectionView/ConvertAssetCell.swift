@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ConvertAssetCell: View {
     // MARK:- Properties
-    let asset: Asset2
+    let asset: Asset
     let action: () -> Void
 
     var body: some View {
